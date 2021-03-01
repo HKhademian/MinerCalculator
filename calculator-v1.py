@@ -3,10 +3,10 @@
 # miner_price = 0.0014616
 # week_income = 0.0000812
 
-# pishtazminer IRT price
-miner_weeks = 55
-miner_price = 450
-week_profit_forcast = 25
+# # pishtazminer IRT price
+# miner_weeks = 55
+# miner_price = 450
+# week_profit_forcast = 25
 
 # # hamyarminer IRT price
 # miner_weeks = 55
@@ -23,29 +23,38 @@ week_profit_forcast = 25
 # miner_price = 1500
 # week_profit_forcast = 25*5
 
-# # hamyarminer IRT price - 6 monthly
-# miner_weeks = 27
-# miner_price = 300
-# week_profit_forcast = 25
+# hamyarminer IRT price - 6 monthly
+miner_weeks = 26
+miner_price = 290
+week_profit_forcast = 25.5
+
+# # hashing24 USD price - 12 monthly
+# miner_weeks = 52
+# miner_price = 84.10
+# week_profit_forcast = 1.86
+
+start_miners = [miner_weeks]*5*(1+2+3+1)
+start_income = - (1+2+3+1)*1500
 
 lost_rate = 1
 no_top_up = True
 no_step = True
+no_miner = True
+
 stop_buy_from = -1
+take_rate = 0.25
+start_wallet_from = (30*6/7)
 
 wallet = 0
-take_rate = 0.3
-start_wallet_from = 8
-
 account = 0
-total_income = 0
-miners = [55]*4
+total_income = start_income
+miners = start_miners
 
 last_miner = 0
 changed = True
 i=-1
 
-while changed and i<(55*5+1):
+while changed and i<(52*2.5+1):
     changed = False
     i+=1
 
@@ -63,7 +72,7 @@ while changed and i<(55*5+1):
     print(f"- active_miners: {len(active_miners)}")
     print(f"- dead_miners: {len(dead_miners)}")
     print(f"- {available_miner_weeks=}")
-    if len(active_miners)<50:
+    if (not no_miner) and len(active_miners)<50:
         print(f"- miners: {active_miners}")
     print(f"- ")
     
