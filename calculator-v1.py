@@ -57,16 +57,17 @@ while changed and i<(55*5+1):
     print(f"- ")
 
     available_miner_weeks = sum(miners)
-    active_miners = len([it for it in miners if it>0])
-    dead_miners = len([it for it in miners if it<=0])
+    active_miners = [it for it in miners if it>0]
+    dead_miners = [it for it in miners if it<=0]
     print(f"- all miner count: {len(miners)}")
-    print(f"- {active_miners=}")
-    print(f"- {dead_miners=}")
+    print(f"- active_miners: {len(active_miners)}")
+    print(f"- dead_miners: {len(dead_miners)}")
     print(f"- {available_miner_weeks=}")
-    # print(f"- miners: {miners}")
+    if len(active_miners)<50:
+        print(f"- miners: {active_miners}")
     print(f"- ")
     
-    mine_income = active_miners * week_profit_forcast
+    mine_income = len(active_miners) * week_profit_forcast
     print(f"- mine_income: {mine_income:0.7f}")
 
     changed = changed or (mine_income>0)
