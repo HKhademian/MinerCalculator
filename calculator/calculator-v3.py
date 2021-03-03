@@ -9,17 +9,13 @@ miners = start_miners
 no_ask_top_up = True
 no_ask_step = True
 no_print_miner = False
-log_duration = 7
-
-stop_buy_from_day = -1
-take_profit_rate = 0.10
-take_profit_from_day = (30*3)
+log_duration = 1
 
 last_miner_buy = 0
 changed = True
 i=-1
 
-while changed and i<(365*2+1):
+while changed and i<(30*14+1):
     buffer = StringIO()
     changed = False
     i+=1
