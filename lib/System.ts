@@ -7,5 +7,5 @@ export interface System {
   start_day_date: number;
   current_day: number;
   daily_power_profit: number;
-  manager_user_id: string;
+  // manager_user_id: string;
 }

@@ -1,0 +1,7359 @@
+{
+	"products": [
+		{
+			"company": "hamyar",
+			"life": 180,
+			"price": 0.001187381931495207,
+			"power": 5,
+			"efficiency": 0.51
+		}
+	],
+	"users": [
+		{
+			"id": "hossain",
+			"title": "Hossain Khademian",
+			"saving_wallet": 0,
+			"working_wallet": 0,
+			"agent_share": 0,
+			"states": {
+				"total_dispose": 0,
+				"total_withdraw": 0,
+				"total_invest": 0,
+				"total_income": 0,
+				"total_workers": 0
+			},
+			"settings": {
+				"invest_save_rate": 0.3,
+				"invest_save_start": 90,
+				"invest_save_end": -1
+			}
+		},
+		{
+			"id": "ali",
+			"title": "Ali Khademian",
+			"saving_wallet": 0,
+			"working_wallet": 0,
+			"agentUserId": "hossain",
+			"agent_share": 0.1,
+			"states": {
+				"total_dispose": 0,
+				"total_withdraw": 0,
+				"total_invest": 0,
+				"total_income": 0,
+				"total_workers": 0
+			},
+			"settings": {
+				"invest_save_rate": 0.3,
+				"invest_save_start": 90,
+				"invest_save_end": -1
+			}
+		},
+		{
+			"id": "mitra",
+			"title": "Mitra",
+			"saving_wallet": 0,
+			"working_wallet": 0,
+			"agentUserId": "hossain",
+			"agent_share": 0.1,
+			"states": {
+				"total_dispose": 0,
+				"total_withdraw": 0,
+				"total_invest": 0,
+				"total_income": 0,
+				"total_workers": 0
+			},
+			"settings": {
+				"invest_save_rate": 0.3,
+				"invest_save_start": 90,
+				"invest_save_end": -1
+			}
+		},
+		{
+			"id": "home",
+			"title": "Home",
+			"saving_wallet": 0,
+			"working_wallet": 0,
+			"agentUserId": "hossain",
+			"agent_share": 0.05,
+			"states": {
+				"total_dispose": 0,
+				"total_withdraw": 0,
+				"total_invest": 0,
+				"total_income": 0,
+				"total_workers": 0
+			},
+			"settings": {
+				"invest_save_rate": 0.3,
+				"invest_save_start": 90,
+				"invest_save_end": -1
+			}
+		}
+	],
+	"workers": [
+		{
+			"power": 65,
+			"efficiency": 0.51,
+			"buy_company": "hamyar",
+			"buy_factorId": "XXXX",
+			"buy_price": 0.015435965109437693,
+			"buy_start_day": 15,
+			"buy_end_day": 195,
+			"owners": {
+				"home": 1
+			}
+		},
+		{
+			"power": 20,
+			"efficiency": 0.51,
+			"buy_company": "hamyar",
+			"buy_factorId": "XXXX",
+			"buy_price": 0.004749527725980828,
+			"buy_start_day": 0,
+			"buy_end_day": 180,
+			"owners": {
+				"hossain": 1
+			}
+		},
+		{
+			"power": 10,
+			"efficiency": 0.51,
+			"buy_company": "hamyar",
+			"buy_factorId": "XXXX",
+			"buy_price": 0.002374763862990414,
+			"buy_start_day": 0,
+			"buy_end_day": 180,
+			"owners": {
+				"ali": 1
+			}
+		},
+		{
+			"power": 5,
+			"efficiency": 0.51,
+			"buy_company": "hamyar",
+			"buy_factorId": "XXXX",
+			"buy_price": 0.001187381931495207,
+			"buy_start_day": 0,
+			"buy_end_day": 180,
+			"owners": {
+				"mitra": 1
+			}
+		}
+	],
+	"start_day_date": 0,
+	"current_day": 0,
+	"daily_power_profit": 0.000005805
+}
+"\n\n\n"
+"User Wallets"
+{
+	"current_day": 1,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0
+		},
+		{
+			"id": "ali",
+			"saving": 0
+		},
+		{
+			"id": "mitra",
+			"saving": 0
+		},
+		{
+			"id": "home",
+			"saving": 0
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.248,
+		"ali": 0.09,
+		"mitra": 0.045,
+		"home": 0.618
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 5,
+		"buy_end_day": 185,
+		"owners": {
+			"hossain": 0.248,
+			"ali": 0.09,
+			"mitra": 0.045,
+			"home": 0.618
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.249,
+		"ali": 0.09,
+		"mitra": 0.045,
+		"home": 0.616
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 8,
+		"buy_end_day": 188,
+		"owners": {
+			"hossain": 0.249,
+			"ali": 0.09,
+			"mitra": 0.045,
+			"home": 0.616
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.252,
+		"ali": 0.089,
+		"mitra": 0.045,
+		"home": 0.615
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 12,
+		"buy_end_day": 192,
+		"owners": {
+			"hossain": 0.252,
+			"ali": 0.089,
+			"mitra": 0.045,
+			"home": 0.615
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.253,
+		"ali": 0.089,
+		"mitra": 0.044,
+		"home": 0.613
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 16,
+		"buy_end_day": 196,
+		"owners": {
+			"hossain": 0.253,
+			"ali": 0.089,
+			"mitra": 0.044,
+			"home": 0.613
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.255,
+		"ali": 0.089,
+		"mitra": 0.044,
+		"home": 0.612
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 19,
+		"buy_end_day": 199,
+		"owners": {
+			"hossain": 0.255,
+			"ali": 0.089,
+			"mitra": 0.044,
+			"home": 0.612
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.257,
+		"ali": 0.088,
+		"mitra": 0.044,
+		"home": 0.611
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 22,
+		"buy_end_day": 202,
+		"owners": {
+			"hossain": 0.257,
+			"ali": 0.088,
+			"mitra": 0.044,
+			"home": 0.611
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.259,
+		"ali": 0.088,
+		"mitra": 0.044,
+		"home": 0.61
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 25,
+		"buy_end_day": 205,
+		"owners": {
+			"hossain": 0.259,
+			"ali": 0.088,
+			"mitra": 0.044,
+			"home": 0.61
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.26,
+		"ali": 0.087,
+		"mitra": 0.044,
+		"home": 0.609
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 28,
+		"buy_end_day": 208,
+		"owners": {
+			"hossain": 0.26,
+			"ali": 0.087,
+			"mitra": 0.044,
+			"home": 0.609
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.262,
+		"ali": 0.087,
+		"mitra": 0.044,
+		"home": 0.608
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 31,
+		"buy_end_day": 211,
+		"owners": {
+			"hossain": 0.262,
+			"ali": 0.087,
+			"mitra": 0.044,
+			"home": 0.608
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 31,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0
+		},
+		{
+			"id": "ali",
+			"saving": 0
+		},
+		{
+			"id": "mitra",
+			"saving": 0
+		},
+		{
+			"id": "home",
+			"saving": 0
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.263,
+		"ali": 0.087,
+		"mitra": 0.043,
+		"home": 0.606
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 34,
+		"buy_end_day": 214,
+		"owners": {
+			"hossain": 0.263,
+			"ali": 0.087,
+			"mitra": 0.043,
+			"home": 0.606
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.265,
+		"ali": 0.087,
+		"mitra": 0.043,
+		"home": 0.606
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 37,
+		"buy_end_day": 217,
+		"owners": {
+			"hossain": 0.265,
+			"ali": 0.087,
+			"mitra": 0.043,
+			"home": 0.606
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.266,
+		"ali": 0.086,
+		"mitra": 0.043,
+		"home": 0.605
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 39,
+		"buy_end_day": 219,
+		"owners": {
+			"hossain": 0.266,
+			"ali": 0.086,
+			"mitra": 0.043,
+			"home": 0.605
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.267,
+		"ali": 0.086,
+		"mitra": 0.043,
+		"home": 0.604
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 42,
+		"buy_end_day": 222,
+		"owners": {
+			"hossain": 0.267,
+			"ali": 0.086,
+			"mitra": 0.043,
+			"home": 0.604
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.268,
+		"ali": 0.086,
+		"mitra": 0.043,
+		"home": 0.603
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 44,
+		"buy_end_day": 224,
+		"owners": {
+			"hossain": 0.268,
+			"ali": 0.086,
+			"mitra": 0.043,
+			"home": 0.603
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.27,
+		"ali": 0.085,
+		"mitra": 0.043,
+		"home": 0.602
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 47,
+		"buy_end_day": 227,
+		"owners": {
+			"hossain": 0.27,
+			"ali": 0.085,
+			"mitra": 0.043,
+			"home": 0.602
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.271,
+		"ali": 0.085,
+		"mitra": 0.043,
+		"home": 0.601
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 49,
+		"buy_end_day": 229,
+		"owners": {
+			"hossain": 0.271,
+			"ali": 0.085,
+			"mitra": 0.043,
+			"home": 0.601
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.272,
+		"ali": 0.085,
+		"mitra": 0.043,
+		"home": 0.6
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 51,
+		"buy_end_day": 231,
+		"owners": {
+			"hossain": 0.272,
+			"ali": 0.085,
+			"mitra": 0.043,
+			"home": 0.6
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.273,
+		"ali": 0.085,
+		"mitra": 0.042,
+		"home": 0.599
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 53,
+		"buy_end_day": 233,
+		"owners": {
+			"hossain": 0.273,
+			"ali": 0.085,
+			"mitra": 0.042,
+			"home": 0.599
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.275,
+		"ali": 0.085,
+		"mitra": 0.042,
+		"home": 0.599
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 55,
+		"buy_end_day": 235,
+		"owners": {
+			"hossain": 0.275,
+			"ali": 0.085,
+			"mitra": 0.042,
+			"home": 0.599
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.276,
+		"ali": 0.084,
+		"mitra": 0.042,
+		"home": 0.598
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 57,
+		"buy_end_day": 237,
+		"owners": {
+			"hossain": 0.276,
+			"ali": 0.084,
+			"mitra": 0.042,
+			"home": 0.598
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.277,
+		"ali": 0.084,
+		"mitra": 0.042,
+		"home": 0.597
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 59,
+		"buy_end_day": 239,
+		"owners": {
+			"hossain": 0.277,
+			"ali": 0.084,
+			"mitra": 0.042,
+			"home": 0.597
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.278,
+		"ali": 0.084,
+		"mitra": 0.042,
+		"home": 0.596
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 61,
+		"buy_end_day": 241,
+		"owners": {
+			"hossain": 0.278,
+			"ali": 0.084,
+			"mitra": 0.042,
+			"home": 0.596
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 61,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0
+		},
+		{
+			"id": "ali",
+			"saving": 0
+		},
+		{
+			"id": "mitra",
+			"saving": 0
+		},
+		{
+			"id": "home",
+			"saving": 0
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.279,
+		"ali": 0.084,
+		"mitra": 0.042,
+		"home": 0.596
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 63,
+		"buy_end_day": 243,
+		"owners": {
+			"hossain": 0.279,
+			"ali": 0.084,
+			"mitra": 0.042,
+			"home": 0.596
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.28,
+		"ali": 0.084,
+		"mitra": 0.042,
+		"home": 0.595
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 65,
+		"buy_end_day": 245,
+		"owners": {
+			"hossain": 0.28,
+			"ali": 0.084,
+			"mitra": 0.042,
+			"home": 0.595
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.281,
+		"ali": 0.083,
+		"mitra": 0.042,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 67,
+		"buy_end_day": 247,
+		"owners": {
+			"hossain": 0.281,
+			"ali": 0.083,
+			"mitra": 0.042,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.282,
+		"ali": 0.083,
+		"mitra": 0.042,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 69,
+		"buy_end_day": 249,
+		"owners": {
+			"hossain": 0.282,
+			"ali": 0.083,
+			"mitra": 0.042,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.282,
+		"ali": 0.083,
+		"mitra": 0.042,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 71,
+		"buy_end_day": 251,
+		"owners": {
+			"hossain": 0.282,
+			"ali": 0.083,
+			"mitra": 0.042,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.283,
+		"ali": 0.083,
+		"mitra": 0.041,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 72,
+		"buy_end_day": 252,
+		"owners": {
+			"hossain": 0.283,
+			"ali": 0.083,
+			"mitra": 0.041,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.284,
+		"ali": 0.083,
+		"mitra": 0.041,
+		"home": 0.592
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 74,
+		"buy_end_day": 254,
+		"owners": {
+			"hossain": 0.284,
+			"ali": 0.083,
+			"mitra": 0.041,
+			"home": 0.592
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.285,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.591
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 76,
+		"buy_end_day": 256,
+		"owners": {
+			"hossain": 0.285,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.591
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.286,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.591
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 77,
+		"buy_end_day": 257,
+		"owners": {
+			"hossain": 0.286,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.591
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.287,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.59
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 79,
+		"buy_end_day": 259,
+		"owners": {
+			"hossain": 0.287,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.59
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.287,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.59
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 80,
+		"buy_end_day": 260,
+		"owners": {
+			"hossain": 0.287,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.59
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.289,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.589
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 82,
+		"buy_end_day": 262,
+		"owners": {
+			"hossain": 0.289,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.589
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.289,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.588
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 83,
+		"buy_end_day": 263,
+		"owners": {
+			"hossain": 0.289,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.588
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.29,
+		"ali": 0.082,
+		"mitra": 0.041,
+		"home": 0.588
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 85,
+		"buy_end_day": 265,
+		"owners": {
+			"hossain": 0.29,
+			"ali": 0.082,
+			"mitra": 0.041,
+			"home": 0.588
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.291,
+		"ali": 0.081,
+		"mitra": 0.041,
+		"home": 0.587
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 86,
+		"buy_end_day": 266,
+		"owners": {
+			"hossain": 0.291,
+			"ali": 0.081,
+			"mitra": 0.041,
+			"home": 0.587
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.291,
+		"ali": 0.081,
+		"mitra": 0.041,
+		"home": 0.587
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 88,
+		"buy_end_day": 268,
+		"owners": {
+			"hossain": 0.291,
+			"ali": 0.081,
+			"mitra": 0.041,
+			"home": 0.587
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.292,
+		"ali": 0.081,
+		"mitra": 0.041,
+		"home": 0.586
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 89,
+		"buy_end_day": 269,
+		"owners": {
+			"hossain": 0.292,
+			"ali": 0.081,
+			"mitra": 0.041,
+			"home": 0.586
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.293,
+		"ali": 0.081,
+		"mitra": 0.041,
+		"home": 0.586
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 90,
+		"buy_end_day": 270,
+		"owners": {
+			"hossain": 0.293,
+			"ali": 0.081,
+			"mitra": 0.041,
+			"home": 0.586
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 91,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.00007826154714000003
+		},
+		{
+			"id": "ali",
+			"saving": 0.00002153045184750001
+		},
+		{
+			"id": "mitra",
+			"saving": 0.000010775217780000003
+		},
+		{
+			"id": "home",
+			"saving": 0.00015591780983250007
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.294,
+		"ali": 0.081,
+		"mitra": 0.04,
+		"home": 0.585
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 92,
+		"buy_end_day": 272,
+		"owners": {
+			"hossain": 0.294,
+			"ali": 0.081,
+			"mitra": 0.04,
+			"home": 0.585
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.294,
+		"ali": 0.081,
+		"mitra": 0.04,
+		"home": 0.585
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 94,
+		"buy_end_day": 274,
+		"owners": {
+			"hossain": 0.294,
+			"ali": 0.081,
+			"mitra": 0.04,
+			"home": 0.585
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.295,
+		"ali": 0.081,
+		"mitra": 0.04,
+		"home": 0.584
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 96,
+		"buy_end_day": 276,
+		"owners": {
+			"hossain": 0.295,
+			"ali": 0.081,
+			"mitra": 0.04,
+			"home": 0.584
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.296,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.584
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 98,
+		"buy_end_day": 278,
+		"owners": {
+			"hossain": 0.296,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.584
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.296,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.583
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 100,
+		"buy_end_day": 280,
+		"owners": {
+			"hossain": 0.296,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.583
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.297,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.583
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 101,
+		"buy_end_day": 281,
+		"owners": {
+			"hossain": 0.297,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.583
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.298,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.582
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 103,
+		"buy_end_day": 283,
+		"owners": {
+			"hossain": 0.298,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.582
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.298,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.582
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 105,
+		"buy_end_day": 285,
+		"owners": {
+			"hossain": 0.298,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.582
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.299,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.582
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 107,
+		"buy_end_day": 287,
+		"owners": {
+			"hossain": 0.299,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.582
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.299,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.581
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 108,
+		"buy_end_day": 288,
+		"owners": {
+			"hossain": 0.299,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.581
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.3,
+		"ali": 0.08,
+		"mitra": 0.04,
+		"home": 0.581
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 110,
+		"buy_end_day": 290,
+		"owners": {
+			"hossain": 0.3,
+			"ali": 0.08,
+			"mitra": 0.04,
+			"home": 0.581
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.3,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.58
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 112,
+		"buy_end_day": 292,
+		"owners": {
+			"hossain": 0.3,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.58
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.301,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.58
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 113,
+		"buy_end_day": 293,
+		"owners": {
+			"hossain": 0.301,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.58
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.302,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.58
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 115,
+		"buy_end_day": 295,
+		"owners": {
+			"hossain": 0.302,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.58
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.302,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.579
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 116,
+		"buy_end_day": 296,
+		"owners": {
+			"hossain": 0.302,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.579
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.303,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.579
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 118,
+		"buy_end_day": 298,
+		"owners": {
+			"hossain": 0.303,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.579
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.303,
+		"ali": 0.079,
+		"mitra": 0.04,
+		"home": 0.578
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 119,
+		"buy_end_day": 299,
+		"owners": {
+			"hossain": 0.303,
+			"ali": 0.079,
+			"mitra": 0.04,
+			"home": 0.578
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.304,
+		"ali": 0.079,
+		"mitra": 0.039,
+		"home": 0.578
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 121,
+		"buy_end_day": 301,
+		"owners": {
+			"hossain": 0.304,
+			"ali": 0.079,
+			"mitra": 0.039,
+			"home": 0.578
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 121,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.0028015484072737504
+		},
+		{
+			"id": "ali",
+			"saving": 0.0007475707009125003
+		},
+		{
+			"id": "mitra",
+			"saving": 0.00037399917618
+		},
+		{
+			"id": "home",
+			"saving": 0.005448141553533752
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.304,
+		"ali": 0.079,
+		"mitra": 0.039,
+		"home": 0.578
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 122,
+		"buy_end_day": 302,
+		"owners": {
+			"hossain": 0.304,
+			"ali": 0.079,
+			"mitra": 0.039,
+			"home": 0.578
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.305,
+		"ali": 0.079,
+		"mitra": 0.039,
+		"home": 0.577
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 124,
+		"buy_end_day": 304,
+		"owners": {
+			"hossain": 0.305,
+			"ali": 0.079,
+			"mitra": 0.039,
+			"home": 0.577
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.305,
+		"ali": 0.079,
+		"mitra": 0.039,
+		"home": 0.577
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 125,
+		"buy_end_day": 305,
+		"owners": {
+			"hossain": 0.305,
+			"ali": 0.079,
+			"mitra": 0.039,
+			"home": 0.577
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.306,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.577
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 127,
+		"buy_end_day": 307,
+		"owners": {
+			"hossain": 0.306,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.577
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.306,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.576
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 128,
+		"buy_end_day": 308,
+		"owners": {
+			"hossain": 0.306,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.576
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.307,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.576
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 129,
+		"buy_end_day": 309,
+		"owners": {
+			"hossain": 0.307,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.576
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.307,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.575
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 131,
+		"buy_end_day": 311,
+		"owners": {
+			"hossain": 0.307,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.575
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.308,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.575
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 132,
+		"buy_end_day": 312,
+		"owners": {
+			"hossain": 0.308,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.575
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.308,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.575
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 133,
+		"buy_end_day": 313,
+		"owners": {
+			"hossain": 0.308,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.575
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.574
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 135,
+		"buy_end_day": 315,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.574
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.574
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 136,
+		"buy_end_day": 316,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.574
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.574
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 137,
+		"buy_end_day": 317,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.574
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.31,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.573
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 139,
+		"buy_end_day": 319,
+		"owners": {
+			"hossain": 0.31,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.573
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.31,
+		"ali": 0.078,
+		"mitra": 0.039,
+		"home": 0.573
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 140,
+		"buy_end_day": 320,
+		"owners": {
+			"hossain": 0.31,
+			"ali": 0.078,
+			"mitra": 0.039,
+			"home": 0.573
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.311,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.573
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 141,
+		"buy_end_day": 321,
+		"owners": {
+			"hossain": 0.311,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.573
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.311,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.573
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 142,
+		"buy_end_day": 322,
+		"owners": {
+			"hossain": 0.311,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.573
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.572
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 144,
+		"buy_end_day": 324,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.572
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.572
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 145,
+		"buy_end_day": 325,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.572
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.572
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 146,
+		"buy_end_day": 326,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.572
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.313,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.571
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 147,
+		"buy_end_day": 327,
+		"owners": {
+			"hossain": 0.313,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.571
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.313,
+		"ali": 0.077,
+		"mitra": 0.039,
+		"home": 0.571
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 148,
+		"buy_end_day": 328,
+		"owners": {
+			"hossain": 0.313,
+			"ali": 0.077,
+			"mitra": 0.039,
+			"home": 0.571
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.314,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.571
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 150,
+		"buy_end_day": 330,
+		"owners": {
+			"hossain": 0.314,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.571
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.314,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.571
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 151,
+		"buy_end_day": 331,
+		"owners": {
+			"hossain": 0.314,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.571
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 151,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.006460786430943748
+		},
+		{
+			"id": "ali",
+			"saving": 0.0016658822414250005
+		},
+		{
+			"id": "mitra",
+			"saving": 0.0008334966679200002
+		},
+		{
+			"id": "home",
+			"saving": 0.01222927111463625
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.314,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.57
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 152,
+		"buy_end_day": 332,
+		"owners": {
+			"hossain": 0.314,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.57
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.315,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.57
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 153,
+		"buy_end_day": 333,
+		"owners": {
+			"hossain": 0.315,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.57
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.315,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.57
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 154,
+		"buy_end_day": 334,
+		"owners": {
+			"hossain": 0.315,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.57
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.316,
+		"ali": 0.077,
+		"mitra": 0.038,
+		"home": 0.569
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 155,
+		"buy_end_day": 335,
+		"owners": {
+			"hossain": 0.316,
+			"ali": 0.077,
+			"mitra": 0.038,
+			"home": 0.569
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.316,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.569
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 156,
+		"buy_end_day": 336,
+		"owners": {
+			"hossain": 0.316,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.569
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.317,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.569
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 157,
+		"buy_end_day": 337,
+		"owners": {
+			"hossain": 0.317,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.569
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.317,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.569
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 158,
+		"buy_end_day": 338,
+		"owners": {
+			"hossain": 0.317,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.569
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.317,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.568
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 160,
+		"buy_end_day": 340,
+		"owners": {
+			"hossain": 0.317,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.568
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.318,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.568
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 161,
+		"buy_end_day": 341,
+		"owners": {
+			"hossain": 0.318,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.568
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.318,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.568
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 162,
+		"buy_end_day": 342,
+		"owners": {
+			"hossain": 0.318,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.568
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.318,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.568
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 163,
+		"buy_end_day": 343,
+		"owners": {
+			"hossain": 0.318,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.568
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.319,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.567
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 164,
+		"buy_end_day": 344,
+		"owners": {
+			"hossain": 0.319,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.567
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.319,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.567
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 165,
+		"buy_end_day": 345,
+		"owners": {
+			"hossain": 0.319,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.567
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.319,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.567
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 166,
+		"buy_end_day": 346,
+		"owners": {
+			"hossain": 0.319,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.567
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.32,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.567
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 167,
+		"buy_end_day": 347,
+		"owners": {
+			"hossain": 0.32,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.567
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.32,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.566
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 168,
+		"buy_end_day": 348,
+		"owners": {
+			"hossain": 0.32,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.566
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.32,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.566
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 169,
+		"buy_end_day": 349,
+		"owners": {
+			"hossain": 0.32,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.566
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.321,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.566
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 170,
+		"buy_end_day": 350,
+		"owners": {
+			"hossain": 0.321,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.566
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.321,
+		"ali": 0.076,
+		"mitra": 0.038,
+		"home": 0.566
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 171,
+		"buy_end_day": 351,
+		"owners": {
+			"hossain": 0.321,
+			"ali": 0.076,
+			"mitra": 0.038,
+			"home": 0.566
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.321,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.566
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 172,
+		"buy_end_day": 352,
+		"owners": {
+			"hossain": 0.321,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.566
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.322,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.565
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 173,
+		"buy_end_day": 353,
+		"owners": {
+			"hossain": 0.322,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.565
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.322,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.565
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 174,
+		"buy_end_day": 354,
+		"owners": {
+			"hossain": 0.322,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.565
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.323,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.564
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 175,
+		"buy_end_day": 355,
+		"owners": {
+			"hossain": 0.323,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.564
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.323,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.564
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 176,
+		"buy_end_day": 356,
+		"owners": {
+			"hossain": 0.323,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.564
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.323,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.564
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 177,
+		"buy_end_day": 357,
+		"owners": {
+			"hossain": 0.323,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.564
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.324,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.564
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 178,
+		"buy_end_day": 358,
+		"owners": {
+			"hossain": 0.324,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.564
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.324,
+		"ali": 0.075,
+		"mitra": 0.038,
+		"home": 0.564
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 179,
+		"buy_end_day": 359,
+		"owners": {
+			"hossain": 0.324,
+			"ali": 0.075,
+			"mitra": 0.038,
+			"home": 0.564
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.313,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.585
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 180,
+		"buy_end_day": 360,
+		"owners": {
+			"hossain": 0.313,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.585
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.31,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.592
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 181,
+		"buy_end_day": 361,
+		"owners": {
+			"hossain": 0.31,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.592
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 181,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.011324471006227495
+		},
+		{
+			"id": "ali",
+			"saving": 0.0028101536159175
+		},
+		{
+			"id": "mitra",
+			"saving": 0.001406054011500001
+		},
+		{
+			"id": "home",
+			"saving": 0.020908342890405007
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 182,
+		"buy_end_day": 362,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 183,
+		"buy_end_day": 363,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 184,
+		"buy_end_day": 364,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.309,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 185,
+		"buy_end_day": 365,
+		"owners": {
+			"hossain": 0.309,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+"\n\n\nWORKERS\n"
+{
+	"count": 114,
+	"sum_power": 640,
+	"sum_power_day": 115200
+}
+"\n\n\n"
+{
+	"owners": {
+		"hossain": 0.31,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 186,
+		"buy_end_day": 366,
+		"owners": {
+			"hossain": 0.31,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 186,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.012188076911729993
+		},
+		{
+			"id": "ali",
+			"saving": 0.0029894914486349997
+		},
+		{
+			"id": "mitra",
+			"saving": 0.0014958488252475011
+		},
+		{
+			"id": "home",
+			"saving": 0.022569100863862507
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.31,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 187,
+		"buy_end_day": 367,
+		"owners": {
+			"hossain": 0.31,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.311,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.594
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 188,
+		"buy_end_day": 368,
+		"owners": {
+			"hossain": 0.311,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.594
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.311,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 189,
+		"buy_end_day": 369,
+		"owners": {
+			"hossain": 0.311,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.311,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 190,
+		"buy_end_day": 370,
+		"owners": {
+			"hossain": 0.311,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 191,
+		"buy_end_day": 371,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 192,
+		"buy_end_day": 372,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.312,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.593
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 193,
+		"buy_end_day": 373,
+		"owners": {
+			"hossain": 0.312,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.593
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.313,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.592
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 194,
+		"buy_end_day": 374,
+		"owners": {
+			"hossain": 0.313,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.592
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.335,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.562
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 195,
+		"buy_end_day": 375,
+		"owners": {
+			"hossain": 0.335,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.562
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.34,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.556
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 196,
+		"buy_end_day": 376,
+		"owners": {
+			"hossain": 0.34,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.556
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.341,
+		"ali": 0.07,
+		"mitra": 0.035,
+		"home": 0.554
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 197,
+		"buy_end_day": 377,
+		"owners": {
+			"hossain": 0.341,
+			"ali": 0.07,
+			"mitra": 0.035,
+			"home": 0.554
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.342,
+		"ali": 0.07,
+		"mitra": 0.035,
+		"home": 0.553
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 198,
+		"buy_end_day": 378,
+		"owners": {
+			"hossain": 0.342,
+			"ali": 0.07,
+			"mitra": 0.035,
+			"home": 0.553
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.343,
+		"ali": 0.07,
+		"mitra": 0.035,
+		"home": 0.553
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 199,
+		"buy_end_day": 379,
+		"owners": {
+			"hossain": 0.343,
+			"ali": 0.07,
+			"mitra": 0.035,
+			"home": 0.553
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.343,
+		"ali": 0.07,
+		"mitra": 0.035,
+		"home": 0.553
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 200,
+		"buy_end_day": 380,
+		"owners": {
+			"hossain": 0.343,
+			"ali": 0.07,
+			"mitra": 0.035,
+			"home": 0.553
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.343,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.552
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 201,
+		"buy_end_day": 381,
+		"owners": {
+			"hossain": 0.343,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.552
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.344,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.552
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 202,
+		"buy_end_day": 382,
+		"owners": {
+			"hossain": 0.344,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.552
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.345,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.551
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 203,
+		"buy_end_day": 383,
+		"owners": {
+			"hossain": 0.345,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.551
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.345,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.551
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 204,
+		"buy_end_day": 384,
+		"owners": {
+			"hossain": 0.345,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.551
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.346,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.551
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 205,
+		"buy_end_day": 385,
+		"owners": {
+			"hossain": 0.346,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.551
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.346,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.551
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 206,
+		"buy_end_day": 386,
+		"owners": {
+			"hossain": 0.346,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.551
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.346,
+		"ali": 0.069,
+		"mitra": 0.035,
+		"home": 0.55
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 207,
+		"buy_end_day": 387,
+		"owners": {
+			"hossain": 0.346,
+			"ali": 0.069,
+			"mitra": 0.035,
+			"home": 0.55
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.347,
+		"ali": 0.069,
+		"mitra": 0.034,
+		"home": 0.55
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 208,
+		"buy_end_day": 388,
+		"owners": {
+			"hossain": 0.347,
+			"ali": 0.069,
+			"mitra": 0.034,
+			"home": 0.55
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.347,
+		"ali": 0.069,
+		"mitra": 0.034,
+		"home": 0.55
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 209,
+		"buy_end_day": 389,
+		"owners": {
+			"hossain": 0.347,
+			"ali": 0.069,
+			"mitra": 0.034,
+			"home": 0.55
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.348,
+		"ali": 0.069,
+		"mitra": 0.034,
+		"home": 0.549
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 210,
+		"buy_end_day": 390,
+		"owners": {
+			"hossain": 0.348,
+			"ali": 0.069,
+			"mitra": 0.034,
+			"home": 0.549
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.348,
+		"ali": 0.069,
+		"mitra": 0.034,
+		"home": 0.549
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 211,
+		"buy_end_day": 391,
+		"owners": {
+			"hossain": 0.348,
+			"ali": 0.069,
+			"mitra": 0.034,
+			"home": 0.549
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.349,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.549
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 212,
+		"buy_end_day": 392,
+		"owners": {
+			"hossain": 0.349,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.549
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.349,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.549
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 213,
+		"buy_end_day": 393,
+		"owners": {
+			"hossain": 0.349,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.549
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.349,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.548
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 214,
+		"buy_end_day": 394,
+		"owners": {
+			"hossain": 0.349,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.548
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.349,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.548
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 215,
+		"buy_end_day": 395,
+		"owners": {
+			"hossain": 0.349,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.548
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.35,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.548
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 216,
+		"buy_end_day": 396,
+		"owners": {
+			"hossain": 0.35,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.548
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 216,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.018058603094313737
+		},
+		{
+			"id": "ali",
+			"saving": 0.004167039701182498
+		},
+		{
+			"id": "mitra",
+			"saving": 0.0020856521127150017
+		},
+		{
+			"id": "home",
+			"saving": 0.03236715440391375
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.351,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.547
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 217,
+		"buy_end_day": 397,
+		"owners": {
+			"hossain": 0.351,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.547
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.351,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.547
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 218,
+		"buy_end_day": 398,
+		"owners": {
+			"hossain": 0.351,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.547
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.351,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.547
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 219,
+		"buy_end_day": 399,
+		"owners": {
+			"hossain": 0.351,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.547
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.352,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.546
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 220,
+		"buy_end_day": 400,
+		"owners": {
+			"hossain": 0.352,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.546
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.352,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.546
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 221,
+		"buy_end_day": 401,
+		"owners": {
+			"hossain": 0.352,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.546
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.353,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.546
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 222,
+		"buy_end_day": 402,
+		"owners": {
+			"hossain": 0.353,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.546
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.353,
+		"ali": 0.068,
+		"mitra": 0.034,
+		"home": 0.546
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 223,
+		"buy_end_day": 403,
+		"owners": {
+			"hossain": 0.353,
+			"ali": 0.068,
+			"mitra": 0.034,
+			"home": 0.546
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.354,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.545
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 224,
+		"buy_end_day": 404,
+		"owners": {
+			"hossain": 0.354,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.545
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.354,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.545
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 225,
+		"buy_end_day": 405,
+		"owners": {
+			"hossain": 0.354,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.545
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.354,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.545
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 226,
+		"buy_end_day": 406,
+		"owners": {
+			"hossain": 0.354,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.545
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.355,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.544
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 227,
+		"buy_end_day": 407,
+		"owners": {
+			"hossain": 0.355,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.544
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.355,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.544
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 228,
+		"buy_end_day": 408,
+		"owners": {
+			"hossain": 0.355,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.544
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.356,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.543
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 229,
+		"buy_end_day": 409,
+		"owners": {
+			"hossain": 0.356,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.543
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.356,
+		"ali": 0.067,
+		"mitra": 0.034,
+		"home": 0.543
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 230,
+		"buy_end_day": 410,
+		"owners": {
+			"hossain": 0.356,
+			"ali": 0.067,
+			"mitra": 0.034,
+			"home": 0.543
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.357,
+		"ali": 0.067,
+		"mitra": 0.033,
+		"home": 0.543
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 231,
+		"buy_end_day": 411,
+		"owners": {
+			"hossain": 0.357,
+			"ali": 0.067,
+			"mitra": 0.033,
+			"home": 0.543
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.357,
+		"ali": 0.067,
+		"mitra": 0.033,
+		"home": 0.543
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 232,
+		"buy_end_day": 412,
+		"owners": {
+			"hossain": 0.357,
+			"ali": 0.067,
+			"mitra": 0.033,
+			"home": 0.543
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.358,
+		"ali": 0.067,
+		"mitra": 0.033,
+		"home": 0.542
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 233,
+		"buy_end_day": 413,
+		"owners": {
+			"hossain": 0.358,
+			"ali": 0.067,
+			"mitra": 0.033,
+			"home": 0.542
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.358,
+		"ali": 0.067,
+		"mitra": 0.033,
+		"home": 0.542
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 234,
+		"buy_end_day": 414,
+		"owners": {
+			"hossain": 0.358,
+			"ali": 0.067,
+			"mitra": 0.033,
+			"home": 0.542
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.359,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.542
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 235,
+		"buy_end_day": 415,
+		"owners": {
+			"hossain": 0.359,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.542
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.359,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.541
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 236,
+		"buy_end_day": 416,
+		"owners": {
+			"hossain": 0.359,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.541
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.36,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.541
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 237,
+		"buy_end_day": 417,
+		"owners": {
+			"hossain": 0.36,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.541
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.36,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.541
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 238,
+		"buy_end_day": 418,
+		"owners": {
+			"hossain": 0.36,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.541
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.361,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.54
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 239,
+		"buy_end_day": 419,
+		"owners": {
+			"hossain": 0.361,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.54
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.361,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.54
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 240,
+		"buy_end_day": 420,
+		"owners": {
+			"hossain": 0.361,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.54
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.361,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.54
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 241,
+		"buy_end_day": 421,
+		"owners": {
+			"hossain": 0.361,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.54
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.362,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.539
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 242,
+		"buy_end_day": 422,
+		"owners": {
+			"hossain": 0.362,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.539
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.362,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.539
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 243,
+		"buy_end_day": 423,
+		"owners": {
+			"hossain": 0.362,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.539
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.363,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.539
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 244,
+		"buy_end_day": 424,
+		"owners": {
+			"hossain": 0.363,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.539
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.363,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.538
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 245,
+		"buy_end_day": 425,
+		"owners": {
+			"hossain": 0.363,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.538
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.363,
+		"ali": 0.066,
+		"mitra": 0.033,
+		"home": 0.538
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 246,
+		"buy_end_day": 426,
+		"owners": {
+			"hossain": 0.363,
+			"ali": 0.066,
+			"mitra": 0.033,
+			"home": 0.538
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 246,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.025317032082333726
+		},
+		{
+			"id": "ali",
+			"saving": 0.005522243157855001
+		},
+		{
+			"id": "mitra",
+			"saving": 0.002764598744902502
+		},
+		{
+			"id": "home",
+			"saving": 0.04338361378488375
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.364,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.538
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 247,
+		"buy_end_day": 427,
+		"owners": {
+			"hossain": 0.364,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.538
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.364,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.538
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 248,
+		"buy_end_day": 428,
+		"owners": {
+			"hossain": 0.364,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.538
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.365,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.537
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 249,
+		"buy_end_day": 429,
+		"owners": {
+			"hossain": 0.365,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.537
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.365,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.537
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 250,
+		"buy_end_day": 430,
+		"owners": {
+			"hossain": 0.365,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.537
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.366,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.536
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 251,
+		"buy_end_day": 431,
+		"owners": {
+			"hossain": 0.366,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.536
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.366,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.536
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 252,
+		"buy_end_day": 432,
+		"owners": {
+			"hossain": 0.366,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.536
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.367,
+		"ali": 0.065,
+		"mitra": 0.033,
+		"home": 0.536
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 253,
+		"buy_end_day": 433,
+		"owners": {
+			"hossain": 0.367,
+			"ali": 0.065,
+			"mitra": 0.033,
+			"home": 0.536
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.367,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.536
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 254,
+		"buy_end_day": 434,
+		"owners": {
+			"hossain": 0.367,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.536
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.368,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.535
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 255,
+		"buy_end_day": 435,
+		"owners": {
+			"hossain": 0.368,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.535
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.368,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.535
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 256,
+		"buy_end_day": 436,
+		"owners": {
+			"hossain": 0.368,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.535
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.369,
+		"ali": 0.065,
+		"mitra": 0.032,
+		"home": 0.534
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 257,
+		"buy_end_day": 437,
+		"owners": {
+			"hossain": 0.369,
+			"ali": 0.065,
+			"mitra": 0.032,
+			"home": 0.534
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.369,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.534
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 258,
+		"buy_end_day": 438,
+		"owners": {
+			"hossain": 0.369,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.534
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.37,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.534
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 259,
+		"buy_end_day": 439,
+		"owners": {
+			"hossain": 0.37,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.534
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.37,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.534
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 260,
+		"buy_end_day": 440,
+		"owners": {
+			"hossain": 0.37,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.534
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.37,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.533
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 261,
+		"buy_end_day": 441,
+		"owners": {
+			"hossain": 0.37,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.533
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.371,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.533
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 262,
+		"buy_end_day": 442,
+		"owners": {
+			"hossain": 0.371,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.533
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.371,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.533
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 263,
+		"buy_end_day": 443,
+		"owners": {
+			"hossain": 0.371,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.533
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.372,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.532
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 264,
+		"buy_end_day": 444,
+		"owners": {
+			"hossain": 0.372,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.532
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.372,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.532
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 265,
+		"buy_end_day": 445,
+		"owners": {
+			"hossain": 0.372,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.532
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.373,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.531
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 266,
+		"buy_end_day": 446,
+		"owners": {
+			"hossain": 0.373,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.531
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.373,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.531
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 267,
+		"buy_end_day": 447,
+		"owners": {
+			"hossain": 0.373,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.531
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.374,
+		"ali": 0.064,
+		"mitra": 0.032,
+		"home": 0.531
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 268,
+		"buy_end_day": 448,
+		"owners": {
+			"hossain": 0.374,
+			"ali": 0.064,
+			"mitra": 0.032,
+			"home": 0.531
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.374,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.53
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 269,
+		"buy_end_day": 449,
+		"owners": {
+			"hossain": 0.374,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.53
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.375,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.53
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 270,
+		"buy_end_day": 450,
+		"owners": {
+			"hossain": 0.375,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.53
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.375,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.53
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 271,
+		"buy_end_day": 451,
+		"owners": {
+			"hossain": 0.375,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.53
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.375,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.53
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 272,
+		"buy_end_day": 452,
+		"owners": {
+			"hossain": 0.375,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.53
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.376,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.529
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 273,
+		"buy_end_day": 453,
+		"owners": {
+			"hossain": 0.376,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.529
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.376,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.529
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 274,
+		"buy_end_day": 454,
+		"owners": {
+			"hossain": 0.376,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.529
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.377,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.529
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 275,
+		"buy_end_day": 455,
+		"owners": {
+			"hossain": 0.377,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.529
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.377,
+		"ali": 0.063,
+		"mitra": 0.032,
+		"home": 0.528
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 276,
+		"buy_end_day": 456,
+		"owners": {
+			"hossain": 0.377,
+			"ali": 0.063,
+			"mitra": 0.032,
+			"home": 0.528
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 276,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.03417192611170871
+		},
+		{
+			"id": "ali",
+			"saving": 0.007051996349730003
+		},
+		{
+			"id": "mitra",
+			"saving": 0.003531086028067503
+		},
+		{
+			"id": "home",
+			"saving": 0.056102588660868764
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.378,
+		"ali": 0.063,
+		"mitra": 0.031,
+		"home": 0.528
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 277,
+		"buy_end_day": 457,
+		"owners": {
+			"hossain": 0.378,
+			"ali": 0.063,
+			"mitra": 0.031,
+			"home": 0.528
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.378,
+		"ali": 0.063,
+		"mitra": 0.031,
+		"home": 0.528
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 278,
+		"buy_end_day": 458,
+		"owners": {
+			"hossain": 0.378,
+			"ali": 0.063,
+			"mitra": 0.031,
+			"home": 0.528
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.378,
+		"ali": 0.063,
+		"mitra": 0.031,
+		"home": 0.528
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 279,
+		"buy_end_day": 459,
+		"owners": {
+			"hossain": 0.378,
+			"ali": 0.063,
+			"mitra": 0.031,
+			"home": 0.528
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.379,
+		"ali": 0.063,
+		"mitra": 0.031,
+		"home": 0.527
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 280,
+		"buy_end_day": 460,
+		"owners": {
+			"hossain": 0.379,
+			"ali": 0.063,
+			"mitra": 0.031,
+			"home": 0.527
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.38,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.527
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 281,
+		"buy_end_day": 461,
+		"owners": {
+			"hossain": 0.38,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.527
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.38,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.527
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 282,
+		"buy_end_day": 462,
+		"owners": {
+			"hossain": 0.38,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.527
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.38,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.526
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 283,
+		"buy_end_day": 463,
+		"owners": {
+			"hossain": 0.38,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.526
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.381,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.526
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 284,
+		"buy_end_day": 464,
+		"owners": {
+			"hossain": 0.381,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.526
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.381,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.526
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 285,
+		"buy_end_day": 465,
+		"owners": {
+			"hossain": 0.381,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.526
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.381,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.525
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 286,
+		"buy_end_day": 466,
+		"owners": {
+			"hossain": 0.381,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.525
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.382,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.525
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 287,
+		"buy_end_day": 467,
+		"owners": {
+			"hossain": 0.382,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.525
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.382,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.525
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 288,
+		"buy_end_day": 468,
+		"owners": {
+			"hossain": 0.382,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.525
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.383,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.524
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 289,
+		"buy_end_day": 469,
+		"owners": {
+			"hossain": 0.383,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.524
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.383,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.524
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 290,
+		"buy_end_day": 470,
+		"owners": {
+			"hossain": 0.383,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.524
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.383,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.524
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 291,
+		"buy_end_day": 471,
+		"owners": {
+			"hossain": 0.383,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.524
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.384,
+		"ali": 0.062,
+		"mitra": 0.031,
+		"home": 0.524
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 292,
+		"buy_end_day": 472,
+		"owners": {
+			"hossain": 0.384,
+			"ali": 0.062,
+			"mitra": 0.031,
+			"home": 0.524
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.384,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.523
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 293,
+		"buy_end_day": 473,
+		"owners": {
+			"hossain": 0.384,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.523
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.385,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.523
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 294,
+		"buy_end_day": 474,
+		"owners": {
+			"hossain": 0.385,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.523
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.385,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.523
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 295,
+		"buy_end_day": 475,
+		"owners": {
+			"hossain": 0.385,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.523
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.386,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.522
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 296,
+		"buy_end_day": 476,
+		"owners": {
+			"hossain": 0.386,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.522
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.386,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.522
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 297,
+		"buy_end_day": 477,
+		"owners": {
+			"hossain": 0.386,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.522
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.387,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.522
+	},
+	"newWorker": {
+		"power": 5,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.001187381931495207,
+		"buy_start_day": 298,
+		"buy_end_day": 478,
+		"owners": {
+			"hossain": 0.387,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.522
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.387,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.521
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 299,
+		"buy_end_day": 479,
+		"owners": {
+			"hossain": 0.387,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.521
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.387,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.521
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 300,
+		"buy_end_day": 480,
+		"owners": {
+			"hossain": 0.387,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.521
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.388,
+		"ali": 0.061,
+		"mitra": 0.031,
+		"home": 0.521
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 301,
+		"buy_end_day": 481,
+		"owners": {
+			"hossain": 0.388,
+			"ali": 0.061,
+			"mitra": 0.031,
+			"home": 0.521
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.388,
+		"ali": 0.061,
+		"mitra": 0.03,
+		"home": 0.521
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 302,
+		"buy_end_day": 482,
+		"owners": {
+			"hossain": 0.388,
+			"ali": 0.061,
+			"mitra": 0.03,
+			"home": 0.521
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.389,
+		"ali": 0.061,
+		"mitra": 0.03,
+		"home": 0.52
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 303,
+		"buy_end_day": 483,
+		"owners": {
+			"hossain": 0.389,
+			"ali": 0.061,
+			"mitra": 0.03,
+			"home": 0.52
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.389,
+		"ali": 0.061,
+		"mitra": 0.03,
+		"home": 0.52
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 304,
+		"buy_end_day": 484,
+		"owners": {
+			"hossain": 0.389,
+			"ali": 0.061,
+			"mitra": 0.03,
+			"home": 0.52
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.39,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.52
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 305,
+		"buy_end_day": 485,
+		"owners": {
+			"hossain": 0.39,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.52
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.39,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.519
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 306,
+		"buy_end_day": 486,
+		"owners": {
+			"hossain": 0.39,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.519
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 306,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.04500688742063995
+		},
+		{
+			"id": "ali",
+			"saving": 0.008788349154915
+		},
+		{
+			"id": "mitra",
+			"saving": 0.0044013247497900025
+		},
+		{
+			"id": "home",
+			"saving": 0.07086945820113003
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.39,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.519
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 307,
+		"buy_end_day": 487,
+		"owners": {
+			"hossain": 0.39,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.519
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.391,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.519
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 308,
+		"buy_end_day": 488,
+		"owners": {
+			"hossain": 0.391,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.519
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.391,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.518
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 309,
+		"buy_end_day": 489,
+		"owners": {
+			"hossain": 0.391,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.518
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.392,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.518
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 310,
+		"buy_end_day": 490,
+		"owners": {
+			"hossain": 0.392,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.518
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.392,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.518
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 311,
+		"buy_end_day": 491,
+		"owners": {
+			"hossain": 0.392,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.518
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.393,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.517
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 312,
+		"buy_end_day": 492,
+		"owners": {
+			"hossain": 0.393,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.517
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.393,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.517
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 313,
+		"buy_end_day": 493,
+		"owners": {
+			"hossain": 0.393,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.517
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.393,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.517
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 314,
+		"buy_end_day": 494,
+		"owners": {
+			"hossain": 0.393,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.517
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.394,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.516
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 315,
+		"buy_end_day": 495,
+		"owners": {
+			"hossain": 0.394,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.516
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.395,
+		"ali": 0.06,
+		"mitra": 0.03,
+		"home": 0.516
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 316,
+		"buy_end_day": 496,
+		"owners": {
+			"hossain": 0.395,
+			"ali": 0.06,
+			"mitra": 0.03,
+			"home": 0.516
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.395,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.516
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 317,
+		"buy_end_day": 497,
+		"owners": {
+			"hossain": 0.395,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.516
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.395,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.515
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 318,
+		"buy_end_day": 498,
+		"owners": {
+			"hossain": 0.395,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.515
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.396,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.515
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 319,
+		"buy_end_day": 499,
+		"owners": {
+			"hossain": 0.396,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.515
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.396,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.515
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 320,
+		"buy_end_day": 500,
+		"owners": {
+			"hossain": 0.396,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.515
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.397,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.515
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 321,
+		"buy_end_day": 501,
+		"owners": {
+			"hossain": 0.397,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.515
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.397,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.514
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 322,
+		"buy_end_day": 502,
+		"owners": {
+			"hossain": 0.397,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.514
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.398,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.514
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 323,
+		"buy_end_day": 503,
+		"owners": {
+			"hossain": 0.398,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.514
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.398,
+		"ali": 0.059,
+		"mitra": 0.03,
+		"home": 0.514
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 324,
+		"buy_end_day": 504,
+		"owners": {
+			"hossain": 0.398,
+			"ali": 0.059,
+			"mitra": 0.03,
+			"home": 0.514
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.398,
+		"ali": 0.059,
+		"mitra": 0.029,
+		"home": 0.513
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 325,
+		"buy_end_day": 505,
+		"owners": {
+			"hossain": 0.398,
+			"ali": 0.059,
+			"mitra": 0.029,
+			"home": 0.513
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.399,
+		"ali": 0.059,
+		"mitra": 0.029,
+		"home": 0.513
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 326,
+		"buy_end_day": 506,
+		"owners": {
+			"hossain": 0.399,
+			"ali": 0.059,
+			"mitra": 0.029,
+			"home": 0.513
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.4,
+		"ali": 0.059,
+		"mitra": 0.029,
+		"home": 0.512
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 327,
+		"buy_end_day": 507,
+		"owners": {
+			"hossain": 0.4,
+			"ali": 0.059,
+			"mitra": 0.029,
+			"home": 0.512
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.4,
+		"ali": 0.059,
+		"mitra": 0.029,
+		"home": 0.512
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 328,
+		"buy_end_day": 508,
+		"owners": {
+			"hossain": 0.4,
+			"ali": 0.059,
+			"mitra": 0.029,
+			"home": 0.512
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.4,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.512
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 329,
+		"buy_end_day": 509,
+		"owners": {
+			"hossain": 0.4,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.512
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.401,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.512
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 330,
+		"buy_end_day": 510,
+		"owners": {
+			"hossain": 0.401,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.512
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.401,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.511
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 331,
+		"buy_end_day": 511,
+		"owners": {
+			"hossain": 0.401,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.511
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.402,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.511
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 332,
+		"buy_end_day": 512,
+		"owners": {
+			"hossain": 0.402,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.511
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.402,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.511
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 333,
+		"buy_end_day": 513,
+		"owners": {
+			"hossain": 0.402,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.511
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.403,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.51
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 334,
+		"buy_end_day": 514,
+		"owners": {
+			"hossain": 0.403,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.51
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.403,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.51
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 335,
+		"buy_end_day": 515,
+		"owners": {
+			"hossain": 0.403,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.51
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.403,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.51
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 336,
+		"buy_end_day": 516,
+		"owners": {
+			"hossain": 0.403,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.51
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 336,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.05825852859739494
+		},
+		{
+			"id": "ali",
+			"saving": 0.010757799976184994
+		},
+		{
+			"id": "mitra",
+			"saving": 0.005388684013732506
+		},
+		{
+			"id": "home",
+			"saving": 0.08802049322081254
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.404,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.509
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 337,
+		"buy_end_day": 517,
+		"owners": {
+			"hossain": 0.404,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.509
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.404,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.509
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 338,
+		"buy_end_day": 518,
+		"owners": {
+			"hossain": 0.404,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.509
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.405,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.509
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 339,
+		"buy_end_day": 519,
+		"owners": {
+			"hossain": 0.405,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.509
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.405,
+		"ali": 0.058,
+		"mitra": 0.029,
+		"home": 0.508
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 340,
+		"buy_end_day": 520,
+		"owners": {
+			"hossain": 0.405,
+			"ali": 0.058,
+			"mitra": 0.029,
+			"home": 0.508
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.406,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.508
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 341,
+		"buy_end_day": 521,
+		"owners": {
+			"hossain": 0.406,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.508
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.406,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.508
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 342,
+		"buy_end_day": 522,
+		"owners": {
+			"hossain": 0.406,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.508
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.407,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.507
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 343,
+		"buy_end_day": 523,
+		"owners": {
+			"hossain": 0.407,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.507
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.407,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.507
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 344,
+		"buy_end_day": 524,
+		"owners": {
+			"hossain": 0.407,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.507
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.408,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.507
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 345,
+		"buy_end_day": 525,
+		"owners": {
+			"hossain": 0.408,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.507
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.408,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.506
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 346,
+		"buy_end_day": 526,
+		"owners": {
+			"hossain": 0.408,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.506
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.409,
+		"ali": 0.057,
+		"mitra": 0.029,
+		"home": 0.506
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 347,
+		"buy_end_day": 527,
+		"owners": {
+			"hossain": 0.409,
+			"ali": 0.057,
+			"mitra": 0.029,
+			"home": 0.506
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.409,
+		"ali": 0.057,
+		"mitra": 0.028,
+		"home": 0.506
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 348,
+		"buy_end_day": 528,
+		"owners": {
+			"hossain": 0.409,
+			"ali": 0.057,
+			"mitra": 0.028,
+			"home": 0.506
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.409,
+		"ali": 0.057,
+		"mitra": 0.028,
+		"home": 0.505
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 349,
+		"buy_end_day": 529,
+		"owners": {
+			"hossain": 0.409,
+			"ali": 0.057,
+			"mitra": 0.028,
+			"home": 0.505
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.41,
+		"ali": 0.057,
+		"mitra": 0.028,
+		"home": 0.505
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 350,
+		"buy_end_day": 530,
+		"owners": {
+			"hossain": 0.41,
+			"ali": 0.057,
+			"mitra": 0.028,
+			"home": 0.505
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.41,
+		"ali": 0.057,
+		"mitra": 0.028,
+		"home": 0.505
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 351,
+		"buy_end_day": 531,
+		"owners": {
+			"hossain": 0.41,
+			"ali": 0.057,
+			"mitra": 0.028,
+			"home": 0.505
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.411,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.504
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 352,
+		"buy_end_day": 532,
+		"owners": {
+			"hossain": 0.411,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.504
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.411,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.504
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 353,
+		"buy_end_day": 533,
+		"owners": {
+			"hossain": 0.411,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.504
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.412,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.504
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 354,
+		"buy_end_day": 534,
+		"owners": {
+			"hossain": 0.412,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.504
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.412,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.503
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 355,
+		"buy_end_day": 535,
+		"owners": {
+			"hossain": 0.412,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.503
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.413,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.503
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 356,
+		"buy_end_day": 536,
+		"owners": {
+			"hossain": 0.413,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.503
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.413,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.503
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 357,
+		"buy_end_day": 537,
+		"owners": {
+			"hossain": 0.413,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.503
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.414,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.502
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 358,
+		"buy_end_day": 538,
+		"owners": {
+			"hossain": 0.414,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.502
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.414,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.502
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 359,
+		"buy_end_day": 539,
+		"owners": {
+			"hossain": 0.414,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.502
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.415,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.502
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 360,
+		"buy_end_day": 540,
+		"owners": {
+			"hossain": 0.415,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.502
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.415,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.501
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 361,
+		"buy_end_day": 541,
+		"owners": {
+			"hossain": 0.415,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.501
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.416,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.501
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 362,
+		"buy_end_day": 542,
+		"owners": {
+			"hossain": 0.416,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.501
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.416,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.5
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 363,
+		"buy_end_day": 543,
+		"owners": {
+			"hossain": 0.416,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.5
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.417,
+		"ali": 0.056,
+		"mitra": 0.028,
+		"home": 0.5
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 364,
+		"buy_end_day": 544,
+		"owners": {
+			"hossain": 0.417,
+			"ali": 0.056,
+			"mitra": 0.028,
+			"home": 0.5
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.417,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.499
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 365,
+		"buy_end_day": 545,
+		"owners": {
+			"hossain": 0.417,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.499
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.418,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.499
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 366,
+		"buy_end_day": 546,
+		"owners": {
+			"hossain": 0.418,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.499
+		}
+	}
+}
+"User Wallets"
+{
+	"current_day": 366,
+	"users": [
+		{
+			"id": "hossain",
+			"saving": 0.07434808920429746
+		},
+		{
+			"id": "ali",
+			"saving": 0.012968210406037494
+		},
+		{
+			"id": "mitra",
+			"saving": 0.006496984705725004
+		},
+		{
+			"id": "home",
+			"saving": 0.10776282334569003
+		}
+	]
+}
+"\n\n"
+{
+	"owners": {
+		"hossain": 0.419,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.498
+	},
+	"newWorker": {
+		"power": 10,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.002374763862990414,
+		"buy_start_day": 367,
+		"buy_end_day": 547,
+		"owners": {
+			"hossain": 0.419,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.498
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.419,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.498
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 368,
+		"buy_end_day": 548,
+		"owners": {
+			"hossain": 0.419,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.498
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.419,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.498
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 369,
+		"buy_end_day": 549,
+		"owners": {
+			"hossain": 0.419,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.498
+		}
+	}
+}
+{
+	"owners": {
+		"hossain": 0.42,
+		"ali": 0.055,
+		"mitra": 0.028,
+		"home": 0.497
+	},
+	"newWorker": {
+		"power": 15,
+		"efficiency": 0.51,
+		"buy_company": "hamyar",
+		"buy_factorId": "XXXX",
+		"buy_price": 0.0035621457944856215,
+		"buy_start_day": 370,
+		"buy_end_day": 550,
+		"owners": {
+			"hossain": 0.42,
+			"ali": 0.055,
+			"mitra": 0.028,
+			"home": 0.497
+		}
+	}
+}
+"\n\n\nWORKERS\n"
+{
+	"count": 299,
+	"sum_power": 2295,
+	"sum_power_day": 413100
+}
+"\n\n\n"
