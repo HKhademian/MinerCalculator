@@ -1,5 +1,6 @@
-import { DeepPartial, Product } from './index.ts';
-  
+import { Product } from "./Product.ts";
+import { DeepPartial } from "./util.ts";
+
 export interface Worker {
   power: number;
   efficiency: number;
@@ -39,7 +40,7 @@ export const newWorkerFromProduct = (
     power: product.power * count,
     efficiency: product.efficiency,
     buy_company: product.company,
-    buy_factorId: 'XXXX',
+    buy_factorId: "XXXX",
     buy_price: product.price * count,
     buy_start_day: start_day,
     buy_end_day: start_day + product.life,

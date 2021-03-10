@@ -1,0 +1,45 @@
+import { newUser, User } from "../lib/User.ts";
+
+export const users: User[] = [
+  newUser({
+    id: "hossain",
+    title: "Hossain Khademian",
+    settings: {
+      invest_save_rate: 0.30,
+      invest_save_start: 30 * 3,
+    },
+  }),
+
+  newUser({
+    id: "ali",
+    title: "Ali Khademian",
+    agentUserId: "hossain",
+    agent_share: 0.1,
+    settings: {
+      invest_save_rate: 0.30,
+      invest_save_start: 30 * 3,
+    },
+  }),
+
+  newUser({
+    id: "mitra",
+    title: "Mitra",
+    agentUserId: "hossain",
+    agent_share: 0.1,
+    settings: {
+      invest_save_rate: 0.30,
+      invest_save_start: 30 * 3,
+    },
+  }),
+
+  newUser({
+    id: "home",
+    title: "Home",
+    agentUserId: "hossain",
+    agent_share: 0.05,
+    settings: {
+      invest_save_rate: 0.30,
+      invest_save_start: 30,
+    },
+  }),
+];

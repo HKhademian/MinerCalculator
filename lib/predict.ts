@@ -1,4 +1,7 @@
-import { print, DeepPartial, newWorkerFromProduct, User, System } from './index.ts';
+import { print } from "./util.ts";
+import { System } from "./System.ts";
+import { User } from "./User.ts";
+import { newWorkerFromProduct, Worker } from "./Worker.ts";
 
 export const predict = (source_system: System, days: number = 30): System => {
   // const system = { ...source_system } as System;
@@ -28,14 +31,14 @@ export const predict = (source_system: System, days: number = 30): System => {
           const owner_user = system.users.find((it) =>
             it.id == owner_id
           ) as User;
-          if(!owner_user) continue;
+          if (!owner_user) continue;
 
           // profit for this share
           let share_profit = owner_share * worker_income;
           let agent_profit = 0;
           let owner_profit = share_profit;
 
-          if(owner_user.agentUserId) {
+          if (owner_user.agentUserId) {
             // agent share from this worker/owner profit
             agent_profit = share_profit * owner_user.agent_share;
             // owner share from this worker profit
@@ -44,8 +47,9 @@ export const predict = (source_system: System, days: number = 30): System => {
 
           incomes[owner_id] += owner_profit;
 
-          if(owner_user.agentUserId && agent_profit > 0)
+          if (owner_user.agentUserId && agent_profit > 0) {
             incomes[owner_user.agentUserId] += agent_profit;
+          }
 
           //print({owner_id, share_profit, owner_profit, agent_profit});
         }

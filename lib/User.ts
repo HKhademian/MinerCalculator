@@ -1,4 +1,4 @@
-import { DeepPartial } from './index.ts';
+import { DeepPartial } from "./util.ts";
 
 interface UserState {
   total_dispose: number;
@@ -49,8 +49,8 @@ export const newUser = (
   source?: DeepPartial<User>,
 ): User =>
   ({
-    id: source?.id || 'empty',
-    title: source?.title || 'EMPTY',
+    id: source?.id || "empty",
+    title: source?.title || "EMPTY",
     saving_wallet: source?.saving_wallet || 0.0,
     working_wallet: source?.working_wallet || 0.0,
     agentUserId: source?.agentUserId || undefined,

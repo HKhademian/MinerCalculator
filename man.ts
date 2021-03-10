@@ -1,12 +1,16 @@
-import { predict, print, System, User, Worker } from "./lib/index.ts";
-import system from "./data.ts";
+import { predict } from "./lib/predict.ts";
+import { print } from "./lib/util.ts";
+import { System } from "./lib/System.ts";
+import { User } from "./lib/User.ts";
+import { Worker } from "./lib/Worker.ts";
+import { system } from "./data/system.ts";
 
 system.current_day = 0;
 print(system, "\n\n\n");
 
 const endDay = 185;
 
-let cur = system;
+let cur: System = system as System;
 for (let i = 0; i < endDay; i++) {
   cur = predict(cur, 1);
   if (i % 30 == 0) {
@@ -35,6 +39,7 @@ for (let i = 0; i < endDay; i++) {
     (prev, el) => prev + el.power * (el.end - el.start),
     0,
   );
+  let sum_power_year = sum_power_day / 365;
 
   print(
     "\n\n\nWORKERS\n",
@@ -42,6 +47,7 @@ for (let i = 0; i < endDay; i++) {
       count,
       sum_power,
       sum_power_day,
+      sum_power_year,
     },
     "\n\n\n",
   );
@@ -75,6 +81,7 @@ for (let i = 0; i < endDay; i++) {
     (prev, el) => prev + el.power * (el.end - el.start),
     0,
   );
+  let sum_power_year = sum_power_day / 365;
 
   print(
     "\n\n\nWORKERS\n",
@@ -82,6 +89,7 @@ for (let i = 0; i < endDay; i++) {
       count,
       sum_power,
       sum_power_day,
+      sum_power_year,
     },
     "\n\n\n",
   );

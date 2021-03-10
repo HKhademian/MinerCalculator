@@ -1,6 +1,7 @@
-import { DeepPartial } from './index.ts';
+import { DeepPartial } from "./util.ts";
 
 export interface Product {
+  id: string;
   company: string;
   life: number;
   price: number;
@@ -10,7 +11,8 @@ export interface Product {
 
 export const newProduct = (source?: DeepPartial<Product>) =>
   ({
-    company: source?.company || 'unknown',
+    id: source?.id || "unknown",
+    company: source?.company || "unknown",
     life: source?.life || 0,
     price: source?.price || -1,
     power: source?.power || 0,
