@@ -11,7 +11,8 @@ export const system: System = {
   workers,
   start_day_date: 0,
   current_day: 0,
-  daily_power_profit: 0.000005805,
+  // daily_power_profit: 0.000005805,
+  daily_power_profit: 5.805,
 } as System;
 
 // console.log(system);

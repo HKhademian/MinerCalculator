@@ -16,3 +16,7 @@ export const newCoin = (source?: DeepPartial<Coin>) =>
     value: source?.value || 0.0,
     desc: source?.desc || "",
   }) as Coin;
+
+export const exchange = (value: number, fromCoin: Coin, toCoin: Coin) => {
+  return value / fromCoin.value * toCoin.value;
+};

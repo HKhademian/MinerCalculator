@@ -3,9 +3,14 @@ import { System } from "./System.ts";
 import { User } from "./User.ts";
 import { newWorkerFromProduct, Worker } from "./Worker.ts";
 
+const PREC = 100000;
+const MIN_BUY_INT = 7;
+
 export const predict = (source_system: System, days: number = 30): System => {
   // const system = { ...source_system } as System;
   const system = JSON.parse(JSON.stringify(source_system)) as System;
+
+  let lastBuy = 0;
 
   for (let i = 0; i < days; i++) {
     system.current_day++;
@@ -18,6 +23,7 @@ export const predict = (source_system: System, days: number = 30): System => {
 
     // calculate each active miner profit
     system.workers
+      .filter((it) => it.buy_start_day < system.current_day)
       .filter((it) => it.buy_end_day > system.current_day)
       .forEach((worker) => {
         // total mine income from current miner in a time period
@@ -77,6 +83,10 @@ export const predict = (source_system: System, days: number = 30): System => {
       user.saving_wallet += income_saving;
     }
 
+    if (system.current_day - lastBuy < MIN_BUY_INT) {
+      continue;
+    }
+
     // reinvest
     const product = system.products[0];
     const invest_wallet = system.users.map((it) => it.working_wallet).reduce(
@@ -84,7 +94,7 @@ export const predict = (source_system: System, days: number = 30): System => {
       0.0,
     );
     let new_miner_count = Math.floor(invest_wallet / product.price);
-    //print({ day:system.current_day,invest_wallet, new_miner_count });
+    //print({ lastBuy, day:system.current_day,invest_wallet, new_miner_count });
 
     if (new_miner_count > 0) {
       const order_price = new_miner_count * product.price;
@@ -94,7 +104,7 @@ export const predict = (source_system: System, days: number = 30): System => {
       system.users.forEach((user) => {
         const share_price = (user.working_wallet * price_ratio);
         user.working_wallet -= share_price;
-        owners[user.id] = Math.round(1000 * share_price / order_price) / 1000;
+        owners[user.id] = Math.round(PREC * share_price / order_price) / PREC;
       });
       const newWorker = newWorkerFromProduct({
         product,
@@ -102,9 +112,10 @@ export const predict = (source_system: System, days: number = 30): System => {
         start_day: system.current_day,
         count: new_miner_count,
       });
-      print({ owners, newWorker });
-
       system.workers.push(newWorker);
+      lastBuy = system.current_day;
+
+      //print({ lastBuy, owners, newWorker });
     }
   }
 
