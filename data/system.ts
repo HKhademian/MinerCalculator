@@ -1,8 +1,9 @@
 import { System } from "../lib/System.ts";
 import { coins } from "./coins.ts";
-import { products } from "./companies.ts";
 import { users } from "./users.ts";
-import { workers } from "./workers.ts";
+import { products, workers } from "./workers.ts";
+
+export type { System };
 
 export const system: System = {
   coins,

@@ -9,9 +9,12 @@ interface UserState {
 }
 
 interface UserSetting {
-  invest_save_rate: number;
-  invest_save_start: number;
-  invest_save_end: number;
+  save_rate: number;
+  save_start: number;
+  save_end: number;
+  invest_rate: number;
+  invest_start: number;
+  invest_end: number;
 }
 
 export interface User {
@@ -40,9 +43,13 @@ const newUserSettings = (
   source?: DeepPartial<UserSetting>,
 ): UserSetting =>
   ({
-    invest_save_rate: source?.invest_save_rate || 0.3,
-    invest_save_start: source?.invest_save_start || -1,
-    invest_save_end: source?.invest_save_end || -1,
+    save_rate: source?.save_rate || -1,
+    save_start: source?.save_start || -1,
+    save_end: source?.save_end || -1,
+
+    invest_rate: source?.invest_rate || -1,
+    invest_start: source?.invest_start || -1,
+    invest_end: source?.invest_end || -1,
   }) as UserSetting;
 
 export const newUser = (

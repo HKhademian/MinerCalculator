@@ -1,6 +1,7 @@
-import { exchange } from "../lib/Coin.ts";
-import { kIRT, uBTC } from "../data/coins.ts";
+import { exchange, kIRT, uBTC } from "../data/coins.ts";
 import { newProduct, Product } from "../lib/Product.ts";
+
+export type { Product };
 
 export const hamyar_5th_6m = newProduct({
   id: "hamyar_5th_6m",
@@ -30,4 +31,4 @@ export const pishtaz_4th_12m = newProduct({
 });
 
 // export const products: Product[] = [hamyar_5th_6m, hamyar_5th_12m];
-export const products: Product[] = [pishtaz_4th_12m];
+// export const products: Product[] = [pishtaz_4th_12m];

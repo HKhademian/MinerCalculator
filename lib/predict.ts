@@ -15,7 +15,7 @@ export const predict = (source_system: System, days: number = 30): System => {
   for (let i = 0; i < days; i++) {
     system.current_day++;
 
-    // holds income of current itteration
+    // holds income of current iteration
     const incomes: { [key: string]: number } = {};
     // fill each user profit to 0.0
     system.users.forEach((it) => incomes[it.id] = 0.0);
@@ -66,17 +66,34 @@ export const predict = (source_system: System, days: number = 30): System => {
       const user = system.users.find((it) => it.id == user_id) as User;
 
       let income = incomes[user_id];
-      let income_working = income;
+      let income_working = 0;
       let income_saving = 0;
 
-      if (
-        (user.settings.invest_save_start < 0 ||
-          user.settings.invest_save_start < system.current_day) &&
-        (user.settings.invest_save_end < 0 ||
-          user.settings.invest_save_end > system.current_day)
-      ) {
-        income_saving = income * user.settings.invest_save_rate;
-        income_working -= income_saving;
+      const allowSave = (user.settings.save_start < 0 ||
+        user.settings.save_start < system.current_day) &&
+        (user.settings.save_end < 0 ||
+          user.settings.save_end > system.current_day);
+      const allowInvest = (user.settings.invest_start < 0 ||
+        user.settings.invest_start < system.current_day) &&
+        (user.settings.invest_end < 0 ||
+          user.settings.invest_end > system.current_day);
+
+      if (user.settings.save_rate >= 0) {
+        income_working = income;
+        if (allowSave) {
+          income_saving = income * user.settings.save_rate;
+          income_working -= income_saving;
+        }
+      } else if (user.settings.invest_rate >= 0) {
+        income_saving = income;
+        if (allowInvest) {
+          income_working = income * user.settings.invest_rate;
+          income_saving -= income_working;
+        }
+      } else {
+        console.error(`Please set save or invest policy for ${user.id}`);
+        Deno.exit();
+        return {} as System;
       }
 
       user.working_wallet += income_working;
@@ -99,13 +116,18 @@ export const predict = (source_system: System, days: number = 30): System => {
     if (new_miner_count > 0) {
       const order_price = new_miner_count * product.price;
       const price_ratio = order_price / invest_wallet;
-      const owners: { [key: string]: number } = {};
+      const owner_share: { [key: string]: number } = {};
 
       system.users.forEach((user) => {
         const share_price = (user.working_wallet * price_ratio);
         user.working_wallet -= share_price;
-        owners[user.id] = Math.round(PREC * share_price / order_price) / PREC;
+        owner_share[user.id] = Math.round(PREC * share_price / order_price) /
+          PREC;
       });
+
+      const owners = Object.fromEntries(
+        Object.entries(owner_share).filter((it) => it[1] > 0),
+      );
       const newWorker = newWorkerFromProduct({
         product,
         owners,
