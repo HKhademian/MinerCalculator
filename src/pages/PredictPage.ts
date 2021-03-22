@@ -1,8 +1,8 @@
-import {NO_SHARE, ShareSetting, System} from "./lib/System.ts";
-import {isSavePolicyInRange, SavePolicy, User} from "./lib/User.ts";
-import {newWorkerFromProduct, Worker} from "./lib/Worker.ts";
-import {errVal, print} from "./util.ts";
-import {exchange, mIRT, uBTC} from "./baseSystem.ts";
+import {NO_SHARE, ShareSetting, System} from "../lib/System.ts";
+import {exchange, mIRT, uBTC} from "../lib/Coin.ts";
+import {isSavePolicyInRange, SavePolicy, User} from "../lib/User.ts";
+import {newWorkerFromProduct, Worker} from "../lib/Worker.ts";
+import {errVal, print, toPrec} from "../util.ts";
 
 export type {System};
 
@@ -105,7 +105,6 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 	  user.wallet.saving += income_saving;
 	}
 
-
 	// reinvest
 	const product = system.products[0];
 	const minBuyInterval = product.minBuyInterval;
@@ -118,7 +117,7 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 	let new_miner_count = Math.floor(invest_wallet / productPrice);
 	//print({ lastBuy, day:system.current_day,invest_wallet, new_miner_count });
 
-	if (new_miner_count > (product.minCount || 0)) {
+	if (new_miner_count > 0 && (!product.minCount || new_miner_count >= product.minCount)) {
 	  const order_price = new_miner_count * productPrice;
 	  const price_ratio = order_price / invest_wallet;
 	  const owner_share: { [_: string]: number } = {};
@@ -150,13 +149,21 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 
 export const showPredict = async () => {
   const baseSystem: System = JSON.parse(JSON.stringify((globalThis as any).system));
+  const period = 30;
 
   let system: System = baseSystem;
   const startPredictDay = system.currentTime;
 
   console.clear();
+  const periodPower = [];
+
+  // @ts-ignore
+  const silentPeriod = parseInt(prompt("Enter Num of Periods (or skip to see in details):"));
+  const silent = silentPeriod > 0;
 
   for (let i = 0; /*i < 24 + 1*/; i++) {
+	const lastPeriod = silent && silentPeriod < system.currentTime / period;
+
 	let active_workers = system.workers
 	  .filter((it) => it.endTime > system.currentTime)
 	  .map((it) => ({
@@ -165,71 +172,80 @@ export const showPredict = async () => {
 		power: it.power,
 		owners: it.owners,
 		productCount: it.purchase.productCount,
-		allPrice: `${it.purchase.sumPrice.toFixed(3)} ${it.purchase.priceCoin.sign}`,
+		allPrice: `${toPrec(it.purchase.sumPrice)} ${it.purchase.priceCoin.sign}`,
 	  }));
 	const count = active_workers.length;
-	const sum_power = active_workers.reduce((prev, el) => prev + el.power, 0);
-	const sum_power_day = Math.floor(active_workers.reduce((prev, el) => prev + el.power * (el.end - system.currentTime), 0));
-	const sum_power_1m = (sum_power_day / (1 * 30)).toFixed(3);
-	const sum_power_3m = (sum_power_day / (3 * 30)).toFixed(3);
-	const sum_power_6m = (sum_power_day / (6 * 30)).toFixed(3);
-	const sum_power_12m = (sum_power_day / (12 * 30)).toFixed(3);
+	const sum_power = toPrec(active_workers.reduce((prev, el) => prev + el.power, 0));
+	const sum_power_day = toPrec(active_workers.reduce((prev, el) => prev + el.power * (el.end - system.currentTime), 0));
+	const sum_power_1m = toPrec(sum_power_day / (1 * 30));
+	const sum_power_3m = toPrec(sum_power_day / (3 * 30));
+	const sum_power_6m = toPrec(sum_power_day / (6 * 30));
+	const sum_power_12m = toPrec(sum_power_day / (12 * 30));
 
 	const workers = active_workers.map(it => ({
 	  start: it.start,
 	  end: it.end,
-	  power: parseFloat(it.power.toFixed(1)),
-	  productCount: it.productCount.toFixed(1),
+	  power: toPrec(it.power, 1),
+	  productCount: toPrec(it.productCount, 1),
 	  allPrice: it.allPrice,
 	}));
 
-	print({
-	  title: 'WORKERS', workers, count, sum_power,
-	  sum_power_day, sum_power_1m, sum_power_3m, sum_power_6m, sum_power_12m
-	});
+	if (!silent || lastPeriod)
+	  print({
+		title: 'WORKERS', workers, count, sum_power,
+		sum_power_day, sum_power_1m, sum_power_3m, sum_power_6m, sum_power_12m
+	  });
 
-	const report = system.users.map((it) => ({
+	const all_report = system.users.map(it => ({
 	  user: it.id,
-	  'save uBTC': it.wallet.saving.toFixed(3),
-	  'save mIRT': exchange(it.wallet.saving, uBTC, mIRT).toFixed(3),
-	  'work uBTC': it.wallet.working.toFixed(3),
-	  'work mIRT': exchange(it.wallet.working, uBTC, mIRT).toFixed(3),
-	  'TH/s': active_workers.reduce((prev, el) => prev + el.power * (el.owners[it.id] || 0), 0).toFixed(3),
-	})).filter((it) =>
-	  parseFloat(it['save uBTC']) > 0 || parseFloat(it['work uBTC']) > 0 ||
-	  parseFloat(it['TH/s']) > 0
-	);
+	  'save uBTC': toPrec(it.wallet.saving),
+	  'save mIRT': toPrec(exchange(it.wallet.saving, uBTC, mIRT)),
+	  'work uBTC': toPrec(it.wallet.working),
+	  'work mIRT': toPrec(exchange(it.wallet.working, uBTC, mIRT)),
+	  'TH/s': toPrec(active_workers.reduce((prev, el) => prev + el.power * (el.owners[it.id] || 0), 0)),
+	}));
+	const report = all_report.filter(it => it['save uBTC'] > 0 || it['work uBTC'] > 0 || it['TH/s'] > 0);
+	const sum = {
+	  user: '--SUM--',
+	  'save uBTC': toPrec(report.reduce((p, x) => p + x['save uBTC'], 0)),
+	  'save mIRT': toPrec(report.reduce((p, x) => p + x['save mIRT'], 0)),
+	  'work uBTC': toPrec(report.reduce((p, x) => p + x['work uBTC'], 0)),
+	  'work mIRT': toPrec(report.reduce((p, x) => p + x['work mIRT'], 0)),
+	  'TH/s': toPrec(report.reduce((p, x) => p + x['TH/s'], 0)),
+	};
 	if (report.length > 1) {
-	  let sum = {
-		user: '--SUM--',
-		'save uBTC': report.reduce((p, x) => p + parseFloat(x['save uBTC']), 0)
-		  .toFixed(3),
-		'save mIRT': report.reduce((p, x) => p + parseFloat(x['save mIRT']), 0)
-		  .toFixed(3),
-		'work uBTC': report.reduce((p, x) => p + parseFloat(x['work uBTC']), 0)
-		  .toFixed(3),
-		'work mIRT': report.reduce((p, x) => p + parseFloat(x['work mIRT']), 0)
-		  .toFixed(3),
-		'TH/s': report.reduce((p, x) => p + parseFloat(x['TH/s']), 0).toFixed(3),
-	  };
 	  report.push({
 		user: '-------',
-		'save uBTC': '-------',
-		'save mIRT': '-------',
-		'work uBTC': '-------',
-		'work mIRT': '-------',
-		'TH/s': '-------',
+		'save uBTC': '-------' as any as number,
+		'save mIRT': '-------' as any as number,
+		'work uBTC': '-------' as any as number,
+		'work mIRT': '-------' as any as number,
+		'TH/s': '-------' as any as number,
 	  });
 	  report.push(sum);
 	}
 
-	print('User States', {system_day: system.currentTime, predict_day: system.currentTime - startPredictDay});
-	console.table(report);
+	periodPower.push({
+	  i, day: system.currentTime, save: sum["save mIRT"],
+	  power: sum_power, sum_power_day,
+	  sum_power_1m, sum_power_3m,
+	  sum_power_6m, sum_power_12m,
+	});
 
-	system = predict(system, 30, -startPredictDay);
+	if (!silent || lastPeriod) {
+	  print('User States', {system_day: system.currentTime, predict_day: system.currentTime - startPredictDay});
+	  console.table(report);
+	}
+
+	if (lastPeriod) break;
 
 	// @ts-ignore
-	const ask = prompt("predict next period? (Y,n)") || "Y";
-	if (ask == 'n') break;
+	if (!silent && (prompt("predict next period? (Y,n)") || "Y") == 'n') break;
+
+	system = predict(system, period, -startPredictDay);
   }
+
+  console.table(periodPower);
+  // @ts-ignore
+  alert("to exit PREDICT page press")
 };

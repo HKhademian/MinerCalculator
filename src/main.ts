@@ -1,8 +1,8 @@
 #! /usr/bin/env -S deno run -A --unstable
 
 //region [Boot]
+import {calculateRates} from './pages/RatePage.ts';
 import {system as baseSystem} from './baseSystem.ts';
-import {calculateRates} from './rates.ts';
 
 (globalThis as any).system = baseSystem;
 baseSystem.currentTime = baseSystem.workers.reduce((prev, el) => Math.max(prev, el.startTime), 0) || 0;
@@ -14,9 +14,9 @@ await calculateRates({});
 //endregion
 
 //region [Main]
-import {mainMenu} from "./menus.ts";
+import {showMainPage} from "./pages/MainPage.ts";
 
-await mainMenu();
+await showMainPage();
 
 console.log("goodbye");
 //endregion

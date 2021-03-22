@@ -1,5 +1,5 @@
-import {exists, askMenu} from "./util.ts";
-import {mETH, mIRT, uBTC, USDT} from "./baseSystem.ts";
+import {exists, askMenu} from "../util.ts";
+import {mETH, mIRT, uBTC, USDT} from "../lib/Coin.ts";
 
 const RATES_FILE = "./.rates.json";
 const RATES_URL = "https://core.jeeb.io/api/v3/markets/rates";

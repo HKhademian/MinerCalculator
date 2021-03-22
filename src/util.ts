@@ -13,6 +13,22 @@ export const errVal = (msg?: string): any => {
   throw Error(msg);
 };
 
+export const toPrec = (String.prototype as any).toPrec = (val: any, prec: number = 3, round: any = Math.round): number => {
+  const type = typeof (val);
+  let num: number;
+  switch (type) {
+	case "number":
+	  num = val;
+	  break;
+	case "string":
+	default:
+	  num = parseFloat(val.toString());
+	  break;
+  }
+  const mult = Math.pow(10, prec);
+  return (round || Math.round)(num * mult) / mult;
+}
+
 export const print = (...data: unknown[]): void => {
   return console.log(...data);
 
@@ -37,24 +53,27 @@ export const print = (...data: unknown[]): void => {
 };
 
 export const askMenu = async (header: string, entities: {
-  title: string,
-  action?: (() => Promise<any> | undefined) | undefined,
+  title?: string | undefined,
+  action?: (() => any) | undefined,
 }[], before?: (() => any), options?: { autoClear?: boolean, defaultChoice?: number }) => {
   if (before) {
-	let res = before();
+	const res = before();
 	if (res && res instanceof Promise) await res;
   }
   while (true) {
 	if (options?.autoClear) console.clear();
-	console.log('\n', header);
-	entities.forEach(({title}, index) => console.log(`${index}) ${title}`));
+	else console.log();
+	console.log(header);
+	console.log("*".repeat(25));
+	entities.forEach(({title}, index) => title && console.log(`${index}) ${title}`));
+	console.log("*".repeat(25));
 	// @ts-ignore
 	const choose = parseInt(prompt("Please enter menu number:", options?.defaultChoice?.toString()));
 	if (choose >= 0 && choose < entities.length) {
 	  const action = entities[choose].action;
 	  if (!action) break;
 	  const res = action();
-	  if (res) await res;
+	  if (res && res instanceof Promise) await res;
 	} else {
 	  console.error("wrong input\n");
 	}
