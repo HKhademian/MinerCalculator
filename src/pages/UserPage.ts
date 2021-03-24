@@ -5,6 +5,6 @@ export const showUserPage = async () => await askMenu(
   "User Page", [
 	{title: "exit User Page"},
   ], () => {
-	const system: System = (globalThis as any).system;
+	const system = System.get();
 	console.log(system.users);
   }, {defaultChoice: 0});

@@ -5,6 +5,6 @@ export const showWorkerPage = async () => await askMenu(
   "Worker Page", [
 	{title: "exit Worker Page"},
   ], () => {
-	const system: System = (globalThis as any).system;
+	const system = System.get();
 	console.log(system.workers);
   }, {defaultChoice: 0});

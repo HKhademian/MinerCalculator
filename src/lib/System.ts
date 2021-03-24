@@ -11,25 +11,6 @@ export interface ShareSetting {
   share: number;
 }
 
-export interface System {
-  companies: Company[];
-  products: Product[];
-  sources: Source[];
-
-  coins: Coin[];
-
-  users: User[];
-  wallets: Wallet[];
-
-  workers: Worker[];
-
-  startDate: string;
-  currentTime: number;
-
-  managerShare?: ShareSetting | undefined;
-  charityShare?: ShareSetting | undefined;
-}
-
 export const newShareSetting = (
   source?: DeepPartial<ShareSetting>,
   base?: ShareSetting | undefined,
@@ -53,3 +34,42 @@ export const NO_SHARE = newShareSetting({
   userId: 'no-user',
   share: 0.0,
 })!!;
+
+
+export interface System {
+  coins: Coin[];
+
+  companies: Company[];
+  products: Product[];
+  sources: Source[];
+
+  users: User[];
+  wallets: Wallet[];
+  workers: Worker[];
+
+  startDate: string;
+  currentTime: number;
+
+  managerShare?: ShareSetting | undefined;
+  charityShare?: ShareSetting | undefined;
+}
+
+export namespace System {
+  export const set = (system: System) => (globalThis as any).system = system;
+  export const get = (): System => (globalThis as any).system;
+
+  export const create = (from?: DeepPartial<System>, base?: System): System => ({
+	coins: from?.companies || base?.companies || [],
+	companies: from?.companies || base?.companies || [],
+	products: from?.companies || base?.companies || [],
+	sources: from?.companies || base?.companies || [],
+	users: from?.companies || base?.companies || [],
+	wallets: from?.companies || base?.companies || [],
+	startDate: from?.startDate || base?.startDate || new Date().toDateString(),
+	currentTime: from?.currentTime || base?.currentTime || 0,
+	managerShare: newShareSetting(from?.managerShare, base?.managerShare) || NO_SHARE,
+	charityShare: newShareSetting(from?.charityShare, base?.charityShare) || NO_SHARE,
+  }) as System;
+
+  System.set(System.create());
+}

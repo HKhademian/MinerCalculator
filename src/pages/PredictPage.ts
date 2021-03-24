@@ -191,7 +191,7 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 }
 
 export const showPredict = async () => {
-  const baseSystem: System = JSON.parse(JSON.stringify((globalThis as any).system));
+  const baseSystem: System = JSON.parse(JSON.stringify(System.get()));
   const period = 30;
 
   let system: System = baseSystem;

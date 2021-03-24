@@ -1,0 +1,756 @@
+{
+  "companies": [
+    {
+      "id": "hamyar",
+      "title": "Hamyar Miner"
+    },
+    {
+      "id": "pishtaz",
+      "title": "Pishtaz Miner"
+    },
+    {
+      "id": "hashshiny",
+      "title": "Hash Shiny"
+    }
+  ],
+  "products": [
+    {
+      "id": "hamyar_1th_6m_reinvest",
+      "companyId": "hamyar",
+      "life": 180,
+      "price": 0.355,
+      "priceCoinId": "m_irt",
+      "mineCoinId": "u_btc",
+      "minePower": 1,
+      "mineEfficiency": 0.51,
+      "limits": {
+        "minBuyInterval": 3,
+        "minCount": 5,
+        "reInvest": false
+      },
+      "status": 0
+    },
+    {
+      "id": "hamyar_13th6_6m",
+      "companyId": "hamyar",
+      "life": 180,
+      "price": 5.1,
+      "priceCoinId": "m_irt",
+      "mineCoinId": "u_btc",
+      "minePower": 13.6,
+      "mineEfficiency": 0.51,
+      "limits": {
+        "minBuyInterval": 0,
+        "minCount": 0,
+        "reInvest": false
+      },
+      "status": 0
+    },
+    {
+      "id": "hashshiny_btc_10gh",
+      "companyId": "hashshiny",
+      "life": 720,
+      "price": 1.05,
+      "priceCoinId": "usdt",
+      "mineCoinId": "u_btc",
+      "minePower": 0.01,
+      "mineEfficiency": 0.75,
+      "limits": {
+        "minBuyInterval": 0,
+        "minCount": 0,
+        "reInvest": false
+      },
+      "status": 0
+    },
+    {
+      "id": "hashshiny_btc_100mh",
+      "companyId": "hashshiny",
+      "life": 720,
+      "price": 0.89,
+      "priceCoinId": "usdt",
+      "mineCoinId": "m_dash",
+      "minePower": 0.1,
+      "mineEfficiency": 0.9,
+      "limits": {
+        "minBuyInterval": 7,
+        "minCount": 0,
+        "reInvest": false
+      },
+      "status": 0
+    }
+  ],
+  "sources": [
+    {
+      "id": "hamyar_s1",
+      "company": "hamyar",
+      "reinvestProduct": "hamyar_1th_6m_reinvest",
+      "title": "Source hamyar_s1 from company hamyar",
+      "login": "h.kh"
+    },
+    {
+      "id": "pishtaz_s1",
+      "company": "pishtaz",
+      "title": "Source pishtaz_s1 from company pishtaz",
+      "login": "h.kh"
+    },
+    {
+      "id": "hashshiny_s1",
+      "company": "hashshiny",
+      "reinvestProduct": "hashshiny_btc_10gh",
+      "title": "Source hashshiny_s1 from company hashshiny",
+      "login": "h.kh"
+    },
+    {
+      "id": "hashshiny_s1",
+      "company": "hashshiny",
+      "reinvestProduct": "hashshiny_btc_100mh",
+      "title": "Source hashshiny_s1 from company hashshiny",
+      "login": "h.kh"
+    }
+  ],
+  "users": [
+    {
+      "id": "manager",
+      "title": "System Manager",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "charity",
+      "title": "System Charity Bank",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": {
+        "start": 90,
+        "rate": 0.5
+      }
+    },
+    {
+      "id": "hossain",
+      "title": "Hossain",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "mitra",
+      "title": "Mitra",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "ali",
+      "title": "Ali",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "saeed",
+      "title": "Saeed",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "zahra",
+      "title": "Zahra",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "fateme",
+      "title": "Fateme",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Home",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    },
+    {
+      "id": "seke",
+      "title": "Seke Zahra",
+      "agentsShare": [],
+      "states": {
+        "total_dispose": 0,
+        "total_withdraw": 0,
+        "total_invest": 0,
+        "total_income": 0,
+        "total_workers": 0
+      },
+      "savePolicy": [
+        {
+          "start": 180,
+          "rate": 0.4
+        },
+        {
+          "start": 120,
+          "rate": 0.3
+        },
+        {
+          "start": 60,
+          "rate": 0.2
+        }
+      ]
+    }
+  ],
+  "workers": [
+    {
+      "id": "xHLt1Y",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 1
+      },
+      "coin": "u_btc",
+      "power": 5,
+      "efficiency": 0.51,
+      "startTime": 0,
+      "endTime": 180,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_base_6m",
+        "factor": "151993",
+        "productCount": 1,
+        "sumPrice": 1.5,
+        "priceCoin": "m_irt",
+        "date": "10/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 1 worker from product(hamyar_base_6m)"
+    },
+    {
+      "id": "YO701H",
+      "source": "hamyar_s1",
+      "owners": {
+        "ali": 1
+      },
+      "coin": "u_btc",
+      "power": 10,
+      "efficiency": 0.51,
+      "startTime": 0,
+      "endTime": 180,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_base_6m",
+        "factor": "152107",
+        "productCount": 2,
+        "sumPrice": 3,
+        "priceCoin": "m_irt",
+        "date": "10/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 2 worker from product(hamyar_base_6m)"
+    },
+    {
+      "id": "u6CI0z",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.75,
+        "mitra": 0.25
+      },
+      "coin": "u_btc",
+      "power": 20,
+      "efficiency": 0.51,
+      "startTime": 1,
+      "endTime": 181,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_base_6m",
+        "factor": "152326",
+        "productCount": 4,
+        "sumPrice": 6,
+        "priceCoin": "m_irt",
+        "date": "11/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 4 worker from product(hamyar_base_6m)"
+    },
+    {
+      "id": "JPLyMy",
+      "source": "hamyar_s1",
+      "owners": {
+        "seke": 1
+      },
+      "coin": "u_btc",
+      "power": 50,
+      "efficiency": 0.51,
+      "startTime": 11,
+      "endTime": 191,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_base_6m",
+        "factor": "154382",
+        "productCount": 10,
+        "sumPrice": 15,
+        "priceCoin": "m_irt",
+        "date": "21/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 10 worker from product(hamyar_base_6m)"
+    },
+    {
+      "id": "2nAiRQ",
+      "source": "hamyar_s1",
+      "owners": {
+        "mitra": 0.14285714285714285,
+        "fateme": 0.8571428571428571
+      },
+      "coin": "u_btc",
+      "power": 5,
+      "efficiency": 0.51,
+      "startTime": 13,
+      "endTime": 193,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_1th_6m_reinvest",
+        "factor": "154849",
+        "productCount": 5,
+        "sumPrice": 1.775,
+        "priceCoin": "m_irt",
+        "date": "23/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 5 worker from product(hamyar_1th_6m_reinvest)"
+    },
+    {
+      "id": "EUv4H2",
+      "source": "hamyar_s1",
+      "owners": {
+        "saeed": 1
+      },
+      "coin": "u_btc",
+      "power": 13.6,
+      "efficiency": 0.51,
+      "startTime": 16,
+      "endTime": 196,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_13th6_6m",
+        "factor": "155951",
+        "productCount": 1,
+        "sumPrice": 5.1,
+        "priceCoin": "m_irt",
+        "date": "26/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
+    },
+    {
+      "id": "7kakx4",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.193,
+        "mitra": 0.055200000000000006,
+        "ali": 0.09659999999999999,
+        "saeed": 0.1312,
+        "fateme": 0.0414,
+        "seke": 0.4826
+      },
+      "coin": "u_btc",
+      "power": 5,
+      "efficiency": 0.51,
+      "startTime": 17,
+      "endTime": 197,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_1th_6m_reinvest",
+        "factor": "156208",
+        "productCount": 5,
+        "sumPrice": 1.775,
+        "priceCoin": "m_irt",
+        "date": "27/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 5 worker from product(hamyar_1th_6m_reinvest)"
+    },
+    {
+      "id": "IepNFZ",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.35294117647058826,
+        "mitra": 0.25514705882352945,
+        "saeed": 0.09779411764705884,
+        "zahra": 0.29411764705882354
+      },
+      "coin": "u_btc",
+      "power": 27.2,
+      "efficiency": 0.51,
+      "startTime": 17,
+      "endTime": 197,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_13th6_6m",
+        "factor": "156235",
+        "productCount": 2,
+        "sumPrice": 10.2,
+        "priceCoin": "m_irt",
+        "date": "27/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 2 worker from product(hamyar_13th6_6m)"
+    },
+    {
+      "id": "idYuhP",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.019558823529411767,
+        "mitra": 0.9804411764705883
+      },
+      "coin": "u_btc",
+      "power": 13.6,
+      "efficiency": 0.51,
+      "startTime": 19,
+      "endTime": 199,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_13th6_6m",
+        "factor": "156450",
+        "productCount": 1,
+        "sumPrice": 5.1,
+        "priceCoin": "m_irt",
+        "date": "29/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
+    },
+    {
+      "id": "bfQ5SW",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 1
+      },
+      "coin": "u_btc",
+      "power": 13.6,
+      "efficiency": 0.51,
+      "startTime": 19,
+      "endTime": 199,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_13th6_6m",
+        "factor": "156451",
+        "productCount": 1,
+        "sumPrice": 5.1,
+        "priceCoin": "m_irt",
+        "date": "29/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
+    },
+    {
+      "id": "AmbMBJ",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.2725,
+        "mitra": 0.16116666666666665,
+        "ali": 0.06433333333333334,
+        "saeed": 0.3215,
+        "zahra": 0.048999999999999995,
+        "fateme": 0.02766666666666667,
+        "home": 0,
+        "seke": 0.10383333333333333
+      },
+      "coin": "u_btc",
+      "power": 6,
+      "efficiency": 0.51,
+      "startTime": 20,
+      "endTime": 200,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_1th_6m_reinvest",
+        "factor": "156643",
+        "productCount": 6,
+        "sumPrice": 2.13,
+        "priceCoin": "m_irt",
+        "date": "27/12/1399",
+        "life": 180
+      },
+      "desc": "Buy 6 worker from product(hamyar_1th_6m_reinvest)"
+    },
+    {
+      "id": "bErXPD",
+      "source": "hamyar_s1",
+      "owners": {
+        "ali": 1
+      },
+      "coin": "u_btc",
+      "power": 13.6,
+      "efficiency": 0.51,
+      "startTime": 22,
+      "endTime": 202,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_13th6_6m",
+        "factor": "156848",
+        "productCount": 1,
+        "sumPrice": 5.1,
+        "priceCoin": "m_irt",
+        "date": "02/01/1400",
+        "life": 180
+      },
+      "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
+    },
+    {
+      "id": "y8BPAC",
+      "source": "hamyar_s1",
+      "owners": {
+        "hossain": 0.2522857142857143,
+        "mitra": 0.14914285714285716,
+        "ali": 0.13399999999999998,
+        "saeed": 0.10314285714285713,
+        "zahra": 0.04542857142857143,
+        "fateme": 0.02557142857142857,
+        "home": 0,
+        "seke": 0.2904285714285714
+      },
+      "coin": "u_btc",
+      "power": 7,
+      "efficiency": 0.51,
+      "startTime": 24,
+      "endTime": 204,
+      "purchase": {
+        "type": "buy",
+        "company": "hamyar",
+        "product": "hamyar_1th_6m_reinvest",
+        "factor": "157259",
+        "productCount": 7,
+        "sumPrice": 2.485,
+        "priceCoin": "m_irt",
+        "date": "04/01/1400",
+        "life": 180
+      },
+      "desc": "Buy 7 worker from product(hamyar_1th_6m_reinvest)"
+    }
+  ],
+  "wallets": [],
+  "coins": [
+    {
+      "id": "usdt",
+      "title": "Tether",
+      "sign": "$",
+      "value": 1,
+      "desc": "",
+      "power_profit": 0
+    },
+    {
+      "id": "m_irt",
+      "title": "1m IR Toman",
+      "sign": "M-Toman",
+      "value": 0.02552775,
+      "desc": "",
+      "power_profit": 0
+    },
+    {
+      "id": "u_btc",
+      "title": "micro Bitcoin",
+      "sign": "μɃ",
+      "value": 17.841272089677357,
+      "desc": "",
+      "power_profit": 5.748
+    },
+    {
+      "id": "m_eth",
+      "title": "mili ETH",
+      "sign": "mΞ",
+      "value": 0.5845406531702444,
+      "desc": "",
+      "power_profit": 56.36
+    },
+    {
+      "id": "m_dash",
+      "title": "mili DASH",
+      "sign": "mDASH",
+      "value": 0.22051,
+      "desc": "",
+      "power_profit": 0.1346
+    }
+  ],
+  "startDate": "10/12/1399",
+  "timeShift": 0,
+  "currentTime": 24,
+  "managerShare": {
+    "userId": "manager",
+    "share": 0.05
+  },
+  "charity": {
+    "userId": "charity",
+    "share": 0
+  }
+}

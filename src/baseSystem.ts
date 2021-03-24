@@ -50,11 +50,11 @@ const HAMYAR_BASE_6M = Product.newProduct({
   priceCoinId: mIRT.id,
   mineCoinId: uBTC.id,
   mineEfficiency: 0.51,
-}, undefined, baseSystem);
+});
 const HAMYAR_BASE_12M = Product.newProduct({
   id: "hamyar_base_12m",
   life: 30 * 12,
-}, HAMYAR_BASE_6M, baseSystem);
+}, HAMYAR_BASE_6M);
 const hamyar_1th_6m_reinvest = Product.newProduct({
   id: "hamyar_1th_6m_reinvest",
   price: 0.355,
@@ -78,7 +78,7 @@ const HASHSHINY_BASE = Product.newProduct({
   mineCoinId: uBTC.id,
   minePower: 0.0,
   mineEfficiency: 0.0,
-}, undefined, baseSystem);
+});
 const hashshiny_btc_10gh = Product.newProduct({
   id: "hashshiny_btc_10gh",
   price: 1.05,

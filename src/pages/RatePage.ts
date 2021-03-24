@@ -1,7 +1,7 @@
 import {exists, askMenu} from "../util.ts";
 import {mETH, mIRT, uBTC, USDT} from "../lib/Coin.ts";
 
-const RATES_FILE = "./.rates.json";
+const RATES_FILE = "./data/.rates.json";
 const RATES_URL = "https://core.jeeb.io/api/v3/markets/rates";
 
 interface Rate {
