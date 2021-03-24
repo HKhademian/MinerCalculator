@@ -2,11 +2,11 @@
 
 //region [Boot]
 import {calculateRates} from './pages/RatePage.ts';
-import {system as baseSystem} from './baseSystem.ts';
+import {baseSystem} from './baseSystem.ts';
 
 (globalThis as any).system = baseSystem;
 baseSystem.currentTime = baseSystem.workers.reduce((prev, el) => Math.max(prev, el.startTime), 0) || 0;
-baseSystem.startDate = baseSystem.workers.reduce(
+baseSystem.startDate = baseSystem.workers.length <= 0 ? '?' : baseSystem.workers.reduce(
   (prev, el) => prev.startTime <= el.startTime ? prev : el,
   baseSystem.workers[0]).purchase.date;
 
