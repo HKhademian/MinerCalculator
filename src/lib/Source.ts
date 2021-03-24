@@ -1,6 +1,5 @@
-import {DeepPartial, errVal} from "../util.ts";
 import {System} from "./System.ts";
-import {Product} from "./Product.ts";
+import {DeepPartial, errVal} from "../util.ts";
 
 export interface Company {
   id: string;
@@ -15,7 +14,7 @@ export namespace Company {
 	return system?.companies?.find(it => it.id == company);
   }
 
-  export const newCompany = (source?: DeepPartial<Company>, base?: Company, system?: System): Company => {
+  export const create = (source?: DeepPartial<Company>, base?: Company, system?: System): Company => {
 	const item = ({
 	  id: source?.id || base?.id || errVal("no company-id provided"),
 	  title: source?.title || base?.title || `Company ${source?.id || base?.id}`,
@@ -43,7 +42,7 @@ export namespace Source {
 	return system?.sources.find(it => it.id == source);
   }
 
-  export const newSource = (source?: DeepPartial<Source>, base?: Source, system?: System): Source => {
+  export const create = (source?: DeepPartial<Source>, base?: Source, system?: System): Source => {
 	const item = ({
 	  id: source?.id || base?.id || errVal("no source-id provided"),
 	  company: source?.company || base?.company || errVal("no company-id provided"),

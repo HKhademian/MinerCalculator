@@ -1,7 +1,7 @@
-import {DeepPartial, errVal} from "../util.ts";
+import {System} from "./System.ts";
 import {Coin} from "./Coin.ts";
 import {Company} from "./Source.ts";
-import {System} from "./System.ts";
+import {DeepPartial, errVal} from "../util.ts";
 
 export interface Product {
   id: string;
@@ -48,7 +48,7 @@ export namespace Product {
 	return system.products.find(it => it.id == product);
   }
 
-  export const newProduct = (source?: DeepPartial<Product>, base?: Product, system?: System): Product => {
+  export const create = (source?: DeepPartial<Product>, base?: Product, system?: System): Product => {
 	const product = ({
 	  id: source?.id || base?.id || errVal("no id provided"),
 	  companyId: source?.companyId || base?.companyId || errVal("no company-id provided"),

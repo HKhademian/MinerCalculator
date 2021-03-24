@@ -1,8 +1,8 @@
-import {DeepPartial, errVal, generateID} from '../util.ts';
 import {System} from './System.ts';
 import {User} from "./User.ts";
 import {Coin} from "./Coin.ts";
 import {Source} from "./Source.ts";
+import {DeepPartial, errVal, generateID} from '../util.ts';
 
 type WalletType = 'live' | 'income' | 'working' | 'saving';
 
@@ -12,7 +12,7 @@ export interface Wallet {
   sourceId: string;
   userId?: string;
   type: WalletType,
-  walletAddress?: string | undefined;
+  walletAddress?: string;
   value: number;
   desc: string;
 }
@@ -57,7 +57,7 @@ export namespace Wallet {
 	if (wallets.length == 1) return wallets[0];
 	if (!force) return undefined;
 
-	return newWallet({
+	return create({
 	  sourceId: cond.source ? typeof (cond.source) == "string" ? cond.source : cond.source.id : errVal("no source provided"),
 	  coinId: cond.coin ? typeof (cond.coin) == "string" ? cond.coin : cond.coin.id : errVal("no coin provided"),
 	  userId: cond.user ? typeof (cond.user) == "string" ? cond.user : cond.user.id : undefined,
@@ -66,7 +66,7 @@ export namespace Wallet {
 	}, undefined, system);
   }
 
-  export const newWallet = (options?: DeepPartial<Wallet>, base?: Wallet | undefined, system?: System): Wallet => {
+  export const create = (options?: DeepPartial<Wallet>, base?: Wallet, system?: System): Wallet => {
 	let wallet = ({
 	  id: options?.id || base?.id || generateID(),
 	  coinId: options?.coinId || base?.coinId || errVal("no coin-id specified"),
@@ -77,7 +77,7 @@ export namespace Wallet {
 	  value: options?.value || base?.value || 0.0,
 	  desc: options?.desc || base?.desc,
 	}) as Wallet;
-	system?.wallets?.push(wallet);
+	system?.wallets.push(wallet);
 	return wallet;
   }
 }

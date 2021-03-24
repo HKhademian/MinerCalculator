@@ -1,5 +1,5 @@
 import {DeepPartial, generateID} from "../util.ts";
-import {ShareSetting, newShareSetting, System, newShareListSetting} from "./System.ts";
+import {System, ShareSetting, newShareSetting, newShareListSetting} from "./System.ts";
 
 export interface UserState {
   total_dispose: number;
@@ -19,8 +19,8 @@ export interface User {
   id: string;
   title: string;
 
-  managerShare?: ShareSetting | undefined;
-  charityShare?: ShareSetting | undefined;
+  managerShare?: ShareSetting;
+  charityShare?: ShareSetting;
   agentsShare: ShareSetting | ShareSetting[];
 
   states: UserState;
@@ -40,7 +40,7 @@ export namespace User {
 
   const newUserState = (
 	source?: DeepPartial<UserState>,
-	base?: UserState | undefined,
+	base?: UserState,
   ): UserState => ({
 	total_dispose: source?.total_dispose || base?.total_dispose || 0.0,
 	total_withdraw: source?.total_withdraw || base?.total_withdraw || 0.0,
@@ -51,13 +51,13 @@ export namespace User {
 
   const newSavePolicy = (
 	source?: DeepPartial<SavePolicy | SavePolicy[]>,
-	base?: SavePolicy | SavePolicy[] | undefined,
+	base?: SavePolicy | SavePolicy[],
   ): SavePolicy | SavePolicy[] =>
 	JSON.parse(JSON.stringify(source || base || []));
 
-  export const newUser = (
+  export const create = (
 	source?: DeepPartial<User>,
-	base: User | undefined = undefined,
+	base?: User,
 	system?: System,
   ): User => {
 	const user = ({

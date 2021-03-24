@@ -1,5 +1,5 @@
-import {DeepPartial, errVal} from "../util.ts";
 import {System} from "./System.ts";
+import {DeepPartial, errVal} from "../util.ts";
 
 export interface Coin {
   id: string;
@@ -16,16 +16,20 @@ export namespace Coin {
 	if (typeof (coin) == 'string') return system?.coins?.find(it => it.id == coin);
 	return coin as Coin;
   }
-}
 
-export const newCoin = (source?: DeepPartial<Coin>): Coin => ({
-  id: source?.id || "unknown",
-  title: source?.title || "Unknown",
-  sign: source?.sign || "Unknown",
-  value: source?.value || 0.0,
-  desc: source?.desc || "",
-  power_profit: source?.power_profit || 0.0,
-}) as Coin;
+  export const create = (source?: DeepPartial<Coin>, base?: Coin, system?: System): Coin => {
+	const coin = ({
+	  id: source?.id || "unknown",
+	  title: source?.title || "Unknown",
+	  sign: source?.sign || "Unknown",
+	  value: source?.value || 0.0,
+	  desc: source?.desc || "",
+	  power_profit: source?.power_profit || 0.0,
+	}) as Coin;
+	system?.coins.push(coin);
+	return coin;
+  };
+}
 
 export const exchange = (value: number, fromCoin: string | Coin, targetCoin: string | Coin, system?: System) => {
   const from: Coin = Coin.findById(fromCoin, system!) || errVal("cannot found from-coin in system");
@@ -33,7 +37,7 @@ export const exchange = (value: number, fromCoin: string | Coin, targetCoin: str
   return value / from.value * target.value;
 };
 
-export const USDT = newCoin({
+export const USDT = Coin.create({
   id: "usdt",
   title: "Tether",
   sign: "$",
@@ -41,7 +45,7 @@ export const USDT = newCoin({
   desc: "",
 });
 
-export const mIRT = newCoin({
+export const mIRT = Coin.create({
   id: "m_irt",
   title: "1m IR Toman",
   sign: "M-Toman",
@@ -49,7 +53,7 @@ export const mIRT = newCoin({
   desc: "",
 });
 
-export const uBTC = newCoin({
+export const uBTC = Coin.create({
   id: "u_btc",
   title: "micro Bitcoin",
   sign: "μɃ", // sign: "μBTC",
@@ -59,7 +63,7 @@ export const uBTC = newCoin({
   power_unit: "TH/s",
 });
 
-export const mETH = newCoin({
+export const mETH = Coin.create({
   id: "m_eth",
   title: "mili ETH",
   sign: "mΞ", // sign: "mETH",
@@ -69,7 +73,7 @@ export const mETH = newCoin({
   power_unit: "GH/s",
 });
 
-export const mDASH = newCoin({
+export const mDASH = Coin.create({
   id: "m_dash",
   title: "mili DASH",
   sign: "mDASH",

@@ -1,10 +1,10 @@
-import {DeepPartial, errVal} from "../util.ts";
-import {Coin} from "./Coin.ts";
 import {User} from "./User.ts";
 import {Product} from "./Product.ts";
 import {Worker} from "./Worker.ts";
 import {Company, Source} from "./Source.ts";
 import {Wallet} from "./Wallet.ts";
+import {Coin, mDASH, mETH, mIRT, uBTC, USDT} from "./Coin.ts";
+import {DeepPartial, errVal} from "../util.ts";
 
 export interface ShareSetting {
   userId: string;
@@ -13,7 +13,7 @@ export interface ShareSetting {
 
 export const newShareSetting = (
   source?: DeepPartial<ShareSetting>,
-  base?: ShareSetting | undefined,
+  base?: ShareSetting,
 ): ShareSetting | undefined => (source || base) && ({
   userId: source?.userId || base?.userId || errVal("no user-id provided"),
   share: source?.share || base?.share || 0.0,
@@ -21,7 +21,7 @@ export const newShareSetting = (
 
 export const newShareListSetting = (
   source?: DeepPartial<ShareSetting> | DeepPartial<ShareSetting[]>,
-  base?: ShareSetting | ShareSetting[] | undefined,
+  base?: ShareSetting | ShareSetting[],
 ): ShareSetting[] => {
   let items: ShareSetting[] = source as any || base as any || [];
   if (!(items instanceof Array)) {
@@ -50,8 +50,8 @@ export interface System {
   startDate: string;
   currentTime: number;
 
-  managerShare?: ShareSetting | undefined;
-  charityShare?: ShareSetting | undefined;
+  managerShare?: ShareSetting;
+  charityShare?: ShareSetting;
 }
 
 export namespace System {
@@ -59,12 +59,13 @@ export namespace System {
   export const get = (): System => (globalThis as any).system;
 
   export const create = (from?: DeepPartial<System>, base?: System): System => ({
-	coins: from?.companies || base?.companies || [],
+	coins: from?.coins || base?.coins || [USDT, mIRT, uBTC, mETH, mDASH],
 	companies: from?.companies || base?.companies || [],
-	products: from?.companies || base?.companies || [],
-	sources: from?.companies || base?.companies || [],
-	users: from?.companies || base?.companies || [],
-	wallets: from?.companies || base?.companies || [],
+	products: from?.products || base?.products || [],
+	sources: from?.sources || base?.sources || [],
+	users: from?.users || base?.users || [],
+	wallets: from?.wallets || base?.wallets || [],
+	workers: from?.workers || base?.workers || [],
 	startDate: from?.startDate || base?.startDate || new Date().toDateString(),
 	currentTime: from?.currentTime || base?.currentTime || 0,
 	managerShare: newShareSetting(from?.managerShare, base?.managerShare) || NO_SHARE,

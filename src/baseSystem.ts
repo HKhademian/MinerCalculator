@@ -1,28 +1,21 @@
 //region [System]
 import {NO_SHARE, System} from "./lib/System.ts";
 
-export const baseSystem: System = {
-  ...{companies: [], products: [], sources: [], users: [], workers: [], wallets: []},
-  coins: [USDT, mIRT, uBTC, mETH, mDASH],
-
-  startDate: "",
-  timeShift: 0,
-  currentTime: 0,
-
+export const baseSystem: System = System.create({
   managerShare: {
 	userId: "manager",
 	share: 0.05,
   },
-
-  charity: {
+  charityShare: {
 	userId: "charity",
 	share: 0,
   },
-} as System;
+});
 //endregion
 
 //region [Coin]
-import {USDT, uBTC, mETH, mIRT, Coin, exchange, mDASH} from "./lib/Coin.ts";
+import {Coin, exchange} from "./lib/Coin.ts";
+import {USDT, uBTC, mETH, mIRT, mDASH} from "./lib/Coin.ts";
 //endregion
 
 //region [Company, Product, Source]
@@ -30,20 +23,20 @@ import {Source} from "./lib/Source.ts";
 import {Company} from "./lib/Source.ts";
 import {Product} from "./lib/Product.ts";
 
-const HAMYAR = Company.newCompany({
+const HAMYAR = Company.create({
   id: 'hamyar',
   title: 'Hamyar Miner',
 }, undefined, baseSystem);
-const PISHTAZ = Company.newCompany({
+const PISHTAZ = Company.create({
   id: 'pishtaz',
   title: 'Pishtaz Miner',
 }, undefined, baseSystem);
-const HASHSHINY = Company.newCompany({
+const HASHSHINY = Company.create({
   id: 'hashshiny',
   title: 'Hash Shiny',
 }, undefined, baseSystem);
 
-const HAMYAR_BASE_6M = Product.newProduct({
+const HAMYAR_BASE_6M = Product.create({
   id: "hamyar_base_6m",
   companyId: HAMYAR.id,
   life: 30 * 6,
@@ -51,11 +44,11 @@ const HAMYAR_BASE_6M = Product.newProduct({
   mineCoinId: uBTC.id,
   mineEfficiency: 0.51,
 });
-const HAMYAR_BASE_12M = Product.newProduct({
+const HAMYAR_BASE_12M = Product.create({
   id: "hamyar_base_12m",
   life: 30 * 12,
 }, HAMYAR_BASE_6M);
-const hamyar_1th_6m_reinvest = Product.newProduct({
+const hamyar_1th_6m_reinvest = Product.create({
   id: "hamyar_1th_6m_reinvest",
   price: 0.355,
   minePower: 1.0,
@@ -64,13 +57,13 @@ const hamyar_1th_6m_reinvest = Product.newProduct({
 	minBuyInterval: 3,
   },
 }, HAMYAR_BASE_6M, baseSystem);
-const hamyar_13th6_6m = Product.newProduct({
+const hamyar_13th6_6m = Product.create({
   id: "hamyar_13th6_6m",
   price: 5.100,
   minePower: 13.6,
 }, HAMYAR_BASE_6M, baseSystem);
 
-const HASHSHINY_BASE = Product.newProduct({
+const HASHSHINY_BASE = Product.create({
   id: "hashshiny_base",
   companyId: HASHSHINY.id,
   life: 30 * 24,
@@ -79,7 +72,7 @@ const HASHSHINY_BASE = Product.newProduct({
   minePower: 0.0,
   mineEfficiency: 0.0,
 });
-const hashshiny_btc_10gh = Product.newProduct({
+const hashshiny_btc_10gh = Product.create({
   id: "hashshiny_btc_10gh",
   price: 1.05,
   priceCoinId: USDT.id,
@@ -87,7 +80,7 @@ const hashshiny_btc_10gh = Product.newProduct({
   minePower: 0.010,
   mineEfficiency: 0.75,
 }, HASHSHINY_BASE, baseSystem);
-const hashshiny_dash_100mh = Product.newProduct({
+const hashshiny_dash_100mh = Product.create({
   id: "hashshiny_btc_100mh",
   price: 0.89,
   priceCoinId: USDT.id,
@@ -97,24 +90,24 @@ const hashshiny_dash_100mh = Product.newProduct({
   limits: {minBuyInterval: 7},
 }, HASHSHINY_BASE, baseSystem);
 
-const HAMYAR_S1 = Source.newSource({
+const HAMYAR_S1 = Source.create({
   id: 'hamyar_s1',
   company: HAMYAR.id,
   reinvestProduct: hamyar_1th_6m_reinvest.id,
   login: 'h.kh',
 }, undefined, baseSystem);
-const PISHTAZ_S1 = Source.newSource({
+const PISHTAZ_S1 = Source.create({
   id: 'pishtaz_s1',
   company: PISHTAZ.id,
   login: 'h.kh',
 }, undefined, baseSystem);
-const HASHSHINY_S1_BTC = Source.newSource({
+const HASHSHINY_S1_BTC = Source.create({
   id: 'hashshiny_s1',
   company: HASHSHINY.id,
   reinvestProduct: hashshiny_btc_10gh.id,
   login: 'h.kh',
 }, undefined, baseSystem);
-const HASHSHINY_S1_DASH = Source.newSource({
+const HASHSHINY_S1_DASH = Source.create({
   id: 'hashshiny_s1',
   company: HASHSHINY.id,
   reinvestProduct: hashshiny_dash_100mh.id,
@@ -126,7 +119,7 @@ const HASHSHINY_S1_DASH = Source.newSource({
 import {User} from "./lib/User.ts";
 import type {SavePolicy} from "./lib/User.ts";
 
-const BASE_USER: User = User.newUser({
+const BASE_USER: User = User.create({
   id: "base",
   title: "Base User",
   savePolicy: [{
@@ -144,7 +137,7 @@ const BASE_USER: User = User.newUser({
   }*/],
 });
 
-User.newUser({
+User.create({
   id: "manager",
   title: "System Manager",
   // savePolicy: {
@@ -152,7 +145,7 @@ User.newUser({
   //   rate: 0.2,
   // },
 }, BASE_USER, baseSystem);
-User.newUser({
+User.create({
   id: "charity",
   title: "System Charity Bank",
   savePolicy: {
@@ -161,42 +154,42 @@ User.newUser({
   },
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "hossain",
   title: "Hossain",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "mitra",
   title: "Mitra",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "ali",
   title: "Ali",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "saeed",
   title: "Saeed",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "zahra",
   title: "Zahra",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "fateme",
   title: "Fateme",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "home",
   title: "Home",
 }, BASE_USER, baseSystem);
 
-User.newUser({
+User.create({
   id: "seke",
   title: "Seke Zahra",
 }, BASE_USER, baseSystem);
@@ -213,7 +206,7 @@ import {Worker} from "./lib/Worker.ts";
 // purchase: {factorId: "XxXxX", date: "10/12/1399", type: "buy"},
 // });
 
-const hamyar_5th_6m_v1 = Product.newProduct({
+const hamyar_5th_6m_v1 = Product.create({
   price: 1.5,
   minePower: 5.0,
 }, HAMYAR_BASE_6M);

@@ -49,7 +49,7 @@ export namespace Worker {
   }) as PurchaseDetail;
 
 
-  export const newWorker = (source?: DeepPartial<Worker>, base?: Worker, system?: System): Worker => {
+  export const create = (source?: DeepPartial<Worker>, base?: Worker, system?: System): Worker => {
 	const worker = ({
 	  id: source?.id || generateID(),
 	  source: source?.source || base?.source || errVal("no source-id specified"),
@@ -71,12 +71,12 @@ export namespace Worker {
 	  source: Source;
 	  product: Product;
 	  owners: string | { [_: string]: number };
-	  start_day?: number | undefined;
-	  count?: number | undefined;
-	  purchase?: DeepPartial<PurchaseDetail> | undefined;
+	  start_day?: number;
+	  count?: number;
+	  purchase?: DeepPartial<PurchaseDetail>;
 	},
 	system?: System,
-  ): Worker => newWorker({
+  ): Worker => create({
 	source: source.id,
 	coin: product.mineCoinId,
 	power: product.minePower * count,
