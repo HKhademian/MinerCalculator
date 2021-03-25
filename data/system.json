@@ -1,4 +1,46 @@
 {
+  "coins": [
+    {
+      "id": "usdt",
+      "title": "Tether",
+      "sign": "$",
+      "value": 1,
+      "desc": "",
+      "power_profit": 0
+    },
+    {
+      "id": "m_irt",
+      "title": "1m IR Toman",
+      "sign": "M-Toman",
+      "value": 0.02552775,
+      "desc": "",
+      "power_profit": 0
+    },
+    {
+      "id": "u_btc",
+      "title": "micro Bitcoin",
+      "sign": "μɃ",
+      "value": 17.841272089677357,
+      "desc": "",
+      "power_profit": 5.748
+    },
+    {
+      "id": "m_eth",
+      "title": "mili ETH",
+      "sign": "mΞ",
+      "value": 0.5845406531702444,
+      "desc": "",
+      "power_profit": 56.36
+    },
+    {
+      "id": "m_dash",
+      "title": "mili DASH",
+      "sign": "mDASH",
+      "value": 0.22051,
+      "desc": "",
+      "power_profit": 0.1346
+    }
+  ],
   "companies": [
     {
       "id": "hamyar",
@@ -360,9 +402,10 @@
       ]
     }
   ],
+  "wallets": [],
   "workers": [
     {
-      "id": "xHLt1Y",
+      "id": "nmlsUS",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 1
@@ -386,7 +429,7 @@
       "desc": "Buy 1 worker from product(hamyar_base_6m)"
     },
     {
-      "id": "YO701H",
+      "id": "lFkFiL",
       "source": "hamyar_s1",
       "owners": {
         "ali": 1
@@ -410,7 +453,7 @@
       "desc": "Buy 2 worker from product(hamyar_base_6m)"
     },
     {
-      "id": "u6CI0z",
+      "id": "BJo4ju",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.75,
@@ -435,7 +478,7 @@
       "desc": "Buy 4 worker from product(hamyar_base_6m)"
     },
     {
-      "id": "JPLyMy",
+      "id": "xlsO5R",
       "source": "hamyar_s1",
       "owners": {
         "seke": 1
@@ -459,7 +502,7 @@
       "desc": "Buy 10 worker from product(hamyar_base_6m)"
     },
     {
-      "id": "2nAiRQ",
+      "id": "QaDlCU",
       "source": "hamyar_s1",
       "owners": {
         "mitra": 0.14285714285714285,
@@ -484,7 +527,7 @@
       "desc": "Buy 5 worker from product(hamyar_1th_6m_reinvest)"
     },
     {
-      "id": "EUv4H2",
+      "id": "Ixx5fB",
       "source": "hamyar_s1",
       "owners": {
         "saeed": 1
@@ -508,7 +551,7 @@
       "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
     },
     {
-      "id": "7kakx4",
+      "id": "dJzE2R",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.193,
@@ -537,7 +580,7 @@
       "desc": "Buy 5 worker from product(hamyar_1th_6m_reinvest)"
     },
     {
-      "id": "IepNFZ",
+      "id": "1FgZmS",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.35294117647058826,
@@ -564,7 +607,7 @@
       "desc": "Buy 2 worker from product(hamyar_13th6_6m)"
     },
     {
-      "id": "idYuhP",
+      "id": "frfBoH",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.019558823529411767,
@@ -589,7 +632,7 @@
       "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
     },
     {
-      "id": "bfQ5SW",
+      "id": "BLrcKW",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 1
@@ -613,7 +656,7 @@
       "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
     },
     {
-      "id": "AmbMBJ",
+      "id": "0Z7W85",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.2725,
@@ -644,7 +687,7 @@
       "desc": "Buy 6 worker from product(hamyar_1th_6m_reinvest)"
     },
     {
-      "id": "bErXPD",
+      "id": "SiDHvP",
       "source": "hamyar_s1",
       "owners": {
         "ali": 1
@@ -668,7 +711,7 @@
       "desc": "Buy 1 worker from product(hamyar_13th6_6m)"
     },
     {
-      "id": "y8BPAC",
+      "id": "x0FD6G",
       "source": "hamyar_s1",
       "owners": {
         "hossain": 0.2522857142857143,
@@ -699,57 +742,13 @@
       "desc": "Buy 7 worker from product(hamyar_1th_6m_reinvest)"
     }
   ],
-  "wallets": [],
-  "coins": [
-    {
-      "id": "usdt",
-      "title": "Tether",
-      "sign": "$",
-      "value": 1,
-      "desc": "",
-      "power_profit": 0
-    },
-    {
-      "id": "m_irt",
-      "title": "1m IR Toman",
-      "sign": "M-Toman",
-      "value": 0.02552775,
-      "desc": "",
-      "power_profit": 0
-    },
-    {
-      "id": "u_btc",
-      "title": "micro Bitcoin",
-      "sign": "μɃ",
-      "value": 17.841272089677357,
-      "desc": "",
-      "power_profit": 5.748
-    },
-    {
-      "id": "m_eth",
-      "title": "mili ETH",
-      "sign": "mΞ",
-      "value": 0.5845406531702444,
-      "desc": "",
-      "power_profit": 56.36
-    },
-    {
-      "id": "m_dash",
-      "title": "mili DASH",
-      "sign": "mDASH",
-      "value": 0.22051,
-      "desc": "",
-      "power_profit": 0.1346
-    }
-  ],
   "startDate": "10/12/1399",
-  "timeShift": 0,
   "currentTime": 24,
   "managerShare": {
     "userId": "manager",
     "share": 0.05
   },
-  "charity": {
+  "charityShare": {
     "userId": "charity",
     "share": 0
   }

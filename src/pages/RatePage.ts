@@ -1,5 +1,5 @@
 import {exists, askMenu} from "../util.ts";
-import {mETH, mIRT, uBTC, USDT} from "../lib/Coin.ts";
+import {USD, M_IRT, BTC, ETH, LTC, ADA, DOGE, DASH} from "../lib/Coin.ts";
 
 const RATES_FILE = "./data/.rates.json";
 const RATES_URL = "https://core.jeeb.io/api/v3/markets/rates";
@@ -23,7 +23,7 @@ export const showRatePage = async () => await askMenu(
 	{title: "exit RATES page"},
 	{title: "fetch remote rates", action: () => calculateRates({forceRemote: true, log: true})},
   ], () => {
-	console.log({uBTC, mETH, mIRT});
+	console.table({M_IRT, USD, BTC, ETH, LTC, ADA, DOGE, DASH});
   });
 
 export const calculateRates = async ({forceRemote, log}: { forceRemote?: boolean, log?: boolean }) => {
@@ -53,13 +53,17 @@ export const calculateRates = async ({forceRemote, log}: { forceRemote?: boolean
 	return;
   }
 
-  const btc_usdt = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "USDT")!!;
-  const eth_usdt = rates.find((it: any) => it.baseCurrencyId == "ETH" && it.targetCurrencyId == "USDT")!!;
-  const usdt_irt = rates.find((it: any) => it.baseCurrencyId == "USDT" && it.targetCurrencyId == "IRT")!!;
+  const btc_usd = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "USDT")!!;
+  const btc_irt = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "IRT")!!;
+  const btc_eth = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "ETH")!!;
+  const ltc_btc = rates.find((it: any) => it.baseCurrencyId == "LTC" && it.targetCurrencyId == "BTC")!!;
+  const doge_btc = rates.find((it: any) => it.baseCurrencyId == "DOGE" && it.targetCurrencyId == "BTC")!!;
 
-  uBTC.value = 1 / btc_usdt.averageRate * 1_000_000;
-  mETH.value = 1 / eth_usdt.averageRate * 1_000;
-  mIRT.value = usdt_irt.averageRate / 1_000_000;
+  USD.value = btc_usd.averageRate;
+  M_IRT.value = btc_irt.averageRate;
+  ETH.value = btc_eth.averageRate;
+  LTC.value = 1 / ltc_btc.averageRate;
+  DOGE.value = 1 / doge_btc.averageRate;
 
-  if (log) console.log({btc_usdt, uBTC, eth_usdt, mETH, usdt_irt, mIRT});
+  if (log) console.log({btc_usd, USD, btc_irt, M_IRT, btc_eth, ETH, ltc_btc, LTC, doge_btc, DOGE});
 };

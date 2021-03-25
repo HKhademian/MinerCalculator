@@ -1,16 +1,11 @@
 import {NO_SHARE, ShareSetting, System} from "../lib/System.ts";
-import {Coin, exchange, mIRT, uBTC, USDT} from "../lib/Coin.ts";
+import {Coin, exchange, M_IRT, BTC, USD} from "../lib/Coin.ts";
 import {SavePolicy, User} from "../lib/User.ts";
 import {Worker} from "../lib/Worker.ts";
 import {errVal, print, StrDict, toPrec} from "../util.ts";
 import {Source} from "../lib/Source.ts";
 import {Wallet} from "../lib/Wallet.ts";
 import {Product} from "../lib/Product.ts";
-
-export type {System};
-
-const PREC = 100_000;
-
 
 export const predict = (source_system: System, days: number = 30, timeShift: number = 0): System => {
   const system = JSON.parse(JSON.stringify(source_system)) as System;
@@ -47,7 +42,7 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 		const mineSource: Source = Source.findById(worker.source, system) || errVal("worker source-id is wrong");
 
 		// total mine income from current miner in a time period
-		const worker_income = mineCoin.power_profit * worker.power * worker.efficiency;
+		const worker_income = mineCoin.powerProfit * worker.power * worker.efficiency;
 		const liveWallet = Wallet.find({source: mineSource, coin: mineCoin, type: 'live'}, system)!;
 		liveWallet.value += worker_income;
 
@@ -248,12 +243,12 @@ export const showPredict = async () => {
 
 	  const working = userWallets
 		.filter(it => it.type == 'working')
-		.map(it => exchange(it.value, it.coinId, uBTC, system))
+		.map(it => exchange(it.value, it.coinId, BTC, system))
 		.reduce((prev, el) => prev + el, 0);
 
 	  const saving = userWallets
 		.filter(it => it.type == 'saving')
-		.map(it => exchange(it.value, it.coinId, uBTC, system))
+		.map(it => exchange(it.value, it.coinId, BTC, system))
 		.reduce((prev, el) => prev + el, 0);
 
 	  const power = active_workers
@@ -263,10 +258,10 @@ export const showPredict = async () => {
 	  return ({
 		'user': user.id,
 		'Power': toPrec(power),
-		'save mIRT': toPrec(exchange(saving, uBTC, mIRT)),
-		'work mIRT': toPrec(exchange(working, uBTC, mIRT)),
-		'save USDT': toPrec(exchange(saving, uBTC, USDT)),
-		'work USDT': toPrec(exchange(working, uBTC, USDT)),
+		'save mIRT': toPrec(exchange(saving, BTC, M_IRT)),
+		'work mIRT': toPrec(exchange(working, BTC, M_IRT)),
+		'save USDT': toPrec(exchange(saving, BTC, USD)),
+		'work USDT': toPrec(exchange(working, BTC, USD)),
 		'save uBTC': toPrec(saving),
 		'work uBTC': toPrec(working),
 	  });

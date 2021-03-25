@@ -3,7 +3,7 @@ import {Product} from "./Product.ts";
 import {Worker} from "./Worker.ts";
 import {Company, Source} from "./Source.ts";
 import {Wallet} from "./Wallet.ts";
-import {Coin, mDASH, mETH, mIRT, uBTC, USDT} from "./Coin.ts";
+import {Coin, mDASH, mETH, M_IRT, uBTC, USD} from "./Coin.ts";
 import {DeepPartial, errVal} from "../util.ts";
 
 export interface ShareSetting {
@@ -59,7 +59,7 @@ export namespace System {
   export const get = (): System => (globalThis as any).system;
 
   export const create = (from?: DeepPartial<System>, base?: System): System => ({
-	coins: from?.coins || base?.coins || [USDT, mIRT, uBTC, mETH, mDASH],
+	coins: from?.coins || base?.coins || [USD, M_IRT, uBTC, mETH, mDASH],
 	companies: from?.companies || base?.companies || [],
 	products: from?.products || base?.products || [],
 	sources: from?.sources || base?.sources || [],

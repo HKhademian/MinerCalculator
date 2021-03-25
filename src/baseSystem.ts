@@ -15,7 +15,7 @@ export const baseSystem: System = System.create({
 
 //region [Coin]
 import {Coin, exchange} from "./lib/Coin.ts";
-import {USDT, uBTC, mETH, mIRT, mDASH} from "./lib/Coin.ts";
+import {USD, BTC, ETH, M_IRT, LTC, DASH} from "./lib/Coin.ts";
 //endregion
 
 //region [Company, Product, Source]
@@ -40,8 +40,8 @@ const HAMYAR_BASE_6M = Product.create({
   id: "hamyar_base_6m",
   companyId: HAMYAR.id,
   life: 30 * 6,
-  priceCoinId: mIRT.id,
-  mineCoinId: uBTC.id,
+  priceCoinId: M_IRT.id,
+  mineCoinId: BTC.id,
   mineEfficiency: 0.51,
 });
 const HAMYAR_BASE_12M = Product.create({
@@ -67,24 +67,24 @@ const HASHSHINY_BASE = Product.create({
   id: "hashshiny_base",
   companyId: HASHSHINY.id,
   life: 30 * 24,
-  priceCoinId: USDT.id,
-  mineCoinId: uBTC.id,
+  priceCoinId: USD.id,
+  mineCoinId: BTC.id,
   minePower: 0.0,
   mineEfficiency: 0.0,
 });
 const hashshiny_btc_10gh = Product.create({
   id: "hashshiny_btc_10gh",
   price: 1.05,
-  priceCoinId: USDT.id,
-  mineCoinId: uBTC.id,
+  priceCoinId: USD.id,
+  mineCoinId: BTC.id,
   minePower: 0.010,
   mineEfficiency: 0.75,
 }, HASHSHINY_BASE, baseSystem);
 const hashshiny_dash_100mh = Product.create({
   id: "hashshiny_btc_100mh",
   price: 0.89,
-  priceCoinId: USDT.id,
-  mineCoinId: mDASH.id,
+  priceCoinId: USD.id,
+  mineCoinId: DASH.id,
   minePower: 0.1,
   mineEfficiency: 0.9,
   limits: {minBuyInterval: 7},
