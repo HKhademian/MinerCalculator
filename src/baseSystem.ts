@@ -393,3 +393,10 @@ Worker.newWorkerFromProduct({
 //   count: 500,
 //   start_day: 5 - hashshiny_btc_10gh.life,
 // }, baseSystem);
+
+//region [Init]
+baseSystem.currentTime = baseSystem.workers.reduce((prev, el) => Math.max(prev, el.startTime), 0) || 0;
+baseSystem.startDate = baseSystem.workers.length <= 0 ? '?' : baseSystem.workers.reduce(
+  (prev, el) => prev.startTime <= el.startTime ? prev : el,
+  baseSystem.workers[0]).purchase.date;
+//endregion
