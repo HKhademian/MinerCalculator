@@ -55,15 +55,15 @@ export const calculateRates = async ({forceRemote, log}: { forceRemote?: boolean
 
   const btc_usd = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "USDT")!!;
   const btc_irt = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "IRT")!!;
-  const btc_eth = rates.find((it: any) => it.baseCurrencyId == "BTC" && it.targetCurrencyId == "ETH")!!;
+  const eth_btc = rates.find((it: any) => it.baseCurrencyId == "ETH" && it.targetCurrencyId == "BTC")!!;
   const ltc_btc = rates.find((it: any) => it.baseCurrencyId == "LTC" && it.targetCurrencyId == "BTC")!!;
   const doge_btc = rates.find((it: any) => it.baseCurrencyId == "DOGE" && it.targetCurrencyId == "BTC")!!;
 
   USD.value = btc_usd.averageRate;
-  M_IRT.value = btc_irt.averageRate;
-  ETH.value = btc_eth.averageRate;
+  M_IRT.value = btc_irt.averageRate / 1_000_000;
+  ETH.value = 1 / eth_btc.averageRate;
   LTC.value = 1 / ltc_btc.averageRate;
   DOGE.value = 1 / doge_btc.averageRate;
 
-  if (log) console.log({btc_usd, USD, btc_irt, M_IRT, btc_eth, ETH, ltc_btc, LTC, doge_btc, DOGE});
+  if (log) console.log({btc_usd, USD, btc_irt, M_IRT, eth_btc, ETH, ltc_btc, LTC, doge_btc, DOGE});
 };

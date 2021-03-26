@@ -9,7 +9,6 @@ import {Product} from "../lib/Product.ts";
 
 export const predict = (source_system: System, days: number = 30, timeShift: number = 0): System => {
   const system = JSON.parse(JSON.stringify(source_system)) as System;
-  let lastBuy = Math.max(...system.workers.map((it) => it.startTime)) || 0;
 
   // type Income = { all: number; working: number; saving: number; };
   // const BASE_INCOMES: StrDict<StrDict<StrDict<Income>>> = {};
@@ -119,7 +118,7 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 			}
 		  }
 
-		  if (!source.reinvestProduct) {
+		  if (!source.reinvest.product) {
 			savingWallet.value += incomeWallet.value;
 			incomeWallet.value = 0;
 		  } else if (savePolicy) {
@@ -142,9 +141,14 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 		  if (!liveWallet || liveWallet.value <= 0) return;
 		  // const products = Product.findAll({company: source.company, mineCoin: coin}, system);
 
-		  const product = source.reinvestProduct && Product.findById(source.reinvestProduct, system);
+		  const product = source.reinvest.product && Product.findById(source.reinvest.product, system);
 		  if (!product) return;
-		  if ((system.currentTime - lastBuy) < product.limits.minBuyInterval) return;
+
+		  const lastBuy = system.workers.length <= 0 ? -Infinity : system.workers
+			.filter(it => it.source == source.id)
+			.reduce((p, it) => p.startTime > it.startTime ? p : it, system.workers[0])
+			.startTime;
+		  if ((system.currentTime - lastBuy) < source.reinvest.minInterval) return;
 
 		  const workingWallets = Wallet.findAll({source, coin, type: 'working'}, system);
 		  const workingValue = workingWallets.reduce((prev, it) => prev + it.value, 0);
@@ -152,7 +156,7 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 		  const productPrice = exchange(product.price, product.priceCoinId, coin, system);
 		  const new_miner_count = Math.floor(workingValue / productPrice);
 
-		  if (new_miner_count > 0 && (!product.limits.minCount || new_miner_count >= product.limits.minCount)) {
+		  if (new_miner_count > 0 && (!source.reinvest.minCount || new_miner_count >= source.reinvest.minCount)) {
 			const order_price = new_miner_count * productPrice;
 			const price_ratio = order_price / workingValue;
 			const owners: { [_: string]: number } = {};
@@ -174,8 +178,8 @@ export const predict = (source_system: System, days: number = 30, timeShift: num
 			  owners,
 			  start_day: system.currentTime,
 			  count: new_miner_count,
+			  purchase: {type: 'reinvest'},
 			}, system);
-			lastBuy = system.currentTime;
 		  }
 		});
 	  }
@@ -198,6 +202,7 @@ export const showPredict = async () => {
   // @ts-ignore
   const silentPeriod = parseInt(eval(prompt("Enter Num of Periods (or skip to see in details):")));
   const silent = silentPeriod > 0;
+  let prev: any = undefined;
 
   for (let i = 0; ; i++) {
 	const lastPeriod = silent && silentPeriod < system.currentTime / period;
@@ -206,35 +211,32 @@ export const showPredict = async () => {
 	  .filter((it) => it.startTime <= system.currentTime)
 	  .filter((it) => it.endTime > system.currentTime)
 	  .map((it) => ({
-		start: it.startTime,
-		end: it.endTime,
-		power: it.power,
-		owners: it.owners,
-		productCount: it.purchase.productCount,
-		allPrice: `${toPrec(it.purchase.sumPrice)} ${it.purchase.priceCoin.toString()}`,
+		life: {s: it.startTime, e: it.endTime, r: it.endTime - it.startTime},
+		product: {s: it.source, t: it.purchase.type, p: it.purchase.product, c: toPrec(it.purchase.productCount, 1)},
+		power: it.power, owners: it.owners,
+		price: Coin.valueStr(it.purchase.sumPrice, it.purchase.priceCoin, undefined, system),
 	  }));
 	const count = active_workers.length;
-	const power = toPrec(active_workers.reduce((prev, el) => prev + el.power, 0));
-	const power_day = toPrec(active_workers.reduce((prev, el) => prev + el.power * (el.end - system.currentTime), 0));
-	const power_1m = toPrec(power_day / (1 * 30));
-	const power_3m = toPrec(power_day / (3 * 30));
-	const power_6m = toPrec(power_day / (6 * 30));
-	const power_1y = toPrec(power_day / (12 * 30));
-	const power_2y = toPrec(power_day / (24 * 30));
-	const power_3y = toPrec(power_day / (36 * 30));
+	const power = toPrec(active_workers.reduce((prev, el) => prev + el.power, 0), 0);
+	const power_1d = toPrec(active_workers.reduce((prev, el) => prev + el.power * (el.life.e - system.currentTime), 0), 0);
+	const power_1m = toPrec(power_1d / (30 * 1), 0);
+	const power_3m = toPrec(power_1d / (30 * 3), 0);
+	const power_6m = toPrec(power_1d / (30 * 6), 0);
+	const power_1y = toPrec(power_1d / (30 * 12), 0);
+	const power_2y = toPrec(power_1d / (30 * 24), 0);
+	const power_3y = toPrec(power_1d / (30 * 36), 0);
 
 	const workers = active_workers.map(it => ({
-	  start: it.start,
-	  end: it.end,
+	  life: it.life,
+	  product: it.product,
 	  power: toPrec(it.power, 1),
-	  productCount: toPrec(it.productCount, 1),
-	  allPrice: it.allPrice,
+	  price: it.price,
 	}));
 
 	if (!silent || lastPeriod)
 	  print({
 		title: 'WORKERS', workers, count, power,
-		power_day, power_1m, power_3m, power_6m,
+		power_1d, power_1m, power_3m, power_6m,
 		power_1y, power_2y, power_3y,
 	  });
 
@@ -257,54 +259,72 @@ export const showPredict = async () => {
 
 	  return ({
 		'user': user.id,
-		'Power': toPrec(power),
-		'save mIRT': toPrec(exchange(saving, BTC, M_IRT)),
-		'work mIRT': toPrec(exchange(working, BTC, M_IRT)),
-		'save USDT': toPrec(exchange(saving, BTC, USD)),
-		'work USDT': toPrec(exchange(working, BTC, USD)),
-		'save uBTC': toPrec(saving),
-		'work uBTC': toPrec(working),
+		'Power': toPrec(power, 0),
+		'save M-IRT': toPrec(exchange(saving, BTC, M_IRT)),
+		'work M-IRT': toPrec(exchange(working, BTC, M_IRT)),
+		'save USD': toPrec(exchange(saving, BTC, USD)),
+		'work USD': toPrec(exchange(working, BTC, USD)),
+		'save mBTC': toPrec(saving * 1000),
+		'work mBTC': toPrec(working * 1000),
 	  });
 	});
-	const report = all_report.filter(it => it['save uBTC'] > 0 || it['work uBTC'] > 0 || it['Power'] > 0);
+	const report = all_report.filter(it => it['save mBTC'] > 0 || it['work mBTC'] > 0 || it['Power'] > 0);
 	const sum = {
 	  'user': '--SUM--',
-	  'Power': toPrec(report.reduce((p, x) => p + x['Power'], 0)),
-	  'save mIRT': toPrec(report.reduce((p, x) => p + x['save mIRT'], 0)),
-	  'work mIRT': toPrec(report.reduce((p, x) => p + x['work mIRT'], 0)),
-	  'save USDT': toPrec(report.reduce((p, x) => p + x['save USDT'], 0)),
-	  'work USDT': toPrec(report.reduce((p, x) => p + x['work USDT'], 0)),
-	  'save uBTC': toPrec(report.reduce((p, x) => p + x['save uBTC'], 0)),
-	  'work uBTC': toPrec(report.reduce((p, x) => p + x['work uBTC'], 0)),
+	  'Power': toPrec(report.reduce((p, x) => p + x['Power'], 0), 0),
+	  'save M-IRT': toPrec(report.reduce((p, x) => p + x['save M-IRT'], 0)),
+	  'work M-IRT': toPrec(report.reduce((p, x) => p + x['work M-IRT'], 0)),
+	  'save USD': toPrec(report.reduce((p, x) => p + x['save USD'], 0)),
+	  'work USD': toPrec(report.reduce((p, x) => p + x['work USD'], 0)),
+	  'save mBTC': toPrec(report.reduce((p, x) => p + x['save mBTC'], 0)),
+	  'work mBTC': toPrec(report.reduce((p, x) => p + x['work mBTC'], 0)),
 	};
-	if (report.length > 1) {
+
+	const change = prev && {
+	  'user': '--CHG--',
+	  'Power': toPrec(sum['Power'] - prev['Power'], 0),
+	  'save M-IRT': toPrec(sum['save M-IRT'] - prev['save M-IRT']),
+	  'work M-IRT': toPrec(sum['work M-IRT'] - prev['work M-IRT']),
+	  'save USD': toPrec(sum['save USD'] - prev['save USD']),
+	  'work USD': toPrec(sum['work USD'] - prev['work USD']),
+	  'save mBTC': toPrec(sum['save mBTC'] - prev['save mBTC']),
+	  'work mBTC': toPrec(sum['work mBTC'] - prev['work mBTC']),
+	};
+	prev = sum;
+
+	if (change || report.length > 1) {
 	  report.push({
 		'user': '-------',
 		'Power': '-------' as any,
-		'save mIRT': '-------' as any,
-		'work mIRT': '-------' as any,
-		'save USDT': '-------' as any,
-		'work USDT': '-------' as any,
-		'save uBTC': '-------' as any,
-		'work uBTC': '-------' as any,
+		'save M-IRT': '-------' as any,
+		'work M-IRT': '-------' as any,
+		'save USD': '-------' as any,
+		'work USD': '-------' as any,
+		'save mBTC': '-------' as any,
+		'work mBTC': '-------' as any,
 	  });
+	}
+	if (report.length > 1) {
 	  report.push(sum);
+	}
+	if (change) {
+	  report.push(change);
 	}
 
 	periodPower.push({
 	  i, day: system.currentTime,
-	  saveIRT: sum["save mIRT"], saveUSDT: sum["save USDT"], saveBTC: sum["save uBTC"],
-	  power, power_day,
+	  saveIRT: sum["save M-IRT"], saveUSDT: sum["save USD"], saveBTC: sum["save mBTC"],
+	  power, power_1d,
 	  power_1m, power_3m, power_6m,
 	  power_1y, power_2y, power_3y,
 	});
 
 	if (!silent || lastPeriod) {
-	  const predictDay = system.currentTime - startPredictDay;
-	  const predictWeek = toPrec(predictDay / 7);
-	  const predictMonth = toPrec(predictDay / 30);
-	  const predictYear = toPrec(predictDay / 360);
-	  print('User States', {system_day: system.currentTime, predictWeek, predictMonth, predictYear});
+	  const prdDay = system.currentTime - startPredictDay;
+	  const prdWeek = toPrec(prdDay / 7);
+	  const prdMonth = toPrec(prdDay / 30);
+	  const prdYear = toPrec(prdDay / 360);
+	  print('User States', {sysDay: system.currentTime, prdDay, prdWeek, prdMonth, prdYear});
 	  console.table(report);
 	}
 

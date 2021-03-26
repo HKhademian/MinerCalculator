@@ -12,11 +12,6 @@ export interface Product {
   mineCoinId: string;
   minePower: number;
   mineEfficiency: number;
-  limits: {
-	minBuyInterval: number;
-	minCount: number;
-	reInvest: boolean;
-  };
   status: number;
   desc?: string;
 }
@@ -58,11 +53,6 @@ export namespace Product {
 	  mineCoinId: source?.mineCoinId || base?.mineCoinId || errVal("no mine-coin-id provided"),
 	  minePower: source?.minePower || base?.minePower || 0,
 	  mineEfficiency: source?.mineEfficiency || base?.mineEfficiency || 1.0,
-	  limits: {
-		minBuyInterval: source?.limits?.minBuyInterval || base?.limits?.minBuyInterval || 0,
-		minCount: source?.limits?.minCount || base?.limits?.minCount || 0,
-		reInvest: source?.limits?.reInvest || base?.limits?.reInvest || false,
-	  },
 	  status: source?.status || base?.status || 0,
 	  desc: source?.desc || base?.desc,
 	}) as Product;

@@ -44,8 +44,8 @@ export namespace Coin {
 }
 
 export const exchange = (value: number, fromCoin: string | Coin, targetCoin: string | Coin, system?: System): number => {
-  const from: Coin = Coin.findById(fromCoin, system!) || errVal("cannot found from-coin in system");
-  const target: Coin = Coin.findById(targetCoin, system!) || errVal("cannot found target-coin in system");
+  const from: Coin = Coin.findById(fromCoin, system!) || errVal(`cannot found from-coin (${fromCoin}) in system`);
+  const target: Coin = Coin.findById(targetCoin, system!) || errVal(`cannot found target-coin (${targetCoin}) in system`);
   return value / from.value * target.value;
 };
 

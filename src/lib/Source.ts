@@ -30,7 +30,12 @@ export namespace Company {
 export interface Source {
   id: string;
   company: string;
-  reinvestProduct?: string;
+  reinvest: {
+	product?: string,
+	minInterval: number,
+	minCount: number,
+	// lastBuy: number,
+  },
   title?: string;
   login?: string;
   desc?: string;
@@ -46,7 +51,12 @@ export namespace Source {
 	const item = ({
 	  id: source?.id || base?.id || errVal("no source-id provided"),
 	  company: source?.company || base?.company || errVal("no company-id provided"),
-	  reinvestProduct: source?.reinvestProduct || base?.reinvestProduct || undefined,
+	  reinvest: {
+		product: source?.reinvest?.product || base?.reinvest.product || undefined,
+		minInterval: source?.reinvest?.minInterval || base?.reinvest.minInterval || 0,
+		minCount: source?.reinvest?.minCount || base?.reinvest.minCount || 0,
+		// lastBuy: source?.reinvest?.lastBuy || base?.reinvest.lastBuy || -Infinity,
+	  },
 	  title: source?.title || base?.title || `Source ${source?.id || base?.id} from company ${source?.company || base?.company}`,
 	  login: source?.login || base?.login || undefined,
 	  desc: source?.desc || base?.desc || undefined,
