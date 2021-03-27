@@ -24,6 +24,8 @@ export const showRatePage = async () => await askMenu(
 	{title: "fetch remote rates", action: () => calculateRates({forceRemote: true, log: true})},
   ], () => {
 	console.table({M_IRT, USD, BTC, ETH, LTC, ADA, DOGE, DASH});
+  }, {
+	defaultChoice: 0,
   });
 
 export const calculateRates = async ({forceRemote, log}: { forceRemote?: boolean, log?: boolean }) => {

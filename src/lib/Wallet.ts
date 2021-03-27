@@ -1,23 +1,30 @@
 import {System} from './System.ts';
 import {User} from "./User.ts";
-import {Coin} from "./Coin.ts";
+import {BTC, Coin} from "./Coin.ts";
 import {Source} from "./Source.ts";
 import {DeepPartial, errVal, generateID} from '../util.ts';
 
-type WalletType = 'live' | 'income' | 'working' | 'saving';
-
-export interface Wallet {
-  id: string;
-  coinId: string;
-  sourceId: string;
-  userId?: string;
-  type: WalletType,
-  walletAddress?: string;
-  value: number;
-  desc: string;
-}
-
 export namespace Wallet {
+
+  type WalletType = 'live' | 'income' | 'working' | 'saving';
+
+  export type WalletData = {
+	id: string;
+	coin: string | Coin;
+	source: string | Source;
+	user?: string | User;
+	type: WalletType,
+	lastUpdate: number;
+	value: number;
+	desc?: string;
+  };
+
+  export interface Wallet extends WalletData {
+	coin: string;
+	source: string;
+	user?: string;
+  }
+
   export const findAll = (
 	cond: { wallet?: Wallet | string, source?: Source | string, coin?: Coin | string, user?: User | string, type?: WalletType },
 	system: System,
@@ -30,15 +37,15 @@ export namespace Wallet {
 	}
 	if (cond.source) {
 	  const sourceId = typeof (cond.source) == "string" ? cond.source : cond.source.id;
-	  wallets = wallets.filter(it => it.sourceId == sourceId);
+	  wallets = wallets.filter(it => it.source == sourceId);
 	}
 	if (cond.coin) {
 	  const coinId = typeof (cond.coin) == "string" ? cond.coin : cond.coin.id;
-	  wallets = wallets.filter(it => it.coinId == coinId);
+	  wallets = wallets.filter(it => it.coin == coinId);
 	}
 	if (cond.user) {
 	  const userId = typeof (cond.user) == "string" ? cond.user : cond.user.id;
-	  wallets = wallets.filter(it => it.userId == userId);
+	  wallets = wallets.filter(it => it.user == userId);
 	}
 	if (cond.type) {
 	  wallets = wallets.filter(it => it.type == cond.type);
@@ -58,26 +65,31 @@ export namespace Wallet {
 	if (!force) return undefined;
 
 	return create({
-	  sourceId: cond.source ? typeof (cond.source) == "string" ? cond.source : cond.source.id : errVal("no source provided"),
-	  coinId: cond.coin ? typeof (cond.coin) == "string" ? cond.coin : cond.coin.id : errVal("no coin provided"),
-	  userId: cond.user ? typeof (cond.user) == "string" ? cond.user : cond.user.id : undefined,
-	  type: cond.type || 'live',
+	  source: cond.source,
+	  coin: cond.coin,
+	  user: cond.user,
+	  type: cond.type,
 	  value: 0.0,
 	}, undefined, system);
   }
 
-  export const create = (options?: DeepPartial<Wallet>, base?: Wallet, system?: System): Wallet => {
-	let wallet = ({
-	  id: options?.id || base?.id || generateID(),
-	  coinId: options?.coinId || base?.coinId || errVal("no coin-id specified"),
-	  sourceId: options?.sourceId || base?.sourceId || errVal("no source-id specified"),
-	  userId: options?.userId || base?.userId || undefined,
-	  walletAddress: options?.walletAddress || base?.walletAddress || undefined,
-	  type: options?.type || base?.type || 'virtual',
-	  value: options?.value || base?.value || 0.0,
-	  desc: options?.desc || base?.desc,
+  export const create = (data?: DeepPartial<WalletData>, base?: Wallet, system?: System): Wallet => {
+	const coin = data?.coin || base?.coin || errVal("no coin provided");
+	const source = data?.source || base?.source || errVal("no source provided");
+	const user = data?.user || base?.user;
+	const wallet = ({
+	  id: data?.id || base?.id || generateID(),
+	  coin: typeof coin == "string" ? coin : coin.id,
+	  source: typeof source == "string" ? source : source.id,
+	  user: typeof user == "string" ? user : user?.id,
+	  type: data?.type || base?.type || errVal("no type provided"),
+	  lastUpdate: data?.lastUpdate || base?.lastUpdate || 0,
+	  value: data?.value || base?.value || 0.0,
+	  desc: data?.desc || base?.desc,
 	}) as Wallet;
 	system?.wallets.push(wallet);
 	return wallet;
   }
 }
+
+export type Wallet = Wallet.Wallet;

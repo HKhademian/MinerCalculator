@@ -3,18 +3,18 @@ import {NO_SHARE, System} from "./lib/System.ts";
 
 export const baseSystem: System = System.create({
   managerShare: {
-	userId: "manager",
+	user: "manager",
 	share: 0.09,
   },
   charityShare: {
-	userId: "home",
+	user: "home",
 	share: 0.01,
   },
 });
 //endregion
 //region [Coin]
 import {Coin, exchange} from "./lib/Coin.ts";
-import {USD, BTC, ETH, M_IRT, LTC, DASH} from "./lib/Coin.ts";
+import {USD, BTC, ETH, M_IRT, LTC, ADA, DOGE, DASH} from "./lib/Coin.ts";
 //endregion
 
 //region [Company]
@@ -42,10 +42,10 @@ import {Product} from "./lib/Product.ts";
 
 const PISHTAZ_BASE_12M = Product.create({
   id: "pishtaz_base_12m",
-  companyId: PISHTAZ.id,
+  company: PISHTAZ,
   life: 30 * 12,
-  priceCoinId: M_IRT.id,
-  mineCoinId: BTC.id,
+  priceCoin: M_IRT,
+  mineCoin: BTC,
   mineEfficiency: 0.51,
 });
 const pishtaz_1th_12m_reinvest = Product.create({
@@ -56,10 +56,10 @@ const pishtaz_1th_12m_reinvest = Product.create({
 
 const HAMYAR_BASE_6M = Product.create({
   id: "hamyar_base_6m",
-  companyId: HAMYAR.id,
+  company: HAMYAR,
   life: 30 * 6,
-  priceCoinId: M_IRT.id,
-  mineCoinId: BTC.id,
+  priceCoin: M_IRT,
+  mineCoin: BTC,
   mineEfficiency: 0.51,
 });
 const HAMYAR_BASE_12M = Product.create({
@@ -79,52 +79,52 @@ const hamyar_13th6_6m = Product.create({
 
 const HASHSHINY_BASE = Product.create({
   id: "hashshiny_base",
-  companyId: HASHSHINY.id,
+  company: HASHSHINY,
   life: 30 * 24,
-  priceCoinId: USD.id,
-  mineCoinId: BTC.id,
+  priceCoin: USD,
+  mineCoin: BTC,
   minePower: 0.0,
   mineEfficiency: 0.0,
 });
 const hashshiny_btc_10gh = Product.create({
   id: "hashshiny_btc_10gh",
   price: 1.05,
-  priceCoinId: USD.id,
-  mineCoinId: BTC.id,
+  priceCoin: USD,
+  mineCoin: BTC,
   minePower: 0.010,
   mineEfficiency: 0.75,
 }, HASHSHINY_BASE, baseSystem);
 const hashshiny_dash_100mh = Product.create({
   id: "hashshiny_btc_100mh",
   price: 0.89,
-  priceCoinId: USD.id,
-  mineCoinId: DASH.id,
+  priceCoin: USD,
+  mineCoin: DASH,
   minePower: 0.1,
   mineEfficiency: 0.9,
 }, HASHSHINY_BASE, baseSystem);
 
 const HOSSAINCO_BASE = Product.create({
   id: "hossainco_base",
-  companyId: HOSSAINCO.id,
+  company: HOSSAINCO,
   life: 30 * 24,
-  priceCoinId: USD.id,
-  mineCoinId: ETH.id,
+  priceCoin: USD,
+  mineCoin: ETH,
   minePower: 0.0,
   mineEfficiency: 0.90,
 });
 const hossainco_30mh_24m = Product.create({
   id: "hossainco_30mh_24m",
   price: 17,
-  priceCoinId: M_IRT.id,
-  mineCoinId: ETH.id,
+  priceCoin: M_IRT,
+  mineCoin: ETH,
   minePower: 30,
   mineEfficiency: 0.75,
 }, HOSSAINCO_BASE, baseSystem);
 const hossainco_32mh_24m = Product.create({
   id: "hossainco_32mh_24m",
   price: 11,
-  priceCoinId: M_IRT.id,
-  mineCoinId: ETH.id,
+  priceCoin: M_IRT,
+  mineCoin: ETH,
   minePower: 32,
   mineEfficiency: 0.50,
 }, HOSSAINCO_BASE, baseSystem);
@@ -132,8 +132,8 @@ const hossainco_rtx570_8gb_24m = Product.create({
   id: "hossainco_rtx570_8gb_24m",
   life: 30 * 12,
   price: 310,
-  priceCoinId: USD.id,
-  mineCoinId: ETH.id,
+  priceCoin: USD,
+  mineCoin: ETH,
   minePower: 30,
   mineEfficiency: 0.90,
   desc: 'https://www.kryptex.org/en/hardware/amd-rx-570-8gb',
@@ -142,8 +142,8 @@ const hossainco_rtx580_8gb_24m = Product.create({
   id: "hossainco_rtx580_8gb_24m",
   life: 30 * 12,
   price: 340,
-  priceCoinId: USD.id,
-  mineCoinId: ETH.id,
+  priceCoin: USD,
+  mineCoin: ETH,
   minePower: 32,
   mineEfficiency: 0.90,
   desc: 'https://www.kryptex.org/en/hardware/amd-rx-580-8gb',
@@ -154,32 +154,32 @@ import {Source} from "./lib/Source.ts";
 
 const HAMYAR_SRC1 = Source.create({
   id: 'hamyar_s1',
-  company: HAMYAR.id,
-  reinvest: {product: hamyar_1th_6m_reinvest.id, minInterval: 3, minCount: 5},
+  company: HAMYAR,
+  reinvest: {product: hamyar_1th_6m_reinvest, minInterval: 3, minCount: 5},
   login: 'h.kh',
 }, undefined, baseSystem);
 const PISHTAZ_SRC1 = Source.create({
   id: 'pishtaz_s1',
-  company: PISHTAZ.id,
+  company: PISHTAZ,
   login: 'h.kh',
-  reinvest: {product: pishtaz_1th_12m_reinvest.id, minInterval: 3, minCount: 5},
+  reinvest: {product: pishtaz_1th_12m_reinvest, minInterval: 3, minCount: 5},
 }, undefined, baseSystem);
 const HASHSHINY_SRC1_BTC = Source.create({
   id: 'hashshiny_s1',
-  company: HASHSHINY.id,
-  reinvest: {product: hashshiny_btc_10gh.id, minCount: 1, minInterval: 1},
+  company: HASHSHINY,
+  reinvest: {product: hashshiny_btc_10gh, minCount: 1, minInterval: 1},
   login: 'h.kh',
 }, undefined, baseSystem);
 const HASHSHINY_SRC1_DASH = Source.create({
   id: 'hashshiny_s2',
-  company: HASHSHINY.id,
-  reinvest: {product: hashshiny_dash_100mh.id, minCount: 1, minInterval: 1},
+  company: HASHSHINY,
+  reinvest: {product: hashshiny_dash_100mh, minCount: 1, minInterval: 1},
   login: 'h.kh',
 }, undefined, baseSystem);
 const HOSSAINCO_SRC1 = Source.create({
   id: 'hossainco_src2',
-  company: HOSSAINCO.id,
-  reinvest: {product: hossainco_rtx570_8gb_24m.id, minCount: 1, minInterval: 1},
+  company: HOSSAINCO,
+  reinvest: {product: hossainco_rtx570_8gb_24m, minCount: 1, minInterval: 1},
   login: 'h.kh',
 }, undefined, baseSystem);
 //endregion
@@ -275,7 +275,7 @@ Worker.newWorkerFromProduct({
   source: PISHTAZ_SRC1,
   product: pishtaz_4th_12m_old,
   owners: {"hossain": 1},
-  start_day: 0,
+  startTime: 0,
   count: 1,
   purchase: {factor: "XxXxX", date: "10/12/1399", type: "buy"},
 }, baseSystem);
@@ -289,7 +289,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_5th_6m_v1,
   owners: {"hossain": 1},
-  start_day: 0,
+  startTime: 0,
   count: 1,
   purchase: {factor: "151993", date: "10/12/1399", type: "buy"},
 }, baseSystem);
@@ -298,7 +298,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_5th_6m_v1,
   owners: {"ali": 1},
-  start_day: 0,
+  startTime: 0,
   count: 2,
   purchase: {factor: "152107", date: "10/12/1399", type: "buy"},
 }, baseSystem);
@@ -307,7 +307,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_5th_6m_v1,
   owners: {"hossain": 0.75, "mitra": 0.25},
-  start_day: 1,
+  startTime: 1,
   count: 4,
   purchase: {factor: "152326", date: "11/12/1399", type: "buy"},
 }, baseSystem);
@@ -316,7 +316,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_5th_6m_v1,
   owners: {"seke": 1},
-  start_day: 11,
+  startTime: 11,
   count: 10,
   purchase: {factor: "154382", date: "21/12/1399", type: "buy"},
 }, baseSystem);
@@ -325,7 +325,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_1th_6m_reinvest,
   owners: {"mitra": 5 / 35, "fateme": 30 / 35},
-  start_day: 13,
+  startTime: 13,
   count: 5,
   purchase: {factor: "154849", date: "23/12/1399", type: "reinvest"},
 }, baseSystem);
@@ -334,7 +334,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_13th6_6m,
   owners: {"saeed": 1},
-  start_day: 16,
+  startTime: 16,
   count: 1,
   purchase: {factor: "155951", date: "26/12/1399", type: "buy"},
 }, baseSystem);
@@ -350,7 +350,7 @@ Worker.newWorkerFromProduct({
 	"fateme": 0.207 / 5,
 	"seke": 2.413 / 5,
   },
-  start_day: 17,
+  startTime: 17,
   count: 5,
   purchase: {factor: "156208", date: "27/12/1399", type: "reinvest"},
 }, baseSystem);
@@ -364,7 +364,7 @@ Worker.newWorkerFromProduct({
 	"saeed": 2.660 / 27.2,
 	"zahra": 8.00 / 27.2,
   },
-  start_day: 17,
+  startTime: 17,
   count: 2,
   purchase: {factor: "156235", date: "27/12/1399", type: "buy"},
 }, baseSystem);
@@ -376,7 +376,7 @@ Worker.newWorkerFromProduct({
 	"hossain": 0.266 / 13.6,
 	"mitra": 13.334 / 13.6,
   },
-  start_day: 19,
+  startTime: 19,
   count: 1,
   purchase: {factor: "156450", date: "29/12/1399", type: "buy"},
 }, baseSystem);
@@ -387,7 +387,7 @@ Worker.newWorkerFromProduct({
   owners: {
 	"hossain": 1,
   },
-  start_day: 19,
+  startTime: 19,
   count: 1,
   purchase: {factor: "156451", date: "29/12/1399", type: "buy"},
 }, baseSystem);
@@ -405,7 +405,7 @@ Worker.newWorkerFromProduct({
 	"home": 0 / 6,
 	"seke": 0.623 / 6,
   },
-  start_day: 20,
+  startTime: 20,
   count: 6,
   purchase: {factor: "156643", date: "27/12/1399", type: "reinvest"},
 }, baseSystem);
@@ -414,7 +414,7 @@ Worker.newWorkerFromProduct({
   source: HAMYAR_SRC1,
   product: hamyar_13th6_6m,
   owners: {"ali": 1},
-  start_day: 22,
+  startTime: 22,
   count: 1,
   purchase: {factor: "156848", date: "02/01/1400", type: "buy"},
 }, baseSystem);
@@ -432,7 +432,7 @@ Worker.newWorkerFromProduct({
 	"home": 0 / 7,
 	"seke": 2.033 / 7,
   },
-  start_day: 24,
+  startTime: 24,
   count: 7,
   purchase: {factor: "157259", date: "04/01/1400", type: "reinvest"},
 }, baseSystem);
@@ -450,8 +450,8 @@ Worker.newWorkerFromProduct({
 	"home": 0 / 5,
 	"seke": 1.452 / 5,
   },
-  start_day: 26,
-  count: 8,
+  startTime: 26,
+  count: 4,
   purchase: {factor: "157500", date: "06/01/1400", type: "reinvest"},
 }, baseSystem);
 //endregion
@@ -470,7 +470,7 @@ Worker.newWorkerFromProduct({
 // Worker.buyWorkerFromProduct({
 //   source: HOSSAINCO_SRC1,
 //   product: hossainco_rtx570_8gb_24m,
-//   owners: {[vam.id]: 1},
+//   owners: {[vam]: 1},
 //   money: 100,
 //   moneyCoin: M_IRT,
 //   start_day: 30,
@@ -479,7 +479,7 @@ Worker.newWorkerFromProduct({
 // Worker.newWorkerFromProduct({
 //   source: HOSSAINCO_SRC1,
 //   product: hossainco_rtx570_8gb_24m,
-//   owners: {[vam.id]: 1},
+//   owners: {[vam]: 1},
 //   count: 13,
 //   start_day: 30,
 // }, baseSystem);

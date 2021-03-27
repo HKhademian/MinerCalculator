@@ -14,8 +14,8 @@ export type Partial<T> = {
 export type StrDict<V> = { [_: string]: V };
 export type NumDict<V> = { [_: number]: V };
 
-export const errVal = (msg?: string): any => {
-  throw Error(msg);
+export const errVal = (msg?: string): never => {
+  throw Error(msg)
 };
 
 const uid = new ShortUniqueId();

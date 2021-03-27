@@ -1,37 +1,44 @@
 import {DeepPartial, generateID} from "../util.ts";
-import {System, ShareSetting, newShareSetting, newShareListSetting} from "./System.ts";
-
-export interface UserState {
-  total_dispose: number;
-  total_withdraw: number;
-  total_invest: number;
-  total_income: number;
-  total_workers: number;
-}
-
-export interface SavePolicy {
-  start: number;
-  end: number;
-  rate: number;
-}
-
-export interface User {
-  id: string;
-  title: string;
-
-  managerShare?: ShareSetting;
-  charityShare?: ShareSetting;
-  agentsShare: ShareSetting | ShareSetting[];
-
-  states: UserState;
-  savePolicy: SavePolicy | SavePolicy[];
-}
+import {System, ShareSetting, ShareSettingData} from "./System.ts";
 
 export namespace User {
+  export interface UserState {
+	total_dispose: number;
+	total_withdraw: number;
+	total_invest: number;
+	total_income: number;
+	total_workers: number;
+  }
+
+  export interface SavePolicy {
+	start: number;
+	end: number;
+	rate: number;
+  }
+
+  type UserData = {
+	id: string;
+	title: string;
+
+	managerShare?: ShareSettingData;
+	charityShare?: ShareSettingData;
+	agentsShare: ShareSettingData | ShareSettingData[];
+
+	states: UserState;
+	savePolicy: SavePolicy | SavePolicy[];
+  };
+
+  export interface User extends UserData {
+	managerShare?: ShareSetting;
+	charityShare?: ShareSetting;
+	agentsShare: ShareSetting | ShareSetting[];
+  }
+
   export const findById = (user: User | string, system: System): User | undefined => {
 	if (typeof (user) != 'string') return user;
 	return system?.users.find(it => it.id == user);
   }
+
   export const isSavePolicyInRange = (policy: SavePolicy, system: System, timeShift: number = 0): boolean => {
 	const time = system.currentTime + timeShift;
 	return (!policy.start || policy.start < 0 || policy.start < time) &&
@@ -64,9 +71,9 @@ export namespace User {
 	  id: source?.id || base?.id || generateID(),
 	  title: source?.title || base?.title || "EMPTY",
 
-	  charityShare: newShareSetting(source?.charityShare, base?.charityShare),
-	  managerShare: newShareSetting(source?.managerShare, base?.managerShare),
-	  agentsShare: newShareListSetting(source?.agentsShare, base?.agentsShare),
+	  charityShare: ShareSetting.create(source?.charityShare, base?.charityShare),
+	  managerShare: ShareSetting.create(source?.managerShare, base?.managerShare),
+	  agentsShare: ShareSetting.createList(source?.agentsShare, base?.agentsShare),
 
 	  states: newUserState(source?.states, base?.states),
 	  savePolicy: newSavePolicy(source?.savePolicy, base?.savePolicy),
@@ -75,3 +82,6 @@ export namespace User {
 	return user;
   }
 }
+
+export type User = User.User;
+export type SavePolicy = User.SavePolicy;
