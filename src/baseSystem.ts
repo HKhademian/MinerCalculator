@@ -191,10 +191,10 @@ import type {SavePolicy} from "./lib/User.ts";
 const BASE_USER: User = User.create({
   id: "base",
   title: "Base User",
-  savePolicy: [{
+  savePolicy: [/*{
 	start: 30 * 6,
 	rate: 0.40,
-  }, {
+  },*/ {
 	start: 30 * 4,
 	rate: 0.30,
   }, {
