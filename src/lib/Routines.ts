@@ -43,6 +43,60 @@ export namespace Routines {
 	return system;
   }
 
+  export const reinvestWorkingAlg1 = (system: System): Worker[] => {
+	const workers: Worker[] = [];
+	system.sources.forEach(source => {
+	  system.coins.forEach(coin => {
+		const liveWallet = Wallet.find({source, coin, type: "live"}, system, false);
+		if (!liveWallet || liveWallet.value <= 0) return;
+		// const products = Product.findAll({company: source.company, mineCoin: coin}, system);
+
+		const product = source.reinvest.product && Product.findById(source.reinvest.product, system);
+		if (!product) return;
+
+		const lastBuy = system.workers.length <= 0 ? -Infinity : system.workers
+		  .filter(it => it.source == source.id)
+		  .reduce((p, it) => p.startTime > it.startTime ? p : it, system.workers[0])
+		  .startTime;
+		if ((system.currentTime - lastBuy) < source.reinvest.minInterval) return;
+
+		const workingWallets = Wallet.findAll({source, coin, type: 'working'}, system);
+		const workingValue = workingWallets.reduce((prev, it) => prev + it.value, 0);
+
+		const productPrice = exchange(product.price, product.priceCoin, coin, system);
+		const new_miner_count = Math.floor(workingValue / productPrice);
+
+		if (new_miner_count <= 0 || (source.reinvest.minCount && new_miner_count < source.reinvest.minCount)) return;
+
+		const order_price = new_miner_count * productPrice;
+		const price_ratio = order_price / workingValue;
+		const owners: { [_: string]: number } = {};
+
+		system.users.forEach((user) => {
+		  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system, false);
+		  if (!workingWallet || workingWallet.value <= 0) return;
+		  const share_price = (workingWallet.value * price_ratio);
+		  workingWallet.value -= share_price;
+		  liveWallet.value -= share_price;
+		  const share = toPrec(share_price / order_price, 8);
+		  if (share > 0)
+			owners[user.id] = share;
+		});
+
+		const newWorker = Worker.newWorkerFromProduct({
+		  source: source,
+		  product,
+		  owners,
+		  startTime: system.currentTime,
+		  count: new_miner_count,
+		  purchase: {type: 'reinvest'},
+		}, system);
+		workers.push(newWorker);
+	  });
+	});
+	return workers;
+  }
+
   export const updateIncome = (system: System, liveWallet: string | Wallet, curDay: number, curValue: number) => {
 	curValue >= 0 || errVal("cannot process neg value");
 
@@ -165,58 +219,6 @@ export namespace Routines {
 		  incomeWallet.value -= save + work;
 		  if (liveWallet) liveWallet.value -= save;
 		});
-	  });
-	});
-  }
-
-  export const reinvestWorkingAlg1 = (system: System) => {
-	system.sources.forEach(source => {
-	  system.coins.forEach(coin => {
-		const liveWallet = Wallet.find({source, coin, type: "live"}, system, false);
-		if (!liveWallet || liveWallet.value <= 0) return;
-		// const products = Product.findAll({company: source.company, mineCoin: coin}, system);
-
-		const product = source.reinvest.product && Product.findById(source.reinvest.product, system);
-		if (!product) return;
-
-		const lastBuy = system.workers.length <= 0 ? -Infinity : system.workers
-		  .filter(it => it.source == source.id)
-		  .reduce((p, it) => p.startTime > it.startTime ? p : it, system.workers[0])
-		  .startTime;
-		if ((system.currentTime - lastBuy) < source.reinvest.minInterval) return;
-
-		const workingWallets = Wallet.findAll({source, coin, type: 'working'}, system);
-		const workingValue = workingWallets.reduce((prev, it) => prev + it.value, 0);
-
-		const productPrice = exchange(product.price, product.priceCoin, coin, system);
-		const new_miner_count = Math.floor(workingValue / productPrice);
-
-		if (new_miner_count <= 0 || (source.reinvest.minCount && new_miner_count < source.reinvest.minCount)) return;
-
-		const order_price = new_miner_count * productPrice;
-		const price_ratio = order_price / workingValue;
-		const owners: { [_: string]: number } = {};
-
-		system.users.forEach((user) => {
-		  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system, false);
-		  if (!workingWallet || workingWallet.value <= 0) return;
-		  const share_price = (workingWallet.value * price_ratio);
-		  workingWallet.value -= share_price;
-		  liveWallet.value -= share_price;
-		  const share = toPrec(share_price / order_price, 8);
-		  if (share > 0)
-			owners[user.id] = share;
-		});
-
-		const newWorker = Worker.newWorkerFromProduct({
-		  source: source,
-		  product,
-		  owners,
-		  startTime: system.currentTime,
-		  count: new_miner_count,
-		  purchase: {type: 'reinvest'},
-		}, system);
-
 	  });
 	});
   }
