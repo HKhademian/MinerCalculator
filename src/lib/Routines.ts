@@ -36,8 +36,6 @@ export namespace Routines {
 		delete (liveWallet as any).newValue;
 	  });
 
-	  splitIncome(system, timeShift, true);
-
 	  reinvestWorkingAlg1(system);
 	}
 	return system;
@@ -83,7 +81,7 @@ export namespace Routines {
 			owners[user.id] = share;
 		});
 
-		const newWorker = Worker.newWorkerFromProduct({
+		const newWorker = Worker.createWorkerFromProduct({
 		  source: source,
 		  product,
 		  owners,
@@ -97,8 +95,8 @@ export namespace Routines {
 	return workers;
   }
 
-  export const updateIncome = (system: System, liveWallet: string | Wallet, curDay: number, curValue: number) => {
-	curValue >= 0 || errVal("cannot process neg value");
+  export const updateIncome = (system: System, liveWallet: string | Wallet, curDay: number, curValue: number, timeShift: number = 0, updateLiveWallet: boolean = false) => {
+	// curValue >= 0 || errVal("cannot process neg value");
 
 	liveWallet = Wallet.find({wallet: liveWallet}, system) || errVal("wallet not found");
 	liveWallet.type == "live" || errVal("wallet type is not live");
@@ -128,6 +126,7 @@ export namespace Routines {
 	const sumPower = Object.entries(powers).reduce((prev, [_, power]) => prev + power, 0);
 
 	const totalChangeValue = curValue - prevValue;
+	const incomes: { [_: string]: number } = {};
 	Object.entries(powers)
 	  .map(([userId, power]): [User, number] => ([
 		User.findById(userId, system)! || errVal("cannot find miner-owner-user"),
@@ -177,49 +176,76 @@ export namespace Routines {
 	liveWallet.value = curValue;
 	liveWallet.lastUpdate = curDay;
 	// TODO: add live wallet value record to database
+
+	splitIncome(system, liveWallet, timeShift, updateLiveWallet);
   }
 
-  export const splitIncome = (system: System, timeShift: number = 0, updateLiveWallet: boolean = false) => {
-	system.sources.forEach(source => {
-	  system.coins.forEach(coin => {
-		const liveWallet = updateLiveWallet && Wallet.find({source, coin, type: 'live'}, system, false);
-		system.users.forEach(user => {
-		  const incomeWallet = Wallet.find({source, coin, user, type: 'income'}, system, false);
-		  if (!incomeWallet || incomeWallet.value == 0) return;
+  const splitIncome = (system: System, wallet: string | Wallet, timeShift: number = 0, updateLiveWallet: boolean = false) => {
+	const liveWallet = Wallet.find({wallet}, system) || errVal("liveWallet not found");
+	liveWallet.type == "live" || errVal("only liveWallet can split incomes");
+	liveWallet.user == undefined || errVal("liveWallet cannot have user");
 
-		  let savePolicy: SavePolicy | undefined = undefined;
-		  if (user.savePolicy) {
-			if (user.savePolicy instanceof Array) {
-			  for (let i = 0; i < user.savePolicy.length; i++) {
-				savePolicy = user.savePolicy[i];
-				if (User.isSavePolicyInRange(savePolicy, system, timeShift)) break;
-				else savePolicy = undefined;
-			  }
-			} else if (User.isSavePolicyInRange(user.savePolicy, system, timeShift)) {
-			  savePolicy = user.savePolicy;
-			}
+	const source = Source.findById(liveWallet.source, system) || errVal("cannot found liveWallet source");
+	const coin = Coin.findById(liveWallet.coin, system) || errVal("cannot found liveWallet coin");
+
+	system.users.forEach(user => {
+	  const incomeWallet = Wallet.find({source, coin, user, type: 'income'}, system, false);
+	  if (!incomeWallet || incomeWallet.value == 0) return;
+
+	  let savePolicy: SavePolicy | undefined = undefined;
+	  if (user.savePolicy) {
+		if (user.savePolicy instanceof Array) {
+		  for (let i = 0; i < user.savePolicy.length; i++) {
+			savePolicy = user.savePolicy[i];
+			if (User.isSavePolicyInRange(savePolicy, system, timeShift)) break;
+			else savePolicy = undefined;
 		  }
+		} else if (User.isSavePolicyInRange(user.savePolicy, system, timeShift)) {
+		  savePolicy = user.savePolicy;
+		}
+	  }
 
-		  let save = 0, work = 0;
-		  if (!source.reinvest.product) {
-			save = incomeWallet.value;
-			work = 0;
-		  } else if (savePolicy) {
-			save = incomeWallet.value * savePolicy.rate;
-			work = incomeWallet.value - save;
-		  } else {
-			save = 0;
-			work = incomeWallet.value;
-		  }
+	  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system)!;
+	  const savingWallet = Wallet.find({source, coin, user, type: 'saving'}, system)!;
 
-		  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system)!;
-		  const savingWallet = Wallet.find({source, coin, user, type: 'saving'}, system)!;
-		  savingWallet.value += save;
-		  workingWallet.value += work;
-		  incomeWallet.value -= save + work;
-		  if (liveWallet) liveWallet.value -= save;
-		});
-	  });
+	  // pay saving loans
+	  if (savingWallet.value < 0) {
+		savingWallet.value += incomeWallet.value;
+		incomeWallet.value = 0;
+		if (savingWallet.value > 0) {
+		  incomeWallet.value = savingWallet.value;
+		  savingWallet.value = 0;
+		}
+	  }
+
+	  // pay working loans
+	  if (workingWallet.value < 0) {
+		workingWallet.value += incomeWallet.value;
+		incomeWallet.value = 0;
+		if (workingWallet.value > 0) {
+		  incomeWallet.value = workingWallet.value;
+		  workingWallet.value = 0;
+		}
+	  }
+
+	  // split remaining to save and work
+
+	  let save = 0, work = 0;
+	  if (!source.reinvest.product) {
+		save = incomeWallet.value;
+		work = 0;
+	  } else if (savePolicy) {
+		save = incomeWallet.value * savePolicy.rate;
+		work = incomeWallet.value - save;
+	  } else {
+		save = 0;
+		work = incomeWallet.value;
+	  }
+
+	  savingWallet.value += save;
+	  workingWallet.value += work;
+	  incomeWallet.value -= save + work;
+	  if (updateLiveWallet) liveWallet.value -= save;
 	});
   }
 }

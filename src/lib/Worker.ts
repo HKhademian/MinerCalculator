@@ -96,7 +96,7 @@ export namespace Worker {
 	return worker;
   }
 
-  export const newWorkerFromProduct = (
+  export const createWorkerFromProduct = (
 	{source, product, owners, purchase, startTime = 0, count = 0}: {
 	  source: string | Source;
 	  product: string | Product;
@@ -147,7 +147,7 @@ export namespace Worker {
 	product = Product.findById(product, system!) || errVal("no product found");
 	const moneyEq = exchange(money, moneyCoin || product.priceCoin, product.priceCoin, system);
 	const count = Math.floor(moneyEq / product.price);
-	return newWorkerFromProduct({source, product, owners, startTime: startDay, count}, system);
+	return createWorkerFromProduct({source, product, owners, startTime: startDay, count}, system);
   };
 
 

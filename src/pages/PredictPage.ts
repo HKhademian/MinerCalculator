@@ -4,7 +4,7 @@ import {print, toPrec} from "../util.ts";
 import {Wallet} from "../lib/Wallet.ts";
 import {Routines} from "../lib/Routines.ts";
 
-const REPORT_COINS = [M_IRT/*, USD, BTC, ETH*/];
+const REPORT_COINS = [M_IRT, USD, BTC,/* ETH */];
 
 export const showPredict = async (sourceSystem?: System) => {
   const baseSystem: System = JSON.parse(JSON.stringify(sourceSystem || System.get()));
@@ -50,18 +50,18 @@ export const showPredict = async (sourceSystem?: System) => {
 	  Object.fromEntries(Object.entries(it).filter(el => ['start', 'end', 'life', 'power', 'price', 'count', 'product', 'source'].includes(el[0])))
 	);
 	if (!silent || lastPeriod) {
-	  print({
-		title: 'WORKERS', count, power,
-		power_1d, power_1m, power_3m, power_6m,
-		power_1y, power_2y, power_3y,
-	  });
-
 	  const sel_workers = worker.length <= 25 ? worker : [
 		...worker.slice(0, 10),
 		Object.fromEntries(Object.keys(worker[0]).map(it => [it, "..."])),
 		...worker.slice(Math.max(worker.length - 10, 1)),
 	  ]
 	  console.table(sel_workers);
+
+	  console.log({
+		title: 'WORKERS', count, powS: power,
+		/*pow1d: power_1d, pow1m: power_1m, pow3m: power_3m,*/ pow6m: power_6m,
+		pow1y: power_1y, pow2y: power_2y, pow3y: power_3y,
+	  });
 	}
 
 	const all_report = system.users.map(user => {
