@@ -13,6 +13,5 @@ export const showSavePage = async () => await askMenu(
 	{title: "exit SAVE Page"},
   ], async () => {
 	const system = System.get();
-	const jsonData = JSON.stringify(system, undefined, 2);
-	await Deno.writeTextFile("./data/system.json", jsonData);
+	await System.save(system);
   }, {defaultChoice: 0});

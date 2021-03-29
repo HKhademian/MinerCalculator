@@ -92,6 +92,11 @@ export namespace System {
 	charityShare: ShareSetting.create(from?.charityShare, base?.charityShare) || NO_SHARE,
   }) as System;
 
+  export const save = async (system: System, path: string = "./data/system.json") => {
+	const jsonData = JSON.stringify(system, undefined, 2);
+	await Deno.writeTextFile(path, jsonData);
+  };
+
   System.set(System.create());
 }
 

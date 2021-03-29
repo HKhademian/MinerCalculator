@@ -1,3 +1,4 @@
+import './_global.ts';
 import {NO_SHARE, ShareSetting, System} from "./System.ts";
 import {Wallet} from "./Wallet.ts";
 import {Coin, exchange} from "./Coin.ts";
@@ -8,7 +9,7 @@ import {Worker} from "./Worker.ts";
 import {errVal, toPrec} from "../util.ts";
 
 export namespace Routines {
-  export const predict = (system: System, days: number = 30, timeShift: number = 0): System => {
+  export const predict = (system: System, days: number = 30, timeShift: number = 0) => {
 	Wallet.findAll({type: "live"}, system).forEach(liveWallet => {
 	  // TODO: may add some err log
 	  liveWallet.lastUpdate = system.currentTime;
@@ -38,7 +39,6 @@ export namespace Routines {
 
 	  reinvestWorkingAlg1(system);
 	}
-	return system;
   }
 
   export const reinvestWorkingAlg1 = (system: System): Worker[] => {
@@ -54,12 +54,12 @@ export namespace Routines {
 
 		const lastBuy = system.workers.length <= 0 ? -Infinity : system.workers
 		  .filter(it => it.source == source.id)
-		  .reduce((p, it) => p.startTime > it.startTime ? p : it, system.workers[0])
+		  .maxBy(it => it.startTime)!
 		  .startTime;
 		if ((system.currentTime - lastBuy) < source.reinvest.minInterval) return;
 
 		const workingWallets = Wallet.findAll({source, coin, type: 'working'}, system);
-		const workingValue = workingWallets.reduce((prev, it) => prev + it.value, 0);
+		const workingValue = workingWallets.sumBy(0, it => it.value);
 
 		const productPrice = exchange(product.price, product.priceCoin, coin, system);
 		const new_miner_count = Math.floor(workingValue / productPrice);
@@ -123,7 +123,8 @@ export namespace Routines {
 		});
 	  });
 	}
-	const sumPower = Object.entries(powers).reduce((prev, [_, power]) => prev + power, 0);
+	const sumPower = Object.entries(powers).sumBy(0, ([_, pow]) => pow);
+	if (sumPower <= 0) return; // TODO: check
 
 	const totalChangeValue = curValue - prevValue;
 	const incomes: { [_: string]: number } = {};

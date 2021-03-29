@@ -4,6 +4,7 @@ export {exists} from "https://deno.land/std/fs/mod.ts";
 export {v4 as uuid} from "https://deno.land/std/uuid/mod.ts";
 import ShortUniqueId from 'https://cdn.jsdelivr.net/npm/short-unique-id@latest/short_uuid/mod.ts';
 
+
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
 };
@@ -21,17 +22,23 @@ export const errVal = (msg?: string): never => {
 const uid = new ShortUniqueId();
 export const generateID = () => uid(6);
 
-export const toPrec = (String.prototype as any).toPrec = (val: any, prec: number = 3, round: any = Math.round): number => {
-  const type = typeof (val);
+export const toPrec = (val: any, prec: number = 3, round: any = Math.round): number => {
   let num: number;
-  switch (type) {
-	case "number":
-	  num = val;
-	  break;
-	case "string":
-	default:
-	  num = parseFloat(val.toString());
-	  break;
+  if (isNaN(val) || val == undefined) {
+	num = 0;
+  } else {
+	const type = typeof val;
+	switch (type) {
+	  case "number":
+		num = val;
+		break;
+	  case "string":
+		num = parseFloat(val);
+		break;
+	  default:
+		num = parseFloat(val.toString());
+		break;
+	}
   }
   const mult = Math.pow(10, prec);
   return (round || Math.round)(num * mult) / mult;

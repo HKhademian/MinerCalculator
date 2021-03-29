@@ -1,12 +1,12 @@
 #! /usr/bin/env -S deno run -A --unstable
 
 //region [Boot]
+import './lib/_global.ts';
 import {System} from "./lib/System.ts";
 import {baseSystem} from './baseSystem.ts';
 import {calculateRates} from './pages/RatePage.ts';
 
 System.set(baseSystem);
-
 
 await calculateRates({});
 //endregion

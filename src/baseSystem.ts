@@ -121,8 +121,22 @@ namespace Hamyar {
   export const SOURCE1 = Source.create({
 	id: 'hamyar_s1',
 	company: COMPANY,
-	reinvest: {product: prd_1th_6m_reinvest, minInterval: 3, minCount: 5},
+	reinvest: {product: prd_1th_6m_reinvest, minInterval: 2, minCount: 5},
 	login: 'h.kh',
+  }, undefined, baseSystem);
+
+  export const SOURCE2 = Source.create({
+	id: 'hamyar_src2',
+	company: COMPANY,
+	reinvest: {product: prd_1th_6m_reinvest, minInterval: 3, minCount: 5},
+	login: 'hco',
+  }, undefined, baseSystem);
+
+  export const SOURCE3 = Source.create({
+	id: 'hamyar_src3',
+	company: COMPANY,
+	reinvest: {product: prd_1th_6m_reinvest, minInterval: 3, minCount: 5},
+	login: 'h.kh.74',
   }, undefined, baseSystem);
 }
 
@@ -582,23 +596,20 @@ namespace workers {
 namespace test {
   baseSystem.workers = [];
 
-  const source = Hamyar.SOURCE1;
+  const source = Hamyar.SOURCE2;
   const product = Hamyar.prd_1th_6m_reinvest;
   const coin = product.mineCoin;
-  const count = 150;
+  const count = 15;
 
   const user = User.create({
 	id: 'vam', title: 'vAm',
 	managerShare: NO_SHARE,
 	charityShare: NO_SHARE,
-	savePolicy: [{start: 30 * 12, rate: 0.20}, {start: 30 * 9, rate: 0.25}, {start: 30 * 6, rate: 0.30}],
+	savePolicy: [{start: 30 * 12, rate: 0.30}],
   }, undefined, baseSystem);
   const worker = Worker.createWorkerFromProduct({
-	source: source,
-	product: product,
-	owners: {[user.id]: 1},
-	count,
-	startTime: 0,
+	source, product, count,
+	owners: user, startTime: 0,
   }, baseSystem);
 
   const liveWallet = Wallet.find({source, coin, type: 'live'}, baseSystem)!;
@@ -680,10 +691,8 @@ namespace test {
 //endregion
 
 //region [Init]
-baseSystem.currentTime = baseSystem.workers.reduce((prev, el) => Math.max(prev, el.startTime), 0) || 0;
-baseSystem.startDate = baseSystem.workers.length <= 0 ? '?' : baseSystem.workers.reduce(
-  (prev, el) => prev.startTime <= el.startTime ? prev : el,
-  baseSystem.workers[0]).purchase.date;
+baseSystem.currentTime = baseSystem.workers.maxBy(it => it.startTime)?.startTime || 0;
+baseSystem.startDate = baseSystem.workers.minBy(it => it.startTime)?.purchase.date || '???';
 //endregion
 
 
@@ -700,11 +709,6 @@ export const showTestPage = async () => await askMenu("test update income", [
 
   console.log("start", {liveWallet});
   console.table([
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'income'
-	}, system).sort((a, b) => a.value - b.value),
 	...Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
@@ -725,11 +729,6 @@ export const showTestPage = async () => await askMenu("test update income", [
 	...Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
-	  type: 'income'
-	}, system).sort((a, b) => a.value - b.value),
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
 	  type: 'working'
 	}, system).sort((a, b) => a.value - b.value),
 	...Wallet.findAll({
@@ -746,11 +745,6 @@ export const showTestPage = async () => await askMenu("test update income", [
 	...Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
-	  type: 'income'
-	}, system).sort((a, b) => a.value - b.value),
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
 	  type: 'working'
 	}, system).sort((a, b) => a.value - b.value),
 	...Wallet.findAll({
@@ -763,22 +757,13 @@ export const showTestPage = async () => await askMenu("test update income", [
 	Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
-	  type: 'income'
-	}, system).reduce((p, it) => p + it.value, 0),
-  );
-  console.log(
-	Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
 	  type: 'working'
-	}, system).reduce((p, it) => p + it.value, 0),
-  );
-  console.log(
+	}, system).sumBy(0, it => it.value),
 	Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
 	  type: 'saving'
-	}, system).reduce((p, it) => p + it.value, 0),
+	}, system).sumBy(0, it => it.value),
   );
   // @ts-ignore
   alert("press");
