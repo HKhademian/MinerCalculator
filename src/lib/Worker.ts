@@ -3,10 +3,11 @@ import {Coin, exchange} from "./Coin.ts";
 import {Product} from "./Product.ts";
 import {Company, Source} from "./Source.ts";
 import {System} from "./System.ts";
+import {User} from "./User.ts";
 
 export namespace Worker {
   export type Owner = { [userId: string]: number };
-  type OwnerData = string | Owner;
+  type OwnerData = string | User | Owner;
 
   type PurchaseDetailData = {
 	type: 'buy' | 'reinvest';
@@ -71,7 +72,8 @@ export namespace Worker {
   const newOwners = (source?: DeepPartial<OwnerData>, base?: Owner): Owner | undefined => {
 	if (!source && !base) return undefined;
 	if (typeof source == "string") return {[source]: 1};
-	return JSON.parse(JSON.stringify(source || base));
+	if (source?.id) return {[source.id]: 1};
+	return JSON.parse(JSON.stringify((source as Owner) || base));
   }
 
 
@@ -109,17 +111,16 @@ export namespace Worker {
   ): Worker => {
 	product = Product.findById(product, system!) || errVal("no product found");
 	return create({
-	  source: source,
+	  owners, source,
 	  coin: product.mineCoin,
 	  power: product.minePower * count,
-	  owners,
 	  efficiency: product.mineEfficiency,
 	  startTime: startTime || 0,
 	  endTime: (startTime || 0) + product.life,
 
 	  purchase: {
+		product,
 		company: product.company,
-		product: product,
 		factor: purchase?.factor || "???",
 		productCount: count,
 		sumPrice: product.price * count,

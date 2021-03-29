@@ -20,8 +20,8 @@ export namespace Routines {
 
 	  // calculate each active miner profit
 	  system.workers
-		.filter((it) => it.startTime < system.currentTime)
-		.filter((it) => it.endTime > system.currentTime)
+		.filter((it) => it.startTime <= system.currentTime)
+		.filter((it) => it.endTime >= system.currentTime)
 		.forEach((worker) => {
 		  const mineCoin: Coin = Coin.findById(worker.coin, system) || errVal("worker coin not found");
 		  const mineSource: Source = Source.findById(worker.source, system) || errVal("worker source not found");
@@ -33,7 +33,7 @@ export namespace Routines {
 		});
 
 	  Wallet.findAll({type: "live"}, system).forEach(liveWallet => {
-		updateIncome(system, liveWallet, system.currentTime, (liveWallet as any).newValue);
+		updateIncome(system, liveWallet, system.currentTime, (liveWallet as any).newValue || 0, timeShift, true);
 		delete (liveWallet as any).newValue;
 	  });
 
@@ -95,10 +95,10 @@ export namespace Routines {
 	return workers;
   }
 
-  export const updateIncome = (system: System, liveWallet: string | Wallet, curDay: number, curValue: number, timeShift: number = 0, updateLiveWallet: boolean = false) => {
+  export const updateIncome = (system: System, wallet: string | Wallet, curDay: number, curValue: number, timeShift: number = 0, updateLiveWallet: boolean = false) => {
 	// curValue >= 0 || errVal("cannot process neg value");
 
-	liveWallet = Wallet.find({wallet: liveWallet}, system) || errVal("wallet not found");
+	const liveWallet = Wallet.find({wallet}, system) || errVal("wallet not found");
 	liveWallet.type == "live" || errVal("wallet type is not live");
 	liveWallet.user == undefined || errVal("liveWallet has owner");
 
@@ -151,25 +151,13 @@ export namespace Routines {
 
 		  if (thisIncome == 0) return;
 		  // take this share from owner
-		  const incomeWallet = Wallet.find({
-			source: source,
-			coin: coin,
-			user: shareSetting.user,
-			type: 'income',
-		  }, system)!;
 		  remainIncome -= thisIncome;
-		  incomeWallet.value += thisIncome;
+		  incomes[shareSetting.user] = (incomes[shareSetting.user] || 0) + thisIncome;
 		  // TODO: add income record to database
 		});
 
 		if (remainIncome != 0) {
-		  const incomeWallet = Wallet.find({
-			source: source,
-			coin: coin,
-			user: user,
-			type: 'income',
-		  }, system)!;
-		  incomeWallet.value += remainIncome;
+		  incomes[user.id] = (incomes[user.id] || 0) + remainIncome;
 		  // TODO: add income record to database
 		}
 	  });
@@ -178,75 +166,90 @@ export namespace Routines {
 	liveWallet.lastUpdate = curDay;
 	// TODO: add live wallet value record to database
 
-	splitIncome(system, liveWallet, timeShift, updateLiveWallet);
-  }
 
-  const splitIncome = (system: System, wallet: string | Wallet, timeShift: number = 0, updateLiveWallet: boolean = false) => {
-	const liveWallet = Wallet.find({wallet}, system) || errVal("liveWallet not found");
-	liveWallet.type == "live" || errVal("only liveWallet can split incomes");
-	liveWallet.user == undefined || errVal("liveWallet cannot have user");
-
-	const source = Source.findById(liveWallet.source, system) || errVal("cannot found liveWallet source");
-	const coin = Coin.findById(liveWallet.coin, system) || errVal("cannot found liveWallet coin");
+	// split incomes
 
 	system.users.forEach(user => {
-	  const incomeWallet = Wallet.find({source, coin, user, type: 'income'}, system, false);
-	  if (!incomeWallet || incomeWallet.value == 0) return;
-
-	  let savePolicy: SavePolicy | undefined = undefined;
-	  if (user.savePolicy) {
-		if (user.savePolicy instanceof Array) {
-		  for (let i = 0; i < user.savePolicy.length; i++) {
-			savePolicy = user.savePolicy[i];
-			if (User.isSavePolicyInRange(savePolicy, system, timeShift)) break;
-			else savePolicy = undefined;
-		  }
-		} else if (User.isSavePolicyInRange(user.savePolicy, system, timeShift)) {
-		  savePolicy = user.savePolicy;
-		}
-	  }
-
+	  if (!(user.id in incomes) || !(incomes[user.id] > 0)) return;
 	  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system)!;
 	  const savingWallet = Wallet.find({source, coin, user, type: 'saving'}, system)!;
 
+	  // if it's neg income! somehow . it should taken from working wallet
+	  if (incomes[user.id] < 0) {
+		workingWallet.value += incomes[user.id];
+		incomes[user.id] = 0;
+	  }
+
 	  // pay saving loans
-	  if (savingWallet.value < 0) {
-		savingWallet.value += incomeWallet.value;
-		incomeWallet.value = 0;
+	  if (savingWallet.value < 0 && incomes[user.id] > 0) {
+		savingWallet.value += incomes[user.id];
+		incomes[user.id] = 0;
 		if (savingWallet.value > 0) {
-		  incomeWallet.value = savingWallet.value;
+		  incomes[user.id] = savingWallet.value;
 		  savingWallet.value = 0;
 		}
 	  }
 
 	  // pay working loans
-	  if (workingWallet.value < 0) {
-		workingWallet.value += incomeWallet.value;
-		incomeWallet.value = 0;
+	  if (workingWallet.value < 0 && incomes[user.id] > 0) {
+		workingWallet.value += incomes[user.id];
+		incomes[user.id] = 0;
 		if (workingWallet.value > 0) {
-		  incomeWallet.value = workingWallet.value;
+		  incomes[user.id] = workingWallet.value;
 		  workingWallet.value = 0;
 		}
 	  }
 
 	  // split remaining to save and work
 
-	  let save = 0, work = 0;
-	  if (!source.reinvest.product) {
-		save = incomeWallet.value;
-		work = 0;
-	  } else if (savePolicy) {
-		save = incomeWallet.value * savePolicy.rate;
-		work = incomeWallet.value - save;
-	  } else {
-		save = 0;
-		work = incomeWallet.value;
+	  if (incomes[user.id] != 0) {
+		let savePolicy: SavePolicy | undefined = undefined;
+		if (user.savePolicy) {
+		  if (user.savePolicy instanceof Array) {
+			for (let i = 0; i < user.savePolicy.length; i++) {
+			  savePolicy = user.savePolicy[i];
+			  if (User.isSavePolicyInRange(savePolicy, system, timeShift)) break;
+			  else savePolicy = undefined;
+			}
+		  } else if (User.isSavePolicyInRange(user.savePolicy, system, timeShift)) {
+			savePolicy = user.savePolicy;
+		  }
+		}
+
+		let save: number, work: number;
+		if (!source.reinvest.product) {
+		  save = incomes[user.id];
+		  work = 0;
+		} else if (savePolicy) {
+		  save = incomes[user.id] * savePolicy.rate;
+		  work = incomes[user.id] - save;
+		} else {
+		  save = 0;
+		  work = incomes[user.id];
+		}
+
+		savingWallet.value += save;
+		incomes[user.id] -= save;
+
+		workingWallet.value += work;
+		incomes[user.id] -= work;
+
+		if (updateLiveWallet) liveWallet.value -= save; // TODO: check
 	  }
 
-	  savingWallet.value += save;
-	  workingWallet.value += work;
-	  incomeWallet.value -= save + work;
-	  if (updateLiveWallet) liveWallet.value -= save;
+	  !(incomes[user.id] > 0) ||
+	  errVal("there is some income leftover!");
 	});
+  }
+
+  export const registerWithdraw = (system: System, wallet: string | Wallet, value: number, transFee: number, share: string | { [_: string]: number }) => {
+	const liveWallet = Wallet.find({wallet}, system) || errVal("cannot find liveWallet");
+	liveWallet.type == 'live' || errVal("liveWallet type is incorrect");
+	liveWallet.user == undefined || errVal("liveWallet cannot have owner");
+	liveWallet.lastUpdate == system.currentTime || errVal("liveWallet value is not up to date");
+
+	const owners = typeof share == "string" ? {share: 1} : share;
+	Object.keys(owners).length > 0 || errVal("please specify user share");
+	Object.values(owners).sumBy(0) == 1 || errVal("share sum must be 1");
   }
 }

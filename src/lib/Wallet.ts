@@ -5,8 +5,7 @@ import {Source} from "./Source.ts";
 import {DeepPartial, errVal, generateID} from '../util.ts';
 
 export namespace Wallet {
-
-  type WalletType = 'live' | 'income' | 'working' | 'saving';
+  type WalletType = 'live' | 'working' | 'saving';
 
   export type WalletData = {
 	id: string;
