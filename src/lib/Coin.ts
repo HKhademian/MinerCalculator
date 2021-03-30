@@ -63,7 +63,7 @@ export namespace Coin {
   export const M_IRT = Coin.create({
 	id: "m_irt",
 	title: "1m IR Toman",
-	sign: "M-Toman",
+	sign: "╦",
 	value: 1_445.794_838, // https://arzdigital.com/coins/bitcoin/
 	desc: "",
   });

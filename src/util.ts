@@ -68,8 +68,8 @@ export const print = (...data: unknown[]): void => {
 };
 
 export const askMenu = async (header: string, entities: {
-  title?: string | undefined,
-  action?: (() => any) | undefined,
+  title?: string,
+  action?: (() => any),
 }[], before?: (() => any), options?: { autoClear?: boolean, defaultChoice?: number }) => {
   if (before) {
 	const res = before();
@@ -85,8 +85,10 @@ export const askMenu = async (header: string, entities: {
 	// @ts-ignore
 	const choose = parseInt(prompt("Please enter menu number:", options?.defaultChoice?.toString()));
 	if (choose >= 0 && choose < entities.length) {
-	  const action = entities[choose].action;
-	  if (!action) break;
+	  const {title, action} = entities[choose];
+	  if (!action)
+		if (!title) continue;
+		else break;
 	  const res = action();
 	  if (res && res instanceof Promise) await res;
 	} else {

@@ -1,3 +1,4 @@
+import '../lib/_global.ts';
 import {System} from "../lib/System.ts";
 import {Coin, exchange, M_IRT, BTC, USD, ETH} from "../lib/Coin.ts";
 import {print, toPrec} from "../util.ts";
@@ -9,12 +10,12 @@ const REPORT_COINS = [M_IRT, USD, BTC,/* ETH */];
 export const showPredict = async (sourceSystem?: System) => {
   const system: System = JSON.parse(JSON.stringify(sourceSystem || System.get()));
   const startPredictDay = system.currentTime;
-  const period = 30;
   const periodPower = [];
 
   console.clear();
-  // @ts-ignore
-  const silentPeriod = parseInt(eval(prompt("Enter Num of Periods (or skip to see in details):")));
+
+  const period = parseInt(eval(prompt("Enter Num of Days a Period:", "30") || "30"));
+  const silentPeriod = parseInt(eval(prompt("Enter Num of Periods (or skip to see in details):") || "")) || 0;
   const silent = silentPeriod > 0;
   let prev: Report | undefined = undefined;
 
@@ -57,10 +58,10 @@ export const showPredict = async (sourceSystem?: System) => {
 	  ]
 	  console.table(sel_workers);
 
-	  console.log({
-		title: 'WORKERS', count, powS: power,
-		/*pow1d: power_1d, pow1m: power_1m, pow3m: power_3m,*/ pow6m: power_6m,
-		pow1y: power_1y, pow2y: power_2y, pow3y: power_3y,
+	  console.log('WORKERS', {
+		C: count, P: power,
+		/*P1d: power_1d, P1m: power_1m, P3m: power_3m,*/ P6m: power_6m,
+		P1y: power_1y, P2y: power_2y, P3y: power_3y,
 	  });
 	}
 
@@ -87,12 +88,22 @@ export const showPredict = async (sourceSystem?: System) => {
 	  'saving': all_report.sumBy(0, it => it.saving),
 	  'working': all_report.sumBy(0, it => it.working),
 	};
+
+	const Pdie = system.workers.filter(it =>
+	  it.endTime >= i * period && it.endTime < (i + 1) * period
+	).sumBy(0, it => it.power);
+	const Pbuy = system.workers.filter(it =>
+	  it.startTime >= i * period && it.startTime < (i + 1) * period
+	).sumBy(0, it => it.power);
+	const Pchg = Pbuy - Pdie;
+
 	periodPower.push({
 	  i, day: system.currentTime,
 	  saving: Coin.toString(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
-	  pow: power, /*pow1d: power_1d,
-	  pow1m: power_1m, pow3m: power_3m,*/ pow6m: power_6m,
-	  pow1y: power_1y, pow2y: power_2y, pow3y: power_3y,
+	  P: power, Pchg, /*pow1d: power_1d,
+	  P1m: power_1m, P3m: power_3m,*/ P6m: power_6m,
+	  P1y: power_1y, P2y: power_2y, P3y: power_3y,
+	  /*Pbuy, Pdie,*/
 	});
 
 	const change: Report | undefined = prev && {
@@ -139,16 +150,14 @@ export const showPredict = async (sourceSystem?: System) => {
 	  print('^ User States ^', {sysDay: system.currentTime, prdDay, prdWeek, prdMonth, prdYear});
 	}
 
-	if (power <= 0) break;
 	if (lastPeriod) break;
-	// @ts-ignore
-	if (!silent && (prompt("predict next period? (Y,n)") || "Y") == 'n') break;
+	if (power <= 0) break;
+	if (!silent && prompt("predict next period? (Y,n)") == 'n') break;
 
-	Routines.predict(system, period, -startPredictDay);
+	Routines.predict(system, period, 0/*-startPredictDay*/);
   }
 
   console.table(periodPower);
-  // @ts-ignore
   alert("to exit PREDICT page press");
 
   type Report = {

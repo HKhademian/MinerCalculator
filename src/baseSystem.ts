@@ -7,7 +7,7 @@ import {Worker} from "./lib/Worker.ts";
 import {Wallet} from "./lib/Wallet.ts";
 import {Routines} from "./lib/Routines.ts";
 import {Coin, USD, BTC, ETH, M_IRT, LTC, ADA, DOGE, DASH} from "./lib/Coin.ts";
-import {askMenu} from "./util.ts";
+import {askMenu, errVal} from "./util.ts";
 
 export const baseSystem: System = System.create({
   managerShare: {
@@ -259,15 +259,15 @@ namespace users {
   const BASE_USER: User = User.create({
 	id: "base",
 	title: "Base User",
-	savePolicy: [/*{
-	start: 30 * 6,
-	rate: 0.40,
-  },*/ {
+	savePolicy: [{
+	  start: 30 * 12,
+	  rate: 0.40,
+	}, {
 	  start: 30 * 4,
 	  rate: 0.30,
 	}, {
 	  start: 30 * 2,
-	  rate: 0.20,
+	  rate: 0.30,
 	}/*, {
 	start: 30 * 1,
 	rate: 0.10,
@@ -590,33 +590,57 @@ namespace workers {
 
   const liveWallet = Wallet.find({source: Hamyar.SOURCE1, coin: BTC, type: 'live'}, baseSystem)!;
   liveWallet.value = 0;
-  liveWallet.lastUpdate = 28;
+  liveWallet.lastUpdate = 29;
+  // in day 29 - account reach 0 from neg value ! so it's a good start point
+
+  baseSystem.currentTime = 30;
 }
 
 namespace test {
-  baseSystem.workers = [];
+  const system = baseSystem;
 
-  const source = Hamyar.SOURCE2;
-  const product = Hamyar.prd_1th_6m_reinvest;
-  const coin = product.mineCoin;
-  const count = 15;
+  system.workers = [];
 
-  const user = User.create({
-	id: 'vam', title: 'vAm',
-	managerShare: NO_SHARE,
-	charityShare: NO_SHARE,
-	savePolicy: [{start: 30 * 12, rate: 0.30}],
-  }, undefined, baseSystem);
-  const worker = Worker.createWorkerFromProduct({
-	source, product, count,
-	owners: user, startTime: 0,
-  }, baseSystem);
+  const baseCount = 20;
+  const reInvestProduct = Hamyar.prd_1th_6m_reinvest;
+  const prds: (Product | string) | (([Product | string, number?] | (Product | string))[]) =
+	[[Hamyar.prd_1th_6m_reinvest, 45], [Hamyar.prd_1th_12m_reinvest, 15]];
 
-  const liveWallet = Wallet.find({source, coin, type: 'live'}, baseSystem)!;
-  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, baseSystem)!;
+  let products: [Product, number][] = (
+	(Array.isArray(prds) ? prds : [prds])
+	  .map(el => Array.isArray(el) ? el : [el])
+	  .map(([prd, count]) => [typeof prd != "string" ? prd : Product.findById(prd, system) || errVal("product not found"), count || baseCount])
+  ) as any;
 
-  const cost = Coin.exchange(worker.purchase.sumPrice, product.priceCoin, coin, baseSystem);
-  workingWallet.value = liveWallet.value = -cost;
+  ['hos', 'mit', 'ali', 'sae', 'zah', 'fat'].forEach(id => {
+	const source = Source.create({
+	  id: 'src_' + id,
+	  reinvest: {product: reInvestProduct},
+	}, Hamyar.SOURCE2, system);
+	const user = User.create({
+	  id: 'usr_' + id, title: 'usr_' + id,
+	  managerShare: NO_SHARE, charityShare: NO_SHARE,
+	  savePolicy: [
+		{start: 30 * 25, rate: 0.55},
+		{start: 30 * 19, rate: 0.50},
+		{start: 30 * 13, rate: 0.40},
+		{start: 30 * 7, rate: 0.30},
+	  ],
+	}, undefined, system);
+
+	products.forEach(([product, count]) => {
+	  const coin = product.mineCoin;
+	  const worker = Worker.createWorkerFromProduct({
+		source, product, count,
+		owners: user, startTime: 0,
+	  }, system);
+	  const liveWallet = Wallet.find({source, coin, type: 'live'}, system)!;
+	  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system)!;
+	  const cost = Coin.exchange(worker.purchase.sumPrice, product.priceCoin, coin, system);
+	  liveWallet.value -= cost;
+	  workingWallet.value -= cost;
+	});
+  });
 }
 
 //region [Test]
@@ -691,8 +715,8 @@ namespace test {
 //endregion
 
 //region [Init]
-baseSystem.currentTime = baseSystem.workers.maxBy(it => it.startTime)?.startTime || 0;
-baseSystem.startDate = baseSystem.workers.minBy(it => it.startTime)?.purchase.date || '???';
+baseSystem.startDate = baseSystem.startDate || baseSystem.workers.minBy(it => it.startTime)?.purchase.date || '???';
+baseSystem.currentTime = baseSystem.currentTime || baseSystem.workers.maxBy(it => it.startTime)?.startTime || 0;
 //endregion
 
 
