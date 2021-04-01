@@ -1,26 +1,26 @@
+import "./lib/_global.ts";
 import {System, NO_SHARE} from "./lib/System.ts";
 import {Company} from "./lib/Source.ts";
 import {Product} from "./lib/Product.ts";
 import {Source} from "./lib/Source.ts";
-import {User, SavePolicy} from "./lib/User.ts";
+import {User} from "./lib/User.ts";
 import {Worker} from "./lib/Worker.ts";
 import {Wallet} from "./lib/Wallet.ts";
-import {Routines} from "./lib/Routines.ts";
 import {Coin, USD, BTC, ETH, M_IRT, LTC, ADA, DOGE, DASH} from "./lib/Coin.ts";
-import {askMenu, errVal} from "./util.ts";
+import {errVal} from "./util.ts";
 
 export const baseSystem: System = System.create({
-  managerShare: {
-	user: "manager",
-	share: 0.09,
-  },
-  charityShare: {
-	user: "home",
-	share: 0.01,
-  },
+  // managerShare: {
+  // user: "manager",
+  // share: 0.09,
+  // },
+  // charityShare: {
+  // user: "home",
+  // share: 0.01,
+  // },
 });
 
-namespace HossainCo {
+export namespace HossainCo {
   export const COMPANY = Company.create({
 	id: 'hossainco',
 	title: 'HossainCo',
@@ -80,7 +80,7 @@ namespace HossainCo {
   }, undefined, baseSystem);
 }
 
-namespace Hamyar {
+export namespace Hamyar {
   export const COMPANY = Company.create({
 	id: 'hamyar',
 	title: 'Hamyar Miner',
@@ -119,28 +119,14 @@ namespace Hamyar {
   }, BASE_PRODUCT_6M);
 
   export const SOURCE1 = Source.create({
-	id: 'hamyar_s1',
+	id: 'hamyar_src1',
 	company: COMPANY,
 	reinvest: {product: prd_1th_6m_reinvest, minInterval: 2, minCount: 5},
 	login: 'h.kh',
   }, undefined, baseSystem);
-
-  export const SOURCE2 = Source.create({
-	id: 'hamyar_src2',
-	company: COMPANY,
-	reinvest: {product: prd_1th_6m_reinvest, minInterval: 3, minCount: 5},
-	login: 'hco',
-  }, undefined, baseSystem);
-
-  export const SOURCE3 = Source.create({
-	id: 'hamyar_src3',
-	company: COMPANY,
-	reinvest: {product: prd_1th_6m_reinvest, minInterval: 3, minCount: 5},
-	login: 'h.kh.74',
-  }, undefined, baseSystem);
 }
 
-namespace Pishtaz {
+export namespace Pishtaz {
   export const COMPANY = Company.create({
 	id: 'pishtaz',
 	title: 'Pishtaz Miner',
@@ -173,7 +159,7 @@ namespace Pishtaz {
   }, undefined, baseSystem);
 }
 
-namespace HashShiny {
+export namespace HashShiny {
   const HASHSHINY = Company.create({
 	id: 'hashshiny',
 	title: 'Hash Shiny',
@@ -219,7 +205,7 @@ namespace HashShiny {
   }, undefined, baseSystem);
 }
 
-namespace Hashing24 {
+export namespace Hashing24 {
   export const COMPANY = Company.create({
 	id: 'hashing24',
 	title: 'Hash Shiny',
@@ -246,7 +232,7 @@ namespace Hashing24 {
   }, undefined, baseSystem);
 }
 
-namespace HashFlare {
+export namespace HashFlare {
   export const COMAPNY = Company.create({
 	id: 'hashflare',
 	title: 'HashFlare',
@@ -255,41 +241,38 @@ namespace HashFlare {
 
 }
 
-namespace users {
-  const BASE_USER: User = User.create({
+export namespace users {
+  export const BASE_USER: User = User.create({
 	id: "base",
 	title: "Base User",
 	savePolicy: [{
+	  end: 30 * 3,
+	  rate: 0.8,
+	}, {
 	  start: 30 * 12,
 	  rate: 0.40,
 	}, {
-	  start: 30 * 4,
+	  start: 30 * 3,
 	  rate: 0.30,
-	}, {
-	  start: 30 * 2,
-	  rate: 0.30,
-	}/*, {
-	start: 30 * 1,
-	rate: 0.10,
-  }*/],
+	}],
   });
 
   export const manager = User.create({
 	id: "manager",
 	title: "System Manager",
-	savePolicy: {
-	  start: 30 * 6,
-	  rate: 0.2,
-	},
+	// savePolicy: {
+	//   start: 30 * 6,
+	//   rate: 0.2,
+	// },
   }, BASE_USER, baseSystem);
 
   export const charity = User.create({
 	id: "charity",
 	title: "System Charity Bank",
-	savePolicy: {
-	  start: 30 * 3,
-	  rate: 0.5,
-	},
+	// savePolicy: {
+	//   start: 30 * 3,
+	//   rate: 0.5,
+	// },
   }, BASE_USER, baseSystem);
 
   export const hossain = User.create({
@@ -337,59 +320,75 @@ namespace users {
 }
 
 namespace workers {
+  const system = baseSystem;
+  const source = Pishtaz.SOURCE1;
+
   Worker.createWorkerFromProduct({
-	source: Pishtaz.SOURCE1,
+	source,
 	product: Pishtaz.prd_4th_12m_old,
 	owners: {[users.hossain.id]: 1},
 	startTime: 0,
 	count: 1,
 	purchase: {factor: "XxXxX", date: "10/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
+	product: Pishtaz.prd_1th_12m_reinvest,
+	owners: users.hossain.id,
+	startTime: 32,
+	count: 1,
+	purchase: {factor: "XxX", date: "12/01/1400", type: "reinvest"},
+  }, system);
+}
+namespace workers {
+  const system = baseSystem;
+  const source = Hamyar.SOURCE1;
+
+  Worker.createWorkerFromProduct({
+	source,
 	product: Hamyar.prd_5th_6m_v1,
 	owners: {[users.hossain.id]: 1},
 	startTime: 0,
 	count: 1,
 	purchase: {factor: "151993", date: "10/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_5th_6m_v1,
 	owners: {[users.ali.id]: 1},
 	startTime: 0,
 	count: 2,
 	purchase: {factor: "152107", date: "10/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_5th_6m_v1,
 	owners: {[users.hossain.id]: 0.75, [users.mitra.id]: 0.25},
 	startTime: 1,
 	count: 4,
 	purchase: {factor: "152326", date: "11/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_5th_6m_v1,
 	owners: {[users.sekeZ.id]: 1},
 	startTime: 11,
 	count: 10,
 	purchase: {factor: "154382", date: "21/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {[users.mitra.id]: 5 / 35, [users.fateme.id]: 30 / 35},
 	startTime: 13,
 	count: 5,
 	purchase: {factor: "154849", date: "23/12/1399", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
 	source: Hamyar.SOURCE1,
@@ -398,10 +397,10 @@ namespace workers {
 	startTime: 16,
 	count: 1,
 	purchase: {factor: "155951", date: "26/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 0.965 / 5,
@@ -414,10 +413,10 @@ namespace workers {
 	startTime: 17,
 	count: 5,
 	purchase: {factor: "156208", date: "27/12/1399", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_13th6_6m,
 	owners: {
 	  [users.hossain.id]: 9.600 / 27.2,
@@ -428,10 +427,10 @@ namespace workers {
 	startTime: 17,
 	count: 2,
 	purchase: {factor: "156235", date: "27/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_13th6_6m,
 	owners: {
 	  [users.hossain.id]: 0.266 / 13.6,
@@ -440,10 +439,10 @@ namespace workers {
 	startTime: 19,
 	count: 1,
 	purchase: {factor: "156450", date: "29/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_13th6_6m,
 	owners: {
 	  [users.hossain.id]: 1,
@@ -451,10 +450,10 @@ namespace workers {
 	startTime: 19,
 	count: 1,
 	purchase: {factor: "156451", date: "29/12/1399", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.635 / 6,
@@ -469,19 +468,19 @@ namespace workers {
 	startTime: 20,
 	count: 6,
 	purchase: {factor: "156643", date: "27/12/1399", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_13th6_6m,
 	owners: {[users.ali.id]: 1},
 	startTime: 22,
 	count: 1,
 	purchase: {factor: "156848", date: "02/01/1400", type: "buy"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.766 / 7,
@@ -496,10 +495,10 @@ namespace workers {
 	startTime: 24,
 	count: 7,
 	purchase: {factor: "157259", date: "04/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.261 / 5,
@@ -514,10 +513,10 @@ namespace workers {
 	startTime: 26,
 	count: 5,
 	purchase: {factor: "157500", date: "06/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.261 / 5,
@@ -532,10 +531,10 @@ namespace workers {
 	startTime: 26,
 	count: 5 - 5,
 	purchase: {factor: "157501", date: "06/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.513 / 6,
@@ -550,10 +549,10 @@ namespace workers {
 	startTime: 28,
 	count: 6,
 	purchase: {factor: "158123", date: "08/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.513 / 6,
@@ -568,10 +567,10 @@ namespace workers {
 	startTime: 28,
 	count: 6,
 	purchase: {factor: "158124", date: "08/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
   Worker.createWorkerFromProduct({
-	source: Hamyar.SOURCE1,
+	source,
 	product: Hamyar.prd_1th_6m_reinvest,
 	owners: {
 	  [users.hossain.id]: 1.513 / 6,
@@ -586,25 +585,109 @@ namespace workers {
 	startTime: 28,
 	count: 6 - 6,
 	purchase: {factor: "158125", date: "08/01/1400", type: "reinvest"},
-  }, baseSystem);
+  }, system);
 
-  const liveWallet = Wallet.find({source: Hamyar.SOURCE1, coin: BTC, type: 'live'}, baseSystem)!;
-  liveWallet.value = 0;
-  liveWallet.lastUpdate = 29;
+  Worker.createWorkerFromProduct({
+	source,
+	product: Hamyar.prd_1th_6m_reinvest,
+	owners: {
+	  [users.hossain.id]: 1.765 / 7,
+	  [users.mitra.id]: 1.044 / 7,
+	  [users.ali.id]: 0.938 / 7,
+	  [users.saeed.id]: 0.722 / 7,
+	  [users.zahra.id]: 0.318 / 7,
+	  [users.fateme.id]: 0.180 / 7,
+	  [users.home.id]: 0.000 / 7,
+	  [users.sekeZ.id]: 2.033 / 7,
+	},
+	startTime: 32,
+	count: 7,
+	purchase: {factor: "159368", date: "12/01/1400", type: "reinvest"},
+  }, system);
+}
+namespace workers {
+  const system = baseSystem;
+
+  const source = Source.create({
+	id: 'ham_src_2',
+	title: 'HAM_SRC_2',
+	reinvest: {product: Hamyar.prd_1th_6m_reinvest, minCount: 5, minInterval: -1},
+	login: 'accHossainSec',
+  }, Hamyar.SOURCE1, system);
+
+  const baseUser = User.create({
+	id: 'hos', title: 'HOS',
+	savePolicy: [{start: 30 * 18, rate: 0.5}, {start: 30 * 12, rate: 0.4}, {start: 30 * 6, rate: 0.3}],
+  });
+  const hos = User.create({id: 'hos', title: 'HOS'}, baseUser, system);
+  const mit = User.create({id: 'mit', title: 'MIT'}, baseUser, system);
+
+  // TODO: test
+  system.workers = [];
+
+  Worker.reinvestWorkerFromProduct({
+	source,
+	product: Hamyar.prd_1th_6m_reinvest,
+	owners: hos,
+	startTime: 32,
+	count: 89,
+	purchase: {factor: "159366", date: "12/01/1400"},
+  }, system);
+
+  Worker.reinvestWorkerFromProduct({
+	source,
+	product: Hamyar.prd_1th_6m_reinvest,
+	owners: mit,
+	startTime: 32,
+	count: 10,
+	purchase: {factor: "159464", date: "12/01/1400"},
+  }, system);
+}
+
+namespace workers {
+  const system = baseSystem;
+
+  const liveWallet = Wallet.find({source: Hamyar.SOURCE1, coin: BTC, type: 'live'}, system)!;
   // in day 29 - account reach 0 from neg value ! so it's a good start point
+  // in day 32 - account reach 0 from neg value ! so it's a good start point
+  liveWallet.value = 0;
+  liveWallet.lastUpdate = 32;
+  system.currentTime = 32;
 
-  baseSystem.currentTime = 30;
+  // init system
+  system.startDate = system.startDate || system.workers.minBy((it: Worker) => it.startTime)?.purchase.date || '???';
+  system.currentTime = system.currentTime || system.workers.maxBy((it: Worker) => it.startTime)?.startTime || 0;
 }
 
 namespace test {
   const system = baseSystem;
 
-  system.workers = [];
+  // const shares = Source.getOwnerShares(system, Hamyar.SOURCE1);
+  // const powers = Object.entries(shares).map(([u, r]) => [u, toPrec(r, 4), toPrec(r * 100, 4)]);
+  //
+  // const w = Worker.reinvestWorkerFromProduct({
+  // source: Hamyar.SOURCE1,
+  // product: Hamyar.prd_1th_6m_reinvest,
+  // startTime: system.currentTime,
+  // count: 100,
+  // }, system);
+  //
+  // console.log(shares, powers, w);
+  // alert();
+}
+namespace test {
+  const system = System.create();// system;
 
+  system.workers = [];
+  system.currentTime = 0;
+
+  const usrs = ['hos'/*, 'mit', 'ali', 'sae', 'zah', 'fat'*/];
   const baseCount = 20;
   const reInvestProduct = Hamyar.prd_1th_6m_reinvest;
+  //const prds: (Product | string) | (([Product | string, number?] | (Product | string))[]) =
+  //[[Hamyar.prd_1th_6m_reinvest, 45], [Hamyar.prd_1th_12m_reinvest, 15]];
   const prds: (Product | string) | (([Product | string, number?] | (Product | string))[]) =
-	[[Hamyar.prd_1th_6m_reinvest, 45], [Hamyar.prd_1th_12m_reinvest, 15]];
+	[[Hamyar.prd_1th_6m_reinvest, 100]];
 
   let products: [Product, number][] = (
 	(Array.isArray(prds) ? prds : [prds])
@@ -612,19 +695,20 @@ namespace test {
 	  .map(([prd, count]) => [typeof prd != "string" ? prd : Product.findById(prd, system) || errVal("product not found"), count || baseCount])
   ) as any;
 
-  ['hos', 'mit', 'ali', 'sae', 'zah', 'fat'].forEach(id => {
+  usrs.forEach(id => {
 	const source = Source.create({
-	  id: 'src_' + id,
+	  id: 'ham_src3_' + id,
 	  reinvest: {product: reInvestProduct},
-	}, Hamyar.SOURCE2, system);
+	}, Hamyar.SOURCE1, system);
 	const user = User.create({
 	  id: 'usr_' + id, title: 'usr_' + id,
 	  managerShare: NO_SHARE, charityShare: NO_SHARE,
 	  savePolicy: [
-		{start: 30 * 25, rate: 0.55},
-		{start: 30 * 19, rate: 0.50},
-		{start: 30 * 13, rate: 0.40},
-		{start: 30 * 7, rate: 0.30},
+		// {start: 30 + 30 * 30, rate: 0.60},
+		{start: 30 + 30 * 24, rate: 0.55},
+		{start: 30 + 30 * 18, rate: 0.50},
+		{start: 30 + 30 * 12, rate: 0.40},
+		{start: 30 + 30 * 7, rate: 0.30},
 	  ],
 	}, undefined, system);
 
@@ -632,7 +716,7 @@ namespace test {
 	  const coin = product.mineCoin;
 	  const worker = Worker.createWorkerFromProduct({
 		source, product, count,
-		owners: user, startTime: 0,
+		owners: user, startTime: system.currentTime,
 	  }, system);
 	  const liveWallet = Wallet.find({source, coin, type: 'live'}, system)!;
 	  const workingWallet = Wallet.find({source, coin, user, type: 'working'}, system)!;
@@ -642,9 +726,10 @@ namespace test {
 	});
   });
 }
+namespace test {
+  const system = baseSystem;
 
-//region [Test]
-// baseSystem.workers = [];
+// system.workers = [];
 
 // const vam = User.create({
 //   id: 'vam',
@@ -653,7 +738,7 @@ namespace test {
 //   //savePolicy: [{rate: 1, end: 30 * 0.9999}, {rate: 0, end: 30 * 4}, {rate: 0.30, end: 30 * 12}, {rate: 0.5}],
 //   savePolicy: [...[1, 2, 3, 4].map(it => ({rate: 1 - (it - 1) / 5, end: 30 * it})), {rate: 0.3}],
 //   // savePolicy: [{rate: 1}],
-// }, undefined, baseSystem);
+// }, undefined, system);
 // Worker.buyWorkerFromProduct({
 //   source: HOSSAINCO_SRC1,
 //   product: hossainco_rtx570_8gb_24m,
@@ -661,7 +746,7 @@ namespace test {
 //   money: 100,
 //   moneyCoin: M_IRT,
 //   start_day: 30,
-// }, baseSystem);
+// }, system);
 
 // Worker.newWorkerFromProduct({
 //   source: HOSSAINCO_SRC1,
@@ -669,7 +754,7 @@ namespace test {
 //   owners: {[vam]: 1},
 //   count: 13,
 //   start_day: 30,
-// }, baseSystem);
+// }, system);
 
 // const VAM = 60;
 // const vam = User.create({
@@ -678,8 +763,8 @@ namespace test {
 //   charityShare: NO_SHARE,
 //   savePolicy: [{rate: 1, end: 30 * 0.9999}, {rate: 0, end: 30 * 4}, {rate: 0.30, end: 30 * 12}, {rate: 0.5}],
 // });
-//User.create({id: 'vam.hos'}, vam, baseSystem);
-// User.create({id: 'vam.sae'}, vam, baseSystem);
+//User.create({id: 'vam.hos'}, vam, system);
+// User.create({id: 'vam.sae'}, vam, system);
 // Worker.buyWorkerFromProduct({
 //   source: PISHTAZ_SRC1,
 //   product: pishtaz_1th_12m_reinvest,
@@ -687,7 +772,7 @@ namespace test {
 //   start_day: 30,
 //   money: VAM / 2,
 //   moneyCoin: M_IRT,
-// }, baseSystem);
+// }, system);
 // Worker.buyWorkerFromProduct({
 //   source: Hamyar.SOURCE1,
 //   product: hamyar_13th6_6m,
@@ -695,7 +780,7 @@ namespace test {
 //   start_day: 30,
 //   money: VAM / 2,
 //   moneyCoin: M_IRT,
-// }, baseSystem);
+// }, system);
 //
 // Worker.buyWorkerFromProduct({
 //   source: HASHSHINY_SRC1_BTC,
@@ -704,94 +789,12 @@ namespace test {
 //   start_day: 0,
 //   money: 100,
 //   moneyCoin: mIRT,
-// }, baseSystem);
+// }, system);
 // Worker.newWorkerFromProduct({
 //   source: HASHSHINY_S1,
 //   product: hashshiny_btc_10gh,
 //   owners: {"vam": 1},
 //   count: 500,
 //   start_day: 5 - hashshiny_btc_10gh.life,
-// }, baseSystem);
-//endregion
-
-//region [Init]
-baseSystem.startDate = baseSystem.startDate || baseSystem.workers.minBy(it => it.startTime)?.purchase.date || '???';
-baseSystem.currentTime = baseSystem.currentTime || baseSystem.workers.maxBy(it => it.startTime)?.startTime || 0;
-//endregion
-
-
-export const showTestPage = async () => await askMenu("test update income", [
-  {title: "exit TEST page"},
-], async () => {
-  const system = JSON.parse(JSON.stringify(baseSystem));
-
-  // @ts-ignore
-  const curDay = parseInt(prompt("enter new hamyar_s1 live day:", system.currentTime + 1));
-  // @ts-ignore
-  const curVal = parseFloat(prompt("enter new hamyar_s1 live value:", 0));
-  const liveWallet = Wallet.find({source: Hamyar.SOURCE1, coin: BTC, type: "live"}, system)!;
-
-  console.log("start", {liveWallet});
-  console.table([
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'working'
-	}, system).sort((a, b) => a.value - b.value),
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'saving'
-	}, system).sort((a, b) => a.value - b.value),
-  ]);
-  // @ts-ignore
-  alert("press");
-
-  Routines.updateIncome(system, liveWallet, curDay, curVal);
-  console.log("after update", {liveWallet});
-  console.table([
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'working'
-	}, system).sort((a, b) => a.value - b.value),
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'saving'
-	}, system).sort((a, b) => a.value - b.value),
-  ]);
-  // @ts-ignore
-  alert("press");
-
-  console.log("after split", {liveWallet});
-  console.table([
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'working'
-	}, system).sort((a, b) => a.value - b.value),
-	...Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'saving'
-	}, system).sort((a, b) => a.value - b.value),
-  ]);
-  console.log(
-	Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'working'
-	}, system).sumBy(0, it => it.value),
-	Wallet.findAll({
-	  source: Hamyar.SOURCE1,
-	  coin: BTC,
-	  type: 'saving'
-	}, system).sumBy(0, it => it.value),
-  );
-  // @ts-ignore
-  alert("press");
-
-}, {
-  defaultChoice: 0,
-});
+// }, system);
+}

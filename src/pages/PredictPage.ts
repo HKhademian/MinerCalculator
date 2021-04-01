@@ -89,23 +89,6 @@ export const showPredict = async (sourceSystem?: System) => {
 	  'working': all_report.sumBy(0, it => it.working),
 	};
 
-	const Pdie = system.workers.filter(it =>
-	  it.endTime >= i * period && it.endTime < (i + 1) * period
-	).sumBy(0, it => it.power);
-	const Pbuy = system.workers.filter(it =>
-	  it.startTime >= i * period && it.startTime < (i + 1) * period
-	).sumBy(0, it => it.power);
-	const Pchg = Pbuy - Pdie;
-
-	periodPower.push({
-	  i, day: system.currentTime,
-	  saving: Coin.toString(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
-	  P: power, Pchg, /*pow1d: power_1d,
-	  P1m: power_1m, P3m: power_3m,*/ P6m: power_6m,
-	  P1y: power_1y, P2y: power_2y, P3y: power_3y,
-	  /*Pbuy, Pdie,*/
-	});
-
 	const change: Report | undefined = prev && {
 	  'user': '--CHG--',
 	  'power': sum.power - prev.power,
@@ -150,11 +133,35 @@ export const showPredict = async (sourceSystem?: System) => {
 	  print('^ User States ^', {sysDay: system.currentTime, prdDay, prdWeek, prdMonth, prdYear});
 	}
 
+	Routines.predict(system, period, 0/*-startPredictDay*/);
+
+	const Pdie = system.workers.filter(it =>
+	  (it.endTime >= i * period) && (it.endTime < (i + 1) * period)
+	).sumBy(0, it => it.power);
+	const Pbuy = system.workers.filter(it =>
+	  (it.startTime >= i * period) && (it.startTime < (i + 1) * period)
+	).sumBy(0, it => it.power);
+	const Pchg = Pbuy - Pdie;
+
+	periodPower.push({
+	  /* i, */
+	  Y: toPrec(system.currentTime / (30 * 12), 1),
+	  M: toPrec(system.currentTime / 30, 1),
+	  D: system.currentTime,
+	  saving: Coin.toString(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
+	  P: power,
+	  Pchg, /*pow1d: power_1d,
+	  P1m: power_1m, P3m: power_3m,*/
+	  P6m: power_6m,
+	  P1y: power_1y,
+	  P2y: power_2y,
+	  P3y: power_3y,
+	  /* Pbuy, Pdie, */
+	});
+
 	if (lastPeriod) break;
 	if (power <= 0) break;
 	if (!silent && prompt("predict next period? (Y,n)") == 'n') break;
-
-	Routines.predict(system, period, 0/*-startPredictDay*/);
   }
 
   console.table(periodPower);

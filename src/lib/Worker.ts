@@ -4,6 +4,7 @@ import {Product} from "./Product.ts";
 import {Company, Source} from "./Source.ts";
 import {System} from "./System.ts";
 import {User} from "./User.ts";
+import {Wallet} from "./Wallet.ts";
 
 export namespace Worker {
   export type Owner = { [userId: string]: number };
@@ -135,20 +136,87 @@ export namespace Worker {
   }
 
   export const buyWorkerFromProduct = (
-	{source, product, owners, startDay = 0, money, moneyCoin}: {
+	{source, product, owners, startDay = 0, money, moneyCoin, purchase}: {
 	  source: string | Source;
 	  product: string | Product;
 	  owners: OwnerData;
-	  startDay?: number | undefined;
+	  startDay?: number;
 	  money: number;
-	  moneyCoin: Coin | string | undefined;
+	  moneyCoin?: Coin | string;
+	  purchase?: DeepPartial<PurchaseDetailData>;
 	},
 	system?: System,
   ): Worker => {
 	product = Product.findById(product, system!) || errVal("no product found");
 	const moneyEq = exchange(money, moneyCoin || product.priceCoin, product.priceCoin, system);
 	const count = Math.floor(moneyEq / product.price);
-	return createWorkerFromProduct({source, product, owners, startTime: startDay, count}, system);
+	return createWorkerFromProduct({source, product, owners, startTime: startDay, count, purchase}, system);
+  };
+
+
+  export const reinvestWorkerFromProduct = (
+	{
+	  source: reqSource,
+	  product: reqProduct,
+	  owners: reqOwners,
+	  count: reqCount,
+	  money: reqMoney,
+	  startTime,
+	  moneyCoin,
+	  purchase,
+	}: {
+	  source: string | Source;
+	  product: string | Product;
+	  owners?: OwnerData;
+	  startTime?: number;
+	  count?: number;
+	  money?: number;
+	  moneyCoin?: Coin | string;
+	  purchase?: DeepPartial<PurchaseDetailData>;
+	},
+	system: System,
+  ): Worker => {
+	startTime = startTime || system.currentTime;
+	const source = typeof reqSource == "string" ? reqSource : reqSource.id;
+	const owners = reqOwners || Source.getOwnerShares(system, source, startTime);
+
+	const product = Product.findById(reqProduct, system) || errVal("no product found");
+
+	const count = reqCount || (reqMoney && Math.floor(exchange(reqMoney, moneyCoin || product.priceCoin, product.priceCoin, system) / product.price)) || errVal("must provide count or money");
+
+	const worker = createWorkerFromProduct({
+	  product, startTime, count, owners, source, purchase: {
+		type: purchase?.type || 'reinvest',
+		factor: purchase?.factor,
+		date: purchase?.date,
+	  },
+	}, system);
+
+	const coin = worker.coin;
+	const cost = exchange(count * product.price, product.priceCoin, product.mineCoin, system);
+
+	const liveWallet = Wallet.find({source, coin, type: 'live'}, system)!;
+	liveWallet.value -= cost;
+	//TODO: add transaction data
+
+	Object.entries(worker.owners).forEach(([ownerId, ownerShare]) => {
+	  const shareCost = ownerShare * cost;
+	  const workingWallet = Wallet.find({source, coin, user: ownerId, type: 'working'}, system)!;
+	  const savingWallet = Wallet.find({source, coin, user: ownerId, type: 'saving'}, system)!;
+
+	  workingWallet.value -= shareCost;
+	  if (workingWallet.value < 0) {
+		savingWallet.value -= -workingWallet.value;
+		workingWallet.value = 0;
+	  }
+	  if (savingWallet.value < 0) {
+		workingWallet.value = savingWallet.value;
+		savingWallet.value = 0;
+	  }
+	  //TODO: add transaction data
+	});
+
+	return worker;
   };
 
 

@@ -7,6 +7,7 @@ export namespace Coin {
 	title: string;
 	sign: string;
 	value: number;
+	prec: number;
 	desc: string;
 	powerProfit: number;
 	powerUnit: string;
@@ -26,6 +27,7 @@ export namespace Coin {
 	  title: data?.title || base?.title || "???",
 	  sign: data?.sign || base?.sign || "???",
 	  value: data?.value || base?.value || 0.0,
+	  prec: data?.prec || base?.prec || 0.0,
 	  desc: data?.desc || base?.desc || undefined,
 	  powerProfit: data?.powerProfit || base?.powerProfit || 0.0,
 	  powerUnit: data?.powerUnit || base?.powerUnit || '???',
@@ -34,12 +36,14 @@ export namespace Coin {
 	return coin;
   };
 
-  export const valueStr = (value: number, valueCoin: Coin | string, prec: number = 3, system?: System): string => {
+  export const valueStr = (value: number, valueCoin: Coin | string, prec: number = -1, system?: System): string => {
 	const coin = findById(valueCoin, system!)!;
-	return `${toPrec(value, prec)} ${coin.sign}`;
+	prec = prec >= 0 ? prec : (coin.prec || 0);
+	// return `${toPrec(value, prec)} ${coin.sign}`;
+	return `${toPrec(value, prec).toFixed(prec)} ${coin.sign}`;
   }
 
-  export const toString = (value: number, from: Coin | string, targets: (Coin | string) | (Coin | string)[], prec: number = 3, system?: System): string => {
+  export const toString = (value: number, from: Coin | string, targets: (Coin | string) | (Coin | string)[], prec: number = -1, system?: System): string => {
 	const fromCoin: Coin = findById(from, system!)!;
 	const targetCoins: Coin[] = (Array.isArray(targets) ? targets : [targets]).map(it => findById(it, system!)!);
 	const valuesString = targetCoins.map(coin => valueStr(exchange(value, fromCoin, coin, system), coin, prec, system!));
@@ -57,6 +61,7 @@ export namespace Coin {
 	title: "US Dollar",
 	sign: "$",
 	value: 52_507, // https://arzdigital.com/coins/bitcoin/
+	prec: 2,
 	desc: "",
   });
 
@@ -65,6 +70,7 @@ export namespace Coin {
 	title: "1m IR Toman",
 	sign: "╦",
 	value: 1_445.794_838, // https://arzdigital.com/coins/bitcoin/
+	prec: 3,
 	desc: "",
   });
 
@@ -73,6 +79,7 @@ export namespace Coin {
 	title: "Bitcoin",
 	sign: "Ƀ",
 	value: 1.0,
+	prec: 5,
 	desc: "",
 	powerProfit: 0.00000583, // https://www.cryptocompare.com/mining/calculator/btc?HashingPower=1&HashingUnit=TH%2Fs&PowerConsumption=0&CostPerkWh=0&MiningPoolFee=1
 	powerUnit: "TH/s",
@@ -83,6 +90,7 @@ export namespace Coin {
 	title: "ETH",
 	sign: "Ξ",
 	value: 33.15, // https://arzdigital.com/coins/calculator/?convert=1-BTC-to-ETH
+	prec: 3,
 	desc: "",
 	powerProfit: 0.00005858, // https://www.cryptocompare.com/mining/calculator/eth?HashingPower=1&HashingUnit=MH%2Fs&PowerConsumption=0&CostPerkWh=0&MiningPoolFee=1
 	powerUnit: "MH/s",
@@ -93,6 +101,7 @@ export namespace Coin {
 	title: "LiteCoin",
 	sign: "Ł",
 	value: 297.05, // https://arzdigital.com/coins/calculator/?convert=1-BTC-to-LTC
+	prec: 3,
 	desc: "",
 	powerUnit: "GH/s",
 	powerProfit: 0.02431, // https://www.cryptocompare.com/mining/calculator/ltc?HashingPower=1&HashingUnit=GH%2Fs&PowerConsumption=0&CostPerkWh=0&MiningPoolFee=1
@@ -103,6 +112,7 @@ export namespace Coin {
 	title: "Cardano(ADA)",
 	sign: "ADA",
 	value: 47_816.25, // https://arzdigital.com/coins/calculator/?convert=1-BTC-to-ADA
+	prec: 2,
 	desc: "",
   });
 
@@ -111,6 +121,7 @@ export namespace Coin {
 	title: "DOGE",
 	sign: "DOGE",
 	value: 52_644.01, // https://arzdigital.com/coins/calculator/?convert=1-BTC-to-DOGE
+	prec: 1,
 	desc: "",
   });
 
@@ -119,6 +130,7 @@ export namespace Coin {
 	title: "DASH",
 	sign: "DASH",
 	value: 277.97, // https://arzdigital.com/coins/calculator/?convert=1-BTC-to-DASH
+	prec: 2,
 	desc: "",
 	powerProfit: 0.09940, // https://www.cryptocompare.com/mining/calculator/dash?HashingPower=1&HashingUnit=TH%2Fs&PowerConsumption=0&CostPerkWh=0&MiningPoolFee=1
 	powerUnit: "TH/s",

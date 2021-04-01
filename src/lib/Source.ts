@@ -1,6 +1,7 @@
 import {System} from "./System.ts";
 import {DeepPartial, errVal} from "../util.ts";
 import {Product} from "./Product.ts";
+import {Worker} from "./Worker.ts";
 
 
 export namespace Company {
@@ -88,6 +89,28 @@ export namespace Source {
 	system?.sources.push(item);
 	return item;
   }
+
+  export const getOwnerPowers = (system: System, source: string | Source, time?: number): Worker.Owner => {
+	source = typeof source == "string" ? source : source.id;
+	time = time != undefined ? time : system.currentTime;
+	const workers = system.workers.filter(it => (it.startTime <= time!) && (it.endTime >= time!) && it.source == source);
+	const powers = workers.reduce((prev, w) => {
+	  Object.entries(w.owners).forEach(([u, r]) => {
+		prev[u] = (prev[u] || 0) + (r * w.power);
+	  });
+	  return prev;
+	}, {} as { [_: string]: number });
+	return powers;
+  }
+
+  export const getOwnerShares = (system: System, source: string | Source, time?: number): Worker.Owner => {
+	const powers = getOwnerPowers(system, source, time);
+	const sumP = Object.values(powers).sumBy();
+	return Object.fromEntries(
+	  Object.entries(powers).map(([u, p]) => [u, p / sumP])
+	);
+  }
+
 }
 
 export type     Source = Source.Source;

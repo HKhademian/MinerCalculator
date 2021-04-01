@@ -4,7 +4,7 @@ import {showPredict} from "./PredictPage.ts";
 import {showSavePage, showSystemPage} from "./SystemPage.ts";
 import {showUserPage} from "./UserPage.ts";
 import {showWorkerPage} from "./WorkerPage.ts";
-import {showTestPage} from "../baseSystem.ts";
+import {showConsole, showTestPage} from "../lib/Console.ts";
 
 export const showMainPage = async () => await askMenu(
   "Main Menu", [
@@ -16,7 +16,7 @@ export const showMainPage = async () => await askMenu(
 	{title: "Predict System", action: () => showPredict()},
 	{},
 	{title: "test", action: () => showTestPage()},
-	{},
+	{title: "Show Console", action: () => showConsole()},
 	{title: "Save Changes", action: () => showSavePage()},
   ],
   undefined, {

@@ -1,5 +1,6 @@
 import {exists, askMenu} from "../util.ts";
 import {USD, M_IRT, BTC, ETH, LTC, ADA, DOGE, DASH} from "../lib/Coin.ts";
+import * as path from "https://deno.land/std/path/mod.ts";
 
 const RATES_FILE = "./data/.rates.json";
 const RATES_URL = "https://core.jeeb.io/api/v3/markets/rates";
@@ -44,6 +45,7 @@ export const calculateRates = async ({forceRemote, log}: { forceRemote?: boolean
   }
 
   if (forceRemote || !rates || rates.length <= 0 || !valid) {
+	await Deno.mkdir(path.parse(RATES_FILE).dir, {recursive: true});
 	rates = (await (await fetch(RATES_URL)).json())?.result;
 	await Deno.writeTextFile(RATES_FILE, JSON.stringify({time: new Date().getTime(), result: rates}));
 	console.info("load rates from remote source");
