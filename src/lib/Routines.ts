@@ -59,7 +59,7 @@ export namespace Routines {
 		if ((system.currentTime - lastBuy) < source.reinvest.minInterval) return;
 
 		const workingWallets = Wallet.findAll({source, coin, type: 'working'}, system);
-		const workingValue = workingWallets.sumBy(0, it => it.value);
+		const workingValue = workingWallets.sumBy(it => it.value);
 
 		const productPrice = exchange(product.price, product.priceCoin, coin, system);
 		const new_miner_count = Math.floor(workingValue / productPrice);
@@ -123,7 +123,7 @@ export namespace Routines {
 		});
 	  });
 	}
-	const sumPower = Object.entries(powers).sumBy(0, ([_, pow]) => pow);
+	const sumPower = Object.values(powers).sumBy();
 	if (sumPower <= 0) return; // TODO: check
 
 	const totalChangeValue = curValue - prevValue;
@@ -250,6 +250,6 @@ export namespace Routines {
 
 	const owners = typeof share == "string" ? {share: 1} : share;
 	Object.keys(owners).length > 0 || errVal("please specify user share");
-	Object.values(owners).sumBy(0) == 1 || errVal("share sum must be 1");
+	Object.values(owners).sumBy() == 1 || errVal("share sum must be 1");
   }
 }

@@ -38,8 +38,8 @@ export const showPredict = async (sourceSystem?: System) => {
 		price: Coin.valueStr(it.purchase.sumPrice, it.purchase.priceCoin, undefined, system),
 	  }));
 	const count = active_workers.length;
-	const power = toPrec(active_workers.sumBy(0, it => it.power), 0);
-	const power_1d = toPrec(active_workers.sumBy(0, it => it.power * (it.end - system.currentTime)), 0);
+	const power = toPrec(active_workers.sumBy(it => it.power), 0);
+	const power_1d = toPrec(active_workers.sumBy(it => it.power * (it.end - system.currentTime)), 0);
 	const power_1m = toPrec(power_1d / (30 * 1), 0);
 	const power_3m = toPrec(power_1d / (30 * 3), 0);
 	const power_6m = toPrec(power_1d / (30 * 6), 0);
@@ -70,23 +70,23 @@ export const showPredict = async (sourceSystem?: System) => {
 
 	  const working = userWallets
 		.filter(it => it.type == 'working')
-		.sumBy(0, it => exchange(it.value, it.coin, BTC, system));
+		.sumBy(it => exchange(it.value, it.coin, BTC, system));
 
 	  const saving = userWallets
 		.filter(it => it.type == 'saving')
-		.sumBy(0, it => exchange(it.value, it.coin, BTC, system));
+		.sumBy(it => exchange(it.value, it.coin, BTC, system));
 
 	  const power = active_workers
 		.map(it => [it.power, (typeof (it.owners) == 'string' ? it.owners == user.id ? 1 : 0 : it.owners[user.id] || 0)])
-		.sumBy(0, it => it[0] * it[1]);
+		.sumBy(it => it[0] * it[1]);
 
 	  return ({'user': user.title, power, saving, working});
 	});
 	const sum: Report = {
 	  'user': '---SUM---',
-	  'power': all_report.sumBy(0, it => it.power),
-	  'saving': all_report.sumBy(0, it => it.saving),
-	  'working': all_report.sumBy(0, it => it.working),
+	  'power': all_report.sumBy(it => it.power),
+	  'saving': all_report.sumBy(it => it.saving),
+	  'working': all_report.sumBy(it => it.working),
 	};
 
 	const change: Report | undefined = prev && {
@@ -135,13 +135,13 @@ export const showPredict = async (sourceSystem?: System) => {
 
 	Routines.predict(system, period, 0/*-startPredictDay*/);
 
-	const Pdie = system.workers.filter(it =>
-	  (it.endTime >= i * period) && (it.endTime < (i + 1) * period)
-	).sumBy(0, it => it.power);
-	const Pbuy = system.workers.filter(it =>
-	  (it.startTime >= i * period) && (it.startTime < (i + 1) * period)
-	).sumBy(0, it => it.power);
-	const Pchg = Pbuy - Pdie;
+	const Pdie = toPrec(system.workers.filter(it =>
+	  (it.endTime >= (system.currentTime - period)) && (it.endTime < system.currentTime)
+	).sumBy(it => it.power), 0);
+	const Pbuy = toPrec(system.workers.filter(it =>
+	  (it.startTime >= (system.currentTime - period)) && (it.startTime < system.currentTime)
+	).sumBy(it => it.power), 0);
+	const Pchg = toPrec(Pbuy - Pdie, 0);
 
 	periodPower.push({
 	  /* i, */
@@ -156,7 +156,7 @@ export const showPredict = async (sourceSystem?: System) => {
 	  P1y: power_1y,
 	  P2y: power_2y,
 	  P3y: power_3y,
-	  /* Pbuy, Pdie, */
+	  Pbuy, Pdie,
 	});
 
 	if (lastPeriod) break;

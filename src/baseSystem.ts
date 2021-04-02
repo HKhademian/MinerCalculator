@@ -249,10 +249,12 @@ export namespace users {
 	  end: 30 * 3,
 	  rate: 0.8,
 	}, {
+	  end: 30 * 4,
+	  rate: 0.5,
+	}, {
 	  start: 30 * 12,
 	  rate: 0.40,
 	}, {
-	  start: 30 * 3,
 	  rate: 0.30,
 	}],
   });
@@ -622,30 +624,32 @@ namespace workers {
   const hos = User.create({id: 'hos', title: 'HOS'}, baseUser, system);
   const mit = User.create({id: 'mit', title: 'MIT'}, baseUser, system);
 
-  // TODO: test
-  system.workers = [];
-
-  Worker.reinvestWorkerFromProduct({
-	source,
-	product: Hamyar.prd_1th_6m_reinvest,
-	owners: hos,
-	startTime: 32,
-	count: 89,
-	purchase: {factor: "159366", date: "12/01/1400"},
-  }, system);
-
-  Worker.reinvestWorkerFromProduct({
-	source,
-	product: Hamyar.prd_1th_6m_reinvest,
-	owners: mit,
-	startTime: 32,
-	count: 10,
-	purchase: {factor: "159464", date: "12/01/1400"},
-  }, system);
+  // // TODO: test
+  // system.workers = [];
+  //
+  // Worker.reinvestWorkerFromProduct({
+  // source,
+  // product: Hamyar.prd_1th_6m_reinvest,
+  // owners: hos,
+  // startTime: 32,
+  // count: 89,
+  // purchase: {factor: "159366", date: "12/01/1400"},
+  // }, system);
+  //
+  // Worker.reinvestWorkerFromProduct({
+  // source,
+  // product: Hamyar.prd_1th_6m_reinvest,
+  // owners: mit,
+  // startTime: 32,
+  // count: 10,
+  // purchase: {factor: "159464", date: "12/01/1400"},
+  // }, system);
 }
 
 namespace workers {
   const system = baseSystem;
+
+  system.workers = system.workers.filter(it => it.source == Hamyar.SOURCE1.id);
 
   const liveWallet = Wallet.find({source: Hamyar.SOURCE1, coin: BTC, type: 'live'}, system)!;
   // in day 29 - account reach 0 from neg value ! so it's a good start point

@@ -94,12 +94,12 @@ export const showTestPage = async () => await askMenu("test update income", [
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
 	  type: 'working'
-	}, system).sumBy(0, it => it.value),
+	}, system).sumBy(it => it.value),
 	Wallet.findAll({
 	  source: Hamyar.SOURCE1,
 	  coin: BTC,
 	  type: 'saving'
-	}, system).sumBy(0, it => it.value),
+	}, system).sumBy(it => it.value),
   );
   // @ts-ignore
   alert("press");

@@ -6,7 +6,7 @@ declare global {
   function prompt(message?: string, _default?: string): string | null;
 
   interface Array<T> {
-	sumBy(def?: number, trans?: (it: T) => number): number;
+	sumBy(trans?: (it: T) => number): number;
 
 	minBy(trans?: (it: T) => number): T | undefined;
 
@@ -14,8 +14,8 @@ declare global {
   }
 }
 
-Array.prototype.sumBy = function <T>(def: number = 0, trans: (it: T) => number = (it) => (it as any as number)): number {
-  return this.reduce((p, it) => p + trans(it), def);
+Array.prototype.sumBy = function <T>(trans: (it: T) => number = (it) => (it as any as number)): number {
+  return this.reduce((p, it) => p + trans(it), 0);
 };
 
 Array.prototype.minBy = function <T>(trans: (it: T) => number = (it) => (it as any)): T {
