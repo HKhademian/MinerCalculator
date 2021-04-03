@@ -3,7 +3,7 @@ import {Product} from "./Product.ts";
 import {Worker} from "./Worker.ts";
 import {Company, Source} from "./Source.ts";
 import {Wallet} from "./Wallet.ts";
-import {BTC, Coin, DASH, DOGE, ETH, LTC, M_IRT, USD} from "./Coin.ts";
+import {BASE_COINS, BTC, Coin, DASH, DOGE, ETH, LTC, M_IRT, USD} from "./Coin.ts";
 import {DeepPartial, errVal} from "../util.ts";
 
 export namespace ShareSetting {
@@ -52,8 +52,8 @@ export type ShareSettingData = ShareSetting.ShareSettingData;
 export const NO_SHARE = ShareSetting.NO_SHARE;
 
 export namespace System {
-  export const set = (system: System) => (globalThis as any).system = system;
-  export const get = (): System => (globalThis as any).system;
+  export const set = async (system: System) => (globalThis as any).system = system;
+  export const get = async (): Promise<System> => (globalThis as any).system;
 
   export type SystemData = {
 	coins: Coin[];
@@ -78,26 +78,36 @@ export namespace System {
 	charityShare?: ShareSetting;
   }
 
-  export const create = (from?: DeepPartial<SystemData>, base?: System): System => ({
-	coins: from?.coins || base?.coins || Coin.BASE_COINS,
-	companies: from?.companies || base?.companies || [],
-	products: from?.products || base?.products || [],
-	sources: from?.sources || base?.sources || [],
-	users: from?.users || base?.users || [],
-	wallets: from?.wallets || base?.wallets || [],
-	workers: from?.workers || base?.workers || [],
-	startDate: from?.startDate || base?.startDate || new Date().toDateString(),
-	currentTime: from?.currentTime || base?.currentTime || 0,
-	managerShare: ShareSetting.create(from?.managerShare, base?.managerShare) || NO_SHARE,
-	charityShare: ShareSetting.create(from?.charityShare, base?.charityShare) || NO_SHARE,
-  }) as System;
+  export const create = async (
+	from?: DeepPartial<SystemData>,
+	base?: System,
+	init?: (_: System) => any,
+  ): Promise<System> => {
+	const system = ({
+	  coins: from?.coins || base?.coins || BASE_COINS,
+	  companies: from?.companies || base?.companies || [],
+	  products: from?.products || base?.products || [],
+	  sources: from?.sources || base?.sources || [],
+	  users: from?.users || base?.users || [],
+	  wallets: from?.wallets || base?.wallets || [],
+	  workers: from?.workers || base?.workers || [],
+	  startDate: from?.startDate || base?.startDate || new Date().toDateString(),
+	  currentTime: from?.currentTime || base?.currentTime || 0,
+	  managerShare: ShareSetting.create(from?.managerShare, base?.managerShare) || NO_SHARE,
+	  charityShare: ShareSetting.create(from?.charityShare, base?.charityShare) || NO_SHARE,
+	}) as System;
+	if (init) {
+	  let res = init(system);
+	  if (res instanceof Promise) await res;
+	}
+	return system;
+  }
 
   export const save = async (system: System, path: string = "./data/system.json") => {
 	const jsonData = JSON.stringify(system, undefined, 2);
 	await Deno.writeTextFile(path, jsonData);
   };
-
-  System.set(System.create());
 }
 
+await System.set(await System.create());
 export type System = System.System;

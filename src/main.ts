@@ -4,11 +4,11 @@
 import './lib/_global.ts';
 import {System} from "./lib/System.ts";
 import {baseSystem} from './baseSystem.ts';
-import {calculateRates} from './pages/RatePage.ts';
+import {Routines} from "./lib/Routines.ts";
 
-System.set(baseSystem);
+await System.set(baseSystem);
 
-await calculateRates({});
+await Routines.calculateRates({});
 //endregion
 
 //region [Main]

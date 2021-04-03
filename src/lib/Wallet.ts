@@ -24,10 +24,10 @@ export namespace Wallet {
 	user?: string;
   }
 
-  export const findAll = (
+  export const findAll = async (
 	cond: { wallet?: Wallet | string, source?: Source | string, coin?: Coin | string, user?: User | string, type?: WalletType },
 	system: System,
-  ): Wallet[] => {
+  ): Promise<Wallet[]> => {
 	let wallets: Wallet[] = system?.wallets || [];
 	if (cond.wallet) {
 	  let wallet = (typeof (cond.wallet) != "string") ? cond.wallet as Wallet : wallets.find(it => it.id == cond.wallet);
@@ -49,21 +49,20 @@ export namespace Wallet {
 	if (cond.type) {
 	  wallets = wallets.filter(it => it.type == cond.type);
 	}
-
 	return wallets;
   }
 
-  export const find = (
+  export const find = async (
 	cond: { wallet?: Wallet | string, source?: Source | string, coin?: Coin | string, user?: User | string, type?: WalletType },
 	system: System,
 	force: boolean = true,
-  ): Wallet | undefined => {
-	const wallets = findAll(cond, system);
+  ): Promise<Wallet | undefined> => {
+	const wallets = await findAll(cond, system);
 	if (wallets.length > 1) return errVal("more than one wallet found");
 	if (wallets.length == 1) return wallets[0];
 	if (!force) return undefined;
 
-	return create({
+	return await create({
 	  source: cond.source,
 	  coin: cond.coin,
 	  user: cond.user,
@@ -72,7 +71,7 @@ export namespace Wallet {
 	}, undefined, system);
   }
 
-  export const create = (data?: DeepPartial<WalletData>, base?: Wallet, system?: System): Wallet => {
+  export const create = async (data?: DeepPartial<WalletData>, base?: Wallet, system?: System): Promise<Wallet> => {
 	const coin = data?.coin || base?.coin || errVal("no coin provided");
 	const source = data?.source || base?.source || errVal("no source provided");
 	const user = data?.user || base?.user;

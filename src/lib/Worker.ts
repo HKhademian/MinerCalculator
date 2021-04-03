@@ -15,8 +15,8 @@ export namespace Worker {
 	company: string | Company;
 	product: string | Product;
 	factor: string;
-	productCount: number;
-	sumPrice: number;
+	count: number;
+	price: number;
 	priceCoin: string | Coin;
 	date: string;
 	life: number;
@@ -48,10 +48,8 @@ export namespace Worker {
 	purchase: PurchaseDetail;
   }
 
-  export function findById(worker: string | Worker, system: System): Worker | undefined {
-	if (typeof (worker) != "string") return worker as Worker;
-	return system?.workers.find(it => it.id == worker);
-  }
+  export const findById = async (worker: string | Worker, system: System): Promise<Worker | undefined> =>
+	typeof (worker) != "string" ? worker : system?.workers.find(it => it.id == worker);
 
   const newPurchaseDetail = (data?: DeepPartial<PurchaseDetailData>, base?: PurchaseDetail): PurchaseDetail => {
 	const company = data?.company || base?.company || errVal("no company provided");
@@ -62,8 +60,8 @@ export namespace Worker {
 	  company: typeof company == "string" ? company : company.id,
 	  product: typeof product == "string" ? product : product.id,
 	  factor: data?.factor || base?.factor || "UNKNOWN",
-	  productCount: data?.productCount || base?.productCount || 0,
-	  sumPrice: data?.sumPrice || base?.sumPrice || 0,
+	  count: data?.count || base?.count || 0,
+	  price: data?.price || base?.price || 0,
 	  priceCoin: typeof priceCoin == "string" ? priceCoin : priceCoin.id,
 	  date: data?.date || base?.date || 0,
 	  life: data?.life || base?.life || 0,
@@ -78,11 +76,10 @@ export namespace Worker {
   }
 
 
-  export const create = (data?: DeepPartial<WorkerData>, base?: Worker, system?: System): Worker => {
+  export const create = async (data?: DeepPartial<WorkerData>, base?: Worker, system?: System): Promise<Worker> => {
 	const source = data?.source || base?.source || errVal("no source provided");
 	const owners = newOwners(data?.owners, base?.owners) || errVal("no owners provided");
 	const coin = data?.coin || base?.coin || errVal("no coin provided");
-
 	const worker = ({
 	  id: data?.id || generateID(),
 	  source: typeof source == "string" ? source : source.id,
@@ -99,22 +96,30 @@ export namespace Worker {
 	return worker;
   }
 
-  export const createWorkerFromProduct = (
-	{source, product, owners, purchase, startTime = 0, count = 0}: {
+  export const createWorkerFromProduct = async (
+	{source, product, owners, purchase, startTime, count}: {
 	  source: string | Source;
-	  product: string | Product;
+	  product?: string | Product;
 	  owners: OwnerData;
 	  startTime?: number;
 	  count?: number;
 	  purchase?: DeepPartial<PurchaseDetailData>;
 	},
 	system?: System,
-  ): Worker => {
-	product = Product.findById(product, system!) || errVal("no product found");
-	return create({
+  ): Promise<Worker> => {
+	const productCount = (count || purchase?.count || 0);
+
+	product = await Product.findById(product || purchase?.product || "", system!) || errVal("no product found");
+
+	source = await Source.findById(source, system!) || errVal("no source found");
+
+	product.company == source.company || errVal("source/product company not match");
+	!purchase?.company || product.company == purchase.company || errVal("purchase/product company not match");
+
+	return await create({
 	  owners, source,
 	  coin: product.mineCoin,
-	  power: product.minePower * count,
+	  power: product.minePower * productCount,
 	  efficiency: product.mineEfficiency,
 	  startTime: startTime || 0,
 	  endTime: (startTime || 0) + product.life,
@@ -123,9 +128,9 @@ export namespace Worker {
 		product,
 		company: product.company,
 		factor: purchase?.factor || "???",
-		productCount: count,
-		sumPrice: product.price * count,
-		priceCoin: product.priceCoin,
+		count: productCount,
+		price: purchase?.price || product.price * productCount,
+		priceCoin: purchase?.priceCoin || product.priceCoin,
 		date: purchase?.date || "???",
 		life: product.life,
 		type: purchase?.type || 'buy',
@@ -135,7 +140,7 @@ export namespace Worker {
 	}, undefined, system);
   }
 
-  export const buyWorkerFromProduct = (
+  export const buyWorkerFromProduct = async (
 	{source, product, owners, startDay = 0, money, moneyCoin, purchase}: {
 	  source: string | Source;
 	  product: string | Product;
@@ -146,15 +151,15 @@ export namespace Worker {
 	  purchase?: DeepPartial<PurchaseDetailData>;
 	},
 	system?: System,
-  ): Worker => {
-	product = Product.findById(product, system!) || errVal("no product found");
-	const moneyEq = exchange(money, moneyCoin || product.priceCoin, product.priceCoin, system);
+  ): Promise<Worker> => {
+	product = await Product.findById(product, system!) || errVal("no product found");
+	const moneyEq = await exchange(money, moneyCoin || product.priceCoin, product.priceCoin, system);
 	const count = Math.floor(moneyEq / product.price);
-	return createWorkerFromProduct({source, product, owners, startTime: startDay, count, purchase}, system);
+	return await createWorkerFromProduct({source, product, owners, startTime: startDay, count, purchase}, system);
   };
 
 
-  export const reinvestWorkerFromProduct = (
+  export const reinvestWorkerFromProduct = async (
 	{
 	  source: reqSource,
 	  product: reqProduct,
@@ -175,16 +180,16 @@ export namespace Worker {
 	  purchase?: DeepPartial<PurchaseDetailData>;
 	},
 	system: System,
-  ): Worker => {
+  ): Promise<Worker> => {
 	startTime = startTime || system.currentTime;
 	const source = typeof reqSource == "string" ? reqSource : reqSource.id;
-	const owners = reqOwners || Source.getOwnerShares(system, source, startTime);
+	const owners = reqOwners || await Source.getOwnerShares(system, source, startTime);
 
-	const product = Product.findById(reqProduct, system) || errVal("no product found");
+	const product = await Product.findById(reqProduct, system) || errVal("no product found");
 
-	const count = reqCount || (reqMoney && Math.floor(exchange(reqMoney, moneyCoin || product.priceCoin, product.priceCoin, system) / product.price)) || errVal("must provide count or money");
+	const count = reqCount || (reqMoney && Math.floor(await exchange(reqMoney, moneyCoin || product.priceCoin, product.priceCoin, system) / product.price)) || errVal("must provide count or money");
 
-	const worker = createWorkerFromProduct({
+	const worker = await createWorkerFromProduct({
 	  product, startTime, count, owners, source, purchase: {
 		type: purchase?.type || 'reinvest',
 		factor: purchase?.factor,
@@ -193,16 +198,16 @@ export namespace Worker {
 	}, system);
 
 	const coin = worker.coin;
-	const cost = exchange(count * product.price, product.priceCoin, product.mineCoin, system);
+	const cost = await exchange(count * product.price, product.priceCoin, product.mineCoin, system);
 
-	const liveWallet = Wallet.find({source, coin, type: 'live'}, system)!;
+	const liveWallet = (await Wallet.find({source, coin, type: 'live'}, system))!;
 	liveWallet.value -= cost;
 	//TODO: add transaction data
 
-	Object.entries(worker.owners).forEach(([ownerId, ownerShare]) => {
+	Object.entries(worker.owners).forEachAwait(async ([ownerId, ownerShare]) => {
 	  const shareCost = ownerShare * cost;
-	  const workingWallet = Wallet.find({source, coin, user: ownerId, type: 'working'}, system)!;
-	  const savingWallet = Wallet.find({source, coin, user: ownerId, type: 'saving'}, system)!;
+	  const workingWallet = (await Wallet.find({source, coin, user: ownerId, type: 'working'}, system))!;
+	  const savingWallet = (await Wallet.find({source, coin, user: ownerId, type: 'saving'}, system))!;
 
 	  workingWallet.value -= shareCost;
 	  if (workingWallet.value < 0) {

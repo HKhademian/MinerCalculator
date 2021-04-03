@@ -4,38 +4,55 @@ import {Coin, exchange, M_IRT, BTC, USD, ETH} from "../lib/Coin.ts";
 import {print, toPrec} from "../util.ts";
 import {Wallet} from "../lib/Wallet.ts";
 import {Routines} from "../lib/Routines.ts";
+import {Source} from "../lib/Source.ts";
 
 const REPORT_COINS = [M_IRT, USD, BTC,/* ETH */];
 
-export const showPredict = async (sourceSystem?: System) => {
-  const system: System = JSON.parse(JSON.stringify(sourceSystem || System.get()));
-  const startPredictDay = system.currentTime;
-  const periodPower = [];
-
+export const showPredict = async (
+  {
+	system: sourceSystem,
+	periodLen = 0,
+	periods = 0,
+	source,
+  }: {
+	system?: System,
+	periodLen?: number,
+	periods?: number,
+	source?: string | Source,
+  } = {}
+) => {
   console.clear();
 
-  const period = parseInt(eval(prompt("Enter Num of Days a Period:", "30") || "30"));
-  const silentPeriod = parseInt(eval(prompt("Enter Num of Periods (or skip to see in details):") || "")) || 0;
-  const silent = silentPeriod > 0;
-  let prev: Report | undefined = undefined;
+  const system: System = JSON.parse(JSON.stringify(sourceSystem || await System.get()));
+  const startPredictDay = system.currentTime;
 
-  for (let i = 0; ; i++) {
-	const lastPeriod = silent && silentPeriod < system.currentTime / period;
+  source = source ? source : prompt("Enter target source (or skip):") || undefined;
+  periodLen = periodLen > 0 ? periodLen : parseInt(eval(prompt("Enter Num of Days a Period:", "30") || "30"));
+  periods = periods > 0 ? periods : parseInt(eval(prompt("Enter Num of Periods (or skip to see in details):") || "")) || 0;
+  const silent = periods > 0;
 
-	let active_workers = system.workers
+  const limitSource = !source ? undefined : typeof source == "string" ? source : source.id;
+  const periodPower = [];
+
+  for (let i = 0, prev: Report | undefined = undefined; ; i++) {
+	const predictDay = system.currentTime - startPredictDay;
+	const lastPeriod = silent && periods < (predictDay / periodLen);
+
+	let active_workers = await system.workers
 	  .filter((it) => it.startTime <= system.currentTime)
 	  .filter((it) => it.endTime > system.currentTime)
-	  .map((it) => ({
+	  .filter(it => !limitSource || it.source == limitSource)
+	  .mapAwait(async (it) => ({
 		start: it.startTime,
 		end: it.endTime,
 		life: it.endTime - it.startTime,
 		source: it.source,
 		type: it.purchase.type,
 		prod: it.purchase.product,
-		count: toPrec(it.purchase.productCount, 1),
+		count: toPrec(it.purchase.count, 1),
 		power: toPrec(it.power, 1),
 		owners: it.owners,
-		price: Coin.valueStr(it.purchase.sumPrice, it.purchase.priceCoin, undefined, system),
+		price: await Coin.valueStr(it.purchase.price, it.purchase.priceCoin, undefined, system),
 	  }));
 	const count = active_workers.length;
 	const power = toPrec(active_workers.sumBy(it => it.power), 0);
@@ -65,16 +82,18 @@ export const showPredict = async (sourceSystem?: System) => {
 	  });
 	}
 
-	const all_report = system.users.map(user => {
-	  const userWallets = Wallet.findAll({user}, system);
+	const all_report = await system.users.mapAwait(async user => {
+	  const userWallets = await Wallet.findAll({user, source: limitSource}, system);
 
-	  const working = userWallets
-		.filter(it => it.type == 'working')
-		.sumBy(it => exchange(it.value, it.coin, BTC, system));
+	  const working = (await userWallets
+		  .filter(it => it.type == 'working')
+		  .mapAwait(async it => await exchange(it.value, it.coin, BTC, system))
+	  ).sumBy();
 
-	  const saving = userWallets
-		.filter(it => it.type == 'saving')
-		.sumBy(it => exchange(it.value, it.coin, BTC, system));
+	  const saving = (await userWallets
+		  .filter(it => it.type == 'saving')
+		  .mapAwait(async it => await exchange(it.value, it.coin, BTC, system))
+	  ).sumBy();
 
 	  const power = active_workers
 		.map(it => [it.power, (typeof (it.owners) == 'string' ? it.owners == user.id ? 1 : 0 : it.owners[user.id] || 0)])
@@ -104,14 +123,14 @@ export const showPredict = async (sourceSystem?: System) => {
 		'saving': '-------' as any,
 		'working': '-------' as any,
 	  };
-	  const convert = (it: Report | undefined) => (it && ({
+	  const convert = async (it: Report | undefined) => (it && ({
 		'user': it.user,
 		'power': toPrec(it.power, 0),
-		'saving': Coin.toString(it.saving, BTC, REPORT_COINS, undefined, system),
-		'working': Coin.toString(it.working, BTC, REPORT_COINS, undefined, system),
+		'saving': await Coin.toStr(it.saving, BTC, REPORT_COINS, undefined, system),
+		'working': await Coin.toStr(it.working, BTC, REPORT_COINS, undefined, system),
 	  })) || splitter;
-	  const report = all_report.filter(it => it.saving > 0 || it.working > 0 || it.power > 0).map(convert);
-	  console.table([...report, splitter, convert(sum), convert(change)]);
+	  const report = await all_report.filter(it => it.saving > 0 || it.working > 0 || it.power > 0).mapAwait(convert);
+	  console.table([...report, splitter, await convert(sum), await convert(change)]);
 
 	  // // to watch wallets
 	  // const wallets = [
@@ -126,20 +145,19 @@ export const showPredict = async (sourceSystem?: System) => {
 	  // .filter(it => it.value != 0);
 	  // if (wallets.length) console.table(wallets);
 
-	  const prdDay = system.currentTime - startPredictDay;
-	  const prdWeek = toPrec(prdDay / 7, 1);
-	  const prdMonth = toPrec(prdDay / 30, 1);
-	  const prdYear = toPrec(prdDay / 360, 1);
-	  print('^ User States ^', {sysDay: system.currentTime, prdDay, prdWeek, prdMonth, prdYear});
+	  const prdWeek = toPrec(predictDay / 7, 1);
+	  const prdMonth = toPrec(predictDay / 30, 1);
+	  const prdYear = toPrec(predictDay / 360, 1);
+	  print('^ User States ^', {sysDay: system.currentTime, prdYear, prdMonth, prdWeek, prdDay: predictDay});
 	}
 
-	Routines.predict(system, period, 0/*-startPredictDay*/);
+	await Routines.predict(system, periodLen, 0/*-startPredictDay*/);
 
-	const Pdie = toPrec(system.workers.filter(it =>
-	  (it.endTime >= (system.currentTime - period)) && (it.endTime < system.currentTime)
+	const Pdie = toPrec(system.workers.filter(it => (!limitSource || it.source == limitSource) &&
+	  (it.endTime >= (system.currentTime - periodLen)) && (it.endTime < system.currentTime)
 	).sumBy(it => it.power), 0);
-	const Pbuy = toPrec(system.workers.filter(it =>
-	  (it.startTime >= (system.currentTime - period)) && (it.startTime < system.currentTime)
+	const Pbuy = toPrec(system.workers.filter(it => (!limitSource || it.source == limitSource) &&
+	  (it.startTime >= (system.currentTime - periodLen)) && (it.startTime < system.currentTime)
 	).sumBy(it => it.power), 0);
 	const Pchg = toPrec(Pbuy - Pdie, 0);
 
@@ -148,7 +166,7 @@ export const showPredict = async (sourceSystem?: System) => {
 	  Y: toPrec(system.currentTime / (30 * 12), 1),
 	  M: toPrec(system.currentTime / 30, 1),
 	  D: system.currentTime,
-	  saving: Coin.toString(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
+	  saving: await Coin.toStr(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
 	  P: power,
 	  Pchg, /*pow1d: power_1d,
 	  P1m: power_1m, P3m: power_3m,*/

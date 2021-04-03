@@ -34,10 +34,8 @@ export namespace User {
 	agentsShare: ShareSetting | ShareSetting[];
   }
 
-  export const findById = (user: User | string, system: System): User | undefined => {
-	if (typeof (user) != 'string') return user;
-	return system?.users.find(it => it.id == user);
-  }
+  export const findById = async (user: User | string, system: System): Promise<User | undefined> =>
+	typeof (user) != 'string' ? user : system?.users.find(it => it.id == user);
 
   export const isSavePolicyInRange = (policy: SavePolicy, system: System, timeShift: number = 0): boolean => {
 	const time = system.currentTime + timeShift;
@@ -62,11 +60,11 @@ export namespace User {
   ): SavePolicy | SavePolicy[] =>
 	JSON.parse(JSON.stringify(source || base || []));
 
-  export const create = (
+  export const create = async (
 	source?: DeepPartial<User>,
 	base?: User,
 	system?: System,
-  ): User => {
+  ): Promise<User> => {
 	const user = ({
 	  id: source?.id || base?.id || generateID(),
 	  title: source?.title || base?.title || "EMPTY",

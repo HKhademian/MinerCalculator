@@ -3,7 +3,6 @@ import {Coin} from "./Coin.ts";
 import {Company} from "./Source.ts";
 import {DeepPartial, errVal} from "../util.ts";
 
-
 export namespace Product {
   type ProductData = {
 	id: string;
@@ -24,7 +23,7 @@ export namespace Product {
 	mineCoin: string;
   }
 
-  export const findAll = (cond: { product?: string | Product, company?: string | Company, mineCoin?: string | Coin }, system: System): Product[] => {
+  export const findAll = async (cond: { product?: string | Product, company?: string | Company, mineCoin?: string | Coin }, system: System): Promise<Product[]> => {
 	let products = system?.products || [];
 	if (cond.product) {
 	  const product = (typeof (cond.product) == "string") ? products.find(it => it.id == cond.product) : cond.product;
@@ -45,12 +44,10 @@ export namespace Product {
 	return products;
   };
 
-  export const findById = (product: string | Product, system: System): Product | undefined => {
-	if (typeof (product) != "string") return product;
-	return system?.products.find(it => it.id == product);
-  }
+  export const findById = async (product: string | Product, system: System): Promise<Product | undefined> =>
+	typeof (product) != "string" ? product : system?.products.find(it => it.id == product);
 
-  export const create = (data?: DeepPartial<ProductData>, base?: Product, system?: System): Product => {
+  export const create = async (data?: DeepPartial<ProductData>, base?: Product, system?: System): Promise<Product> => {
 	const company = data?.company || base?.company || errVal("no company provided");
 	const priceCoin = data?.priceCoin || base?.priceCoin || errVal("no priceCoin provided");
 	const mineCoin = data?.mineCoin || base?.mineCoin || errVal("no mineCoin provided");

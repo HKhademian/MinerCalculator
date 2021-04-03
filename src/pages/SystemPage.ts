@@ -5,13 +5,13 @@ export const showSystemPage = async () => await askMenu(
   "System Page", [
 	{title: "exit System Page"},
   ], async () => {
-	console.log(System.get());
+	console.log(await System.get());
   }, {defaultChoice: 0});
 
 export const showSavePage = async () => await askMenu(
   "Save System Page", [
 	{title: "exit SAVE Page"},
   ], async () => {
-	const system = System.get();
+	const system = await System.get();
 	await System.save(system);
   }, {defaultChoice: 0});

@@ -11,6 +11,14 @@ declare global {
 	minBy(trans?: (it: T) => number): T | undefined;
 
 	maxBy(trans?: (it: T) => number): T | undefined;
+
+	mapAsync<E>(trans: (it: T, index: number, arr: Array<T>) => Promise<E>): Promise<E[]>;
+
+	mapAwait<E>(trans: (it: T, index: number, arr: Array<T>) => Promise<E>): Promise<E[]>;
+
+	forEachAsync(trans: (it: T, index: number, arr: Array<T>) => Promise<any>): Promise<void>;
+
+	forEachAwait(trans: (it: T, index: number, arr: Array<T>) => Promise<any>): Promise<void>;
   }
 }
 
@@ -25,3 +33,26 @@ Array.prototype.minBy = function <T>(trans: (it: T) => number = (it) => (it as a
 Array.prototype.maxBy = function <T>(trans: (it: T) => number = (it) => (it as any)): T {
   return this && this.length > 0 && this.reduce((prev, it) => trans(it) > trans(prev) ? it : prev, this[0]);
 }
+
+
+Array.prototype.mapAsync = function <T, E>(trans: (it: T, index: number, arr: Array<T>) => Promise<E>): Promise<E[]> {
+  return Promise.all(this.map(trans));
+}
+
+Array.prototype.mapAwait = async function <T, E>(trans: (it: T, index: number, arr: Array<T>) => Promise<E>): Promise<E[]> {
+  const res = [];
+  for (let i = 0; i < this.length; i++) {
+	res.push(await trans(this[i], i, this));
+  }
+  return res;
+}
+
+Array.prototype.forEachAsync = function <T>(trans: (it: T, index: number, arr: Array<T>) => Promise<any>) {
+  return this.mapAsync(trans) as any as Promise<void>;
+}
+
+
+Array.prototype.forEachAwait = function <T>(trans: (it: T, index: number, arr: Array<T>) => Promise<any>) {
+  return this.mapAwait(trans) as any as Promise<void>;
+}
+

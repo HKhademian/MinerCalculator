@@ -1,3 +1,4 @@
+import './_global.ts';
 import {System} from "./System.ts";
 import {DeepPartial, errVal} from "../util.ts";
 import {Product} from "./Product.ts";
@@ -15,12 +16,11 @@ export namespace Company {
   export interface Company extends CompanyData {
   }
 
-  export function findById(company: string | Company, system: System): Company | undefined {
-	if (typeof (company) != 'string') return company as Company;
-	return system?.companies?.find(it => it.id == company);
-  }
+  export const findById = async (company: string | Company, system: System): Promise<Company | undefined> =>
+	typeof (company) != 'string' ? company : system?.companies?.find(it => it.id == company);
 
-  export const create = (data?: DeepPartial<CompanyData>, base?: Company, system?: System): Company => {
+
+  export const create = async (data?: DeepPartial<CompanyData>, base?: Company, system?: System): Promise<Company> => {
 	const company = ({
 	  id: data?.id || base?.id || errVal("no company-id provided"),
 	  title: data?.title || base?.title || `Company ${data?.id || base?.id}`,
@@ -32,7 +32,7 @@ export namespace Company {
   };
 }
 
-export type  Company = Company.Company;
+export type Company = Company.Company;
 
 
 export namespace Source {
@@ -61,11 +61,8 @@ export namespace Source {
 	reinvest: ReInvest,
   }
 
-
-  export function findById(source: string | Source, system: System): Source | undefined {
-	if (typeof (source) != 'string') return source as Source;
-	return system?.sources.find(it => it.id == source);
-  }
+  export const findById = async (source: string | Source, system: System): Promise<Source | undefined> =>
+	typeof (source) != 'string' ? source : system?.sources.find(it => it.id == source);
 
   const createReInvest = (data?: DeepPartial<ReInvestData>, base?: ReInvest): ReInvest => {
 	const product = data?.product || base?.product || undefined;
@@ -76,7 +73,8 @@ export namespace Source {
 	  // lastBuy: source?.reinvest?.lastBuy || base?.reinvest.lastBuy || -Infinity,
 	}) as ReInvest;
   }
-  export const create = (data?: DeepPartial<SourceData>, base?: Source, system?: System): Source => {
+
+  export const create = async (data?: DeepPartial<SourceData>, base?: Source, system?: System): Promise<Source> => {
 	const company = data?.company || base?.company || errVal("no company provided");
 	const item = ({
 	  id: data?.id || base?.id || errVal("no source-id provided"),
@@ -90,21 +88,20 @@ export namespace Source {
 	return item;
   }
 
-  export const getOwnerPowers = (system: System, source: string | Source, time?: number): Worker.Owner => {
+  export const getOwnerPowers = async (system: System, source: string | Source, time?: number): Promise<Worker.Owner> => {
 	source = typeof source == "string" ? source : source.id;
 	time = time != undefined ? time : system.currentTime;
 	const workers = system.workers.filter(it => (it.startTime <= time!) && (it.endTime >= time!) && it.source == source);
-	const powers = workers.reduce((prev, w) => {
+	return workers.reduce((prev, w) => {
 	  Object.entries(w.owners).forEach(([u, r]) => {
 		prev[u] = (prev[u] || 0) + (r * w.power);
 	  });
 	  return prev;
 	}, {} as { [_: string]: number });
-	return powers;
   }
 
-  export const getOwnerShares = (system: System, source: string | Source, time?: number): Worker.Owner => {
-	const powers = getOwnerPowers(system, source, time);
+  export const getOwnerShares = async (system: System, source: string | Source, time?: number): Promise<Worker.Owner> => {
+	const powers = await getOwnerPowers(system, source, time);
 	const sumP = Object.values(powers).sumBy();
 	return Object.fromEntries(
 	  Object.entries(powers).map(([u, p]) => [u, p / sumP])
@@ -113,4 +110,4 @@ export namespace Source {
 
 }
 
-export type     Source = Source.Source;
+export type Source = Source.Source;
