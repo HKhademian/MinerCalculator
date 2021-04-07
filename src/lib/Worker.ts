@@ -141,11 +141,11 @@ export namespace Worker {
   }
 
   export const buyWorkerFromProduct = async (
-	{source, product, owners, startDay = 0, money, moneyCoin, purchase}: {
+	{source, product, owners, startTime, money, moneyCoin, purchase}: {
 	  source: string | Source;
 	  product: string | Product;
 	  owners: OwnerData;
-	  startDay?: number;
+	  startTime?: number;
 	  money: number;
 	  moneyCoin?: Coin | string;
 	  purchase?: DeepPartial<PurchaseDetailData>;
@@ -155,7 +155,7 @@ export namespace Worker {
 	product = await Product.findById(product, system!) || errVal("no product found");
 	const moneyEq = await exchange(money, moneyCoin || product.priceCoin, product.priceCoin, system);
 	const count = Math.floor(moneyEq / product.price);
-	return await createWorkerFromProduct({source, product, owners, startTime: startDay, count, purchase}, system);
+	return await createWorkerFromProduct({source, product, owners, startTime: startTime, count, purchase}, system);
   };
 
 
@@ -169,15 +169,17 @@ export namespace Worker {
 	  startTime,
 	  moneyCoin,
 	  purchase,
+	  takeSaving = true,
 	}: {
 	  source: string | Source;
-	  product: string | Product;
+	  product?: string | Product;
 	  owners?: OwnerData;
 	  startTime?: number;
 	  count?: number;
 	  money?: number;
 	  moneyCoin?: Coin | string;
 	  purchase?: DeepPartial<PurchaseDetailData>;
+	  takeSaving?: boolean;
 	},
 	system: System,
   ): Promise<Worker> => {
@@ -185,9 +187,9 @@ export namespace Worker {
 	const source = typeof reqSource == "string" ? reqSource : reqSource.id;
 	const owners = reqOwners || await Source.getOwnerShares(system, source, startTime);
 
-	const product = await Product.findById(reqProduct, system) || errVal("no product found");
+	const product = await Product.findById(reqProduct || purchase?.product || "", system) || errVal("no product found");
 
-	const count = reqCount || (reqMoney && Math.floor(await exchange(reqMoney, moneyCoin || product.priceCoin, product.priceCoin, system) / product.price)) || errVal("must provide count or money");
+	const count = reqCount || purchase?.count || (reqMoney && Math.floor(await exchange(reqMoney, moneyCoin || product.priceCoin, product.priceCoin, system) / product.price)) || errVal("must provide count or money");
 
 	const worker = await createWorkerFromProduct({
 	  product, startTime, count, owners, source, purchase: {
@@ -210,7 +212,7 @@ export namespace Worker {
 	  const savingWallet = (await Wallet.find({source, coin, user: ownerId, type: 'saving'}, system))!;
 
 	  workingWallet.value -= shareCost;
-	  if (workingWallet.value < 0) {
+	  if (takeSaving && workingWallet.value < 0) {
 		savingWallet.value -= -workingWallet.value;
 		workingWallet.value = 0;
 	  }

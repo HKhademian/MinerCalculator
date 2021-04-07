@@ -1,12 +1,12 @@
 import '../lib/_global.ts';
 import {System} from "../lib/System.ts";
 import {Coin, exchange, M_IRT, BTC, USD, ETH} from "../lib/Coin.ts";
-import {print, toPrec} from "../util.ts";
+import {print, toPrec, writeCSV} from "../util.ts";
 import {Wallet} from "../lib/Wallet.ts";
 import {Routines} from "../lib/Routines.ts";
 import {Source} from "../lib/Source.ts";
 
-const REPORT_COINS = [M_IRT, USD, BTC,/* ETH */];
+const REPORT_COINS = [M_IRT, /* USD, BTC, ETH */];
 
 export const showPredict = async (
   {
@@ -14,11 +14,17 @@ export const showPredict = async (
 	periodLen = 0,
 	periods = 0,
 	source,
+	onPrePredict,
+	onPostPredict,
+	exportCSV = true,
   }: {
 	system?: System,
 	periodLen?: number,
 	periods?: number,
 	source?: string | Source,
+	onPrePredict?: (system: System, i: number) => Promise<any>,
+	onPostPredict?: (system: System, i: number) => Promise<any>,
+	exportCSV?: boolean,
   } = {}
 ) => {
   console.clear();
@@ -145,13 +151,22 @@ export const showPredict = async (
 	  // .filter(it => it.value != 0);
 	  // if (wallets.length) console.table(wallets);
 
-	  const prdWeek = toPrec(predictDay / 7, 1);
-	  const prdMonth = toPrec(predictDay / 30, 1);
-	  const prdYear = toPrec(predictDay / 360, 1);
-	  print('^ User States ^', {sysDay: system.currentTime, prdYear, prdMonth, prdWeek, prdDay: predictDay});
+	  const sysTime = {
+		sysYear: (system.currentTime / 360).toFixed(2),
+		sysMonth: (system.currentTime / 30).toFixed(2),
+		sysWeek: (system.currentTime / 7).toFixed(1),
+		sysDay: system.currentTime,
+	  }
+	  const prdTime = {
+		prdYear: (predictDay / 360).toFixed(2),
+		prdMonth: (predictDay / 30).toFixed(2),
+		prdWeek: (predictDay / 7).toFixed(1),
+		prdDay: predictDay,
+	  }
+	  print('^ User States ^');
+	  print(sysTime);
+	  print(prdTime);
 	}
-
-	await Routines.predict(system, periodLen, 0/*-startPredictDay*/);
 
 	const Pdie = toPrec(system.workers.filter(it => (!limitSource || it.source == limitSource) &&
 	  (it.endTime >= (system.currentTime - periodLen)) && (it.endTime < system.currentTime)
@@ -163,23 +178,41 @@ export const showPredict = async (
 
 	periodPower.push({
 	  /* i, */
-	  Y: toPrec(system.currentTime / (30 * 12), 1),
-	  M: toPrec(system.currentTime / 30, 1),
+	  Y: (system.currentTime / (30 * 12)).toFixed(2),
+	  M: (system.currentTime / 30).toFixed(2),
 	  D: system.currentTime,
-	  saving: await Coin.toStr(sum.saving, BTC, [M_IRT, USD, BTC], undefined, system),
-	  P: power,
-	  Pchg, /*pow1d: power_1d,
-	  P1m: power_1m, P3m: power_3m,*/
-	  P6m: power_6m,
-	  P1y: power_1y,
-	  P2y: power_2y,
-	  P3y: power_3y,
-	  Pbuy, Pdie,
+	  saving: await Coin.toStr(sum.saving, BTC, REPORT_COINS, undefined, system),
+	  working: await Coin.toStr(sum.working, BTC, REPORT_COINS, undefined, system),
+	  Pchg, Pbuy, Pdie, P: power,  /*pow1d: power_1d, P1m: power_1m, P3m: power_3m,*/
+	  P6m: power_6m, P1y: power_1y, /*P2y: power_2y, P3y: power_3y,*/
 	});
 
 	if (lastPeriod) break;
 	if (power <= 0) break;
 	if (!silent && prompt("predict next period? (Y,n)") == 'n') break;
+
+
+	{
+	  const res = onPrePredict?.call(this, system, i);
+	  if (res instanceof Promise) await res;
+	}
+
+	await Routines.predict(system, periodLen, 0/*-startPredictDay*/);
+
+	const res = onPostPredict?.call(this, system, i);
+	if (res instanceof Promise) await res;
+  }
+
+  if (exportCSV) {
+	const f = await Deno.open(`./out/predict-${new Date().getTime()}.csv`, {
+	  write: true,
+	  create: true,
+	  truncate: true
+	});
+	await writeCSV(f, [
+	  Object.keys(periodPower[0]) as Array<any>,
+	  ...periodPower.map(it => Object.values(it)) as Array<any>,
+	]);
   }
 
   console.table(periodPower);

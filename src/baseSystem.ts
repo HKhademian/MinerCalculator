@@ -8,6 +8,10 @@ import {Worker} from "./lib/Worker.ts";
 import {Wallet} from "./lib/Wallet.ts";
 import {Coin, USD, BTC, ETH, M_IRT, LTC, ADA, DOGE, DASH} from "./lib/Coin.ts";
 import {errVal} from "./util.ts";
+import {showPredict} from "./pages/PredictPage.ts";
+
+const TEST = !!Deno.env.get('PROD');
+
 
 export const baseSystem: System = await System.create({
   // managerShare: {
@@ -91,7 +95,7 @@ export const baseSystem: System = await System.create({
   });
   const HAMYAR_PRD_1th_6m = await Product.create({
 	id: "hamyar_1th_6m",
-	price: 0.355,
+	price: 0.420,
 	minePower: 1.0,
   }, HAMYAR_PRD_BASE_6M, system);
 
@@ -190,21 +194,24 @@ export const baseSystem: System = await System.create({
 	link: 'https://hashflare.io/r/76BC7F2C',
   }, undefined, system);
 
+
+  const BASE_POLICY = [{
+	end: 30 * 3,
+	rate: 1,
+  }, {
+	end: 30 * 6,
+	rate: 0,
+  }, {
+	start: 30 * 12,
+	rate: 0.40,
+  }, {
+	rate: 0.30,
+  }];
+
   const USR_BASE: User = await User.create({
 	id: "base",
 	title: "Base User",
-	savePolicy: [{
-	  end: 30 * 3,
-	  rate: 0.8,
-	}, {
-	  end: 30 * 4,
-	  rate: 0.5,
-	}, {
-	  start: 30 * 12,
-	  rate: 0.40,
-	}, {
-	  rate: 0.30,
-	}],
+	savePolicy: BASE_POLICY,
   });
   const USR_manager = await User.create({
 	id: "manager",
@@ -283,14 +290,6 @@ export const baseSystem: System = await System.create({
 	  startTime: 32,
 	  count: 1,
 	  purchase: {factor: "4248", date: "12/01/1400", type: "reinvest"},
-	}, system);
-
-	await Worker.createWorkerFromProduct({
-	  source, product: PIS_PRD_1th_12m_reinvest,
-	  owners: USR_hossein,
-	  startTime: 35,
-	  count: 10,
-	  purchase: {factor: "XxX", date: "15/01/1400", type: "reinvest"},
 	}, system);
 
 	const liveWallet = (await Wallet.find({source, coin: BTC, type: 'live'}, system))!;
@@ -563,11 +562,18 @@ export const baseSystem: System = await System.create({
 	  },
 	}, system);
 
+	system.currentTime = 33;
 	// in day 29 - account reach 0 from neg value ! so it's a good start point
 	// in day 32 - account reach 0 from neg value ! so it's a good start point
 	const liveWallet = (await Wallet.find({source, coin: BTC, type: 'live'}, system))!;
 	liveWallet.value = 0;
 	liveWallet.lastUpdate = 32;
+
+	// await Worker.reinvestWorkerFromProduct({
+	//   source, product: HAMYAR_PRD_1th_6m, startTime: 60, count: 150,
+	// }, system);
+	// system.currentTime = 60;
+
   })();
 
   // HAMYAR | VAM1
@@ -584,19 +590,43 @@ export const baseSystem: System = await System.create({
 	const usr_mit = await User.create({id: 'mit', title: 'MIT'}, baseUser, system);
 
 	await Worker.reinvestWorkerFromProduct({
-	  source, product: HAMYAR_PRD_1th_6m,
-	  owners: usr_hos,
-	  startTime: 32,
-	  count: 89,
-	  purchase: {factor: "159366", date: "12/01/1400"},
+	  source, startTime: 32, owners: usr_hos,
+	  purchase: {
+		factor: "159366", date: "12/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 89, price: 29.993, priceCoin: M_IRT,
+	  },
 	}, system);
 
 	await Worker.reinvestWorkerFromProduct({
-	  source, product: HAMYAR_PRD_1th_6m,
-	  owners: usr_mit,
-	  startTime: 32,
-	  count: 10,
-	  purchase: {factor: "159464", date: "12/01/1400"},
+	  source, startTime: 32, owners: usr_mit,
+	  purchase: {
+		factor: "159464", date: "12/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 10, price: 3.370, priceCoin: M_IRT,
+	  },
+	}, system);
+
+	await Worker.reinvestWorkerFromProduct({
+	  source, startTime: 36, owners: usr_hos,
+	  purchase: {
+		factor: "161266", date: "16/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 30, price: 10.110, priceCoin: M_IRT,
+	  },
+	}, system);
+
+	await Worker.reinvestWorkerFromProduct({
+	  source, startTime: 36, owners: usr_hos,
+	  purchase: {
+		factor: "161270", date: "16/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 40, price: 18.000, priceCoin: M_IRT,
+	  },
+	}, system);
+
+	await Worker.reinvestWorkerFromProduct({
+	  source, startTime: 36, owners: usr_hos,
+	  purchase: {
+		factor: "161296", date: "16/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 35, price: 15.750, priceCoin: M_IRT,
+	  },
 	}, system);
   }());
 
@@ -608,17 +638,47 @@ export const baseSystem: System = await System.create({
 	}, undefined, system);
 
 	const baseUser = await User.create({
-	  id: 'base', savePolicy: [{start: 30 * 18, rate: 0.5}, {start: 30 * 12, rate: 0.4}, {start: 30 * 6, rate: 0.3}],
+	  id: 'base', savePolicy: {rate: 0.3},
 	});
 	const usr_sae = await User.create({id: 'sae', title: 'SAE'}, baseUser, system);
 
 	await Worker.reinvestWorkerFromProduct({
-	  source, product: HAMYAR_PRD_1th_6m,
-	  owners: usr_sae,
-	  startTime: 32,
-	  count: 148,
-	  purchase: {factor: "???", date: "12/01/1400"},
+	  source, startTime: 32, owners: usr_sae,
+	  purchase: {
+		factor: "???", date: "12/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 148, price: 48.500, priceCoin: M_IRT,
+	  },
 	}, system);
+
+	await Worker.reinvestWorkerFromProduct({
+	  source, startTime: 36, owners: usr_sae,
+	  purchase: {
+		factor: "???", date: "16/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 48, price: 20.000, priceCoin: M_IRT,
+	  },
+	}, system);
+  }());
+
+  // HAMYAR | VAM3
+  await (async function Hamyar_VAM3() {
+	const source = await Source.create({
+	  id: 'ham_v3', title: 'HAM_SRC_VAM_3', company: HAMYAR, login: 'hco',
+	  reinvest: {product: HAMYAR_PRD_1th_6m, minCount: 5, minInterval: -1},
+	}, undefined, system);
+
+	const baseUser = await User.create({
+	  id: 'base', savePolicy: {start: 30 * 6, rate: 0.3},
+	});
+	const usr_hco = await User.create({id: 'hco', title: 'HCo'}, baseUser, system);
+
+	await Worker.createWorkerFromProduct({
+	  source, startTime: 40, owners: usr_hco,
+	  purchase: {
+		factor: "???", date: "20/01/1400", type: "reinvest",
+		product: HAMYAR_PRD_1th_6m, count: 11.1, price: 5.000, priceCoin: M_IRT,
+	  },
+	}, system);
+
   }());
 
 
